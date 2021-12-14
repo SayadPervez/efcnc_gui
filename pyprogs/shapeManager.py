@@ -1,7 +1,7 @@
 from functions import *
 import constants as const
 from math import sin,cos,radians,pi
-from visualization import arr2png, png2arr,rotate,s2p,showPNG
+from visualization import arr2png, png2arr,rotate,s2p,showPNG,tranparencyFilter
 from random import randint as ri
 import svgBuilder
 
@@ -55,13 +55,14 @@ class CutSheet:
             temp+="\n"
         print(temp)
 
-    def __generateShape__(self,length,height,angle,uid):
+    def __generateShape__(self,length,height,angle):
         '''
         Generates 2D binary shape matrix
         '''
         self.dimensions=[length,height,angle,'mm,mm,°']
         svgBuilder.Rectangle(length,height,angle,self.svgPath)
         s2p(self.svgPath,self.pngPath)
+        tranparencyFilter(self.pngPath)
         self.shapeMatrix = png2arr(self.pngPath)
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
 
@@ -78,7 +79,7 @@ class Circle:
         self.surfaceArea = pi*radius*radius
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
-        self.__generateShapeMatrix__(radius,uid)
+        self.__generateShapeMatrix__(radius)
 
     def __repr__(self):
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Radius \t: {self.radius} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
@@ -125,5 +126,6 @@ class Circle:
         self.dimensions=[self.radius,'mm']     # only angle of dimension changes on tilting
         svgBuilder.Circle(radius,self.svgPath)
         s2p(self.svgPath,self.pngPath)
+        tranparencyFilter(self.pngPath)
         self.shapeMatrix = png2arr(self.pngPath)
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))

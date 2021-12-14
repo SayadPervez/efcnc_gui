@@ -9,6 +9,15 @@ from ezdxf import recover
 from ezdxf.addons.drawing import matplotlib
 from cairosvg import svg2png
 
+def tranparencyFilter(pngpath):
+    '''
+    Converts transparent image to white
+    '''
+    image = im.open(pngpath)
+    new_image = im.new("RGBA", image.size, "WHITE") 
+    new_image.paste(image, (0, 0), image)           
+    new_image.convert('RGB').save(pngpath, "PNG")
+
 def s2p(spath,destinationPath):
     with open(spath,"r") as f:
         svg_code = f.read()
