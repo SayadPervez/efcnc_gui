@@ -1,4 +1,5 @@
 from shapeManager import CutSheet,Circle,Cone
+from functions import liAnalyse,npAnalyse,binaryFilter,p2aBugFixFunction
 '''
 x=CutSheet(30,10,0,"abcdefgh1")
 x.displayShape()

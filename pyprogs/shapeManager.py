@@ -63,7 +63,7 @@ class CutSheet:
         svgBuilder.Rectangle(length,height,angle,self.svgPath)
         s2p(self.svgPath,self.pngPath)
         tranparencyFilter(self.pngPath)
-        self.shapeMatrix = png2arr(self.pngPath)
+        self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
 
 class Circle:
@@ -127,7 +127,7 @@ class Circle:
         svgBuilder.Circle(radius,self.svgPath)
         s2p(self.svgPath,self.pngPath)
         tranparencyFilter(self.pngPath)
-        self.shapeMatrix = png2arr(self.pngPath)
+        self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
 
 class Cone:
@@ -209,5 +209,5 @@ class Cone:
         svgBuilder.Cone(height,radius,angle,self.svgPath)
         s2p(self.svgPath,self.pngPath)
         tranparencyFilter(self.pngPath)
-        self.shapeMatrix = png2arr(self.pngPath)
+        self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))

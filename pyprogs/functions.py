@@ -193,6 +193,7 @@ def outlineBugFixFunction(li2d):
     return(retli)
 
 def binaryFilter(canvas):
+    optionalShapeList=None
     if(type(canvas)==type((1,2,3))):
         canvas,optionalShapeList = canvas[0],canvas[1]
     a = np.array(canvas)
@@ -201,3 +202,15 @@ def binaryFilter(canvas):
     if(optionalShapeList!=None):
         return((np.array(a,int)).tolist(),optionalShapeList)
     return((np.array(a,int)).tolist())
+
+def p2aBugFixFunction(li2d):
+    retli=[]
+    for row in li2d:
+        templi=[]
+        for col in row:
+            if(str(col)=='1'):
+                templi.append(1)
+            else:
+                templi.append(0)
+        retli.append(templi)
+    return(retli)
