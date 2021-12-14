@@ -1,1 +1,3 @@
 node_modules/
+pyprogs/__pycache__
+pyprogs/IMG/*
