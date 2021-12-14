@@ -23,7 +23,7 @@ class CutSheet:
         self.__generateShape__(length,height,angle,uid)
 
     def __repr__(self):
-        return(f"Object Shape \t: {self.myShape}\nSide Length \t: {self.length} mm\nSide Width \t: {self.width} mm\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nSide Length \t: {self.length} mm\nSide Height \t: {self.height} mm\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
     
     def print(self):
         '''
@@ -41,6 +41,19 @@ class CutSheet:
         Displays shape as a image
         '''
         (arr2png(self.shapeMatrix)).show()
+
+    def printShape(self):
+        '''
+        Prints shape to console in binary 
+
+        #### Warning : CPU intensive task
+        '''
+        temp = ""
+        for li in self.shapeMatrix:
+            for num in li:
+                temp+=str(num)
+            temp+="\n"
+        print(temp)
 
     def __generateShape__(self,length,height,angle,uid):
         '''
