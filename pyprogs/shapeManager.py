@@ -211,3 +211,56 @@ class Cone:
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
+
+class Canvas:
+    '''
+    Give side in milli-meter( mm )
+    '''
+    def __init__(self,length,height):
+        self.uid = "Canvas"
+        self.myShape="Canvas"
+        self.length = length
+        self.height = height
+        self.surfaceArea = length*height
+        self.pngPath = f"./PNG/{self.uid}.png"
+        self.svgPath = f"./SVG/{self.uid}.svg"
+        self.__generateShape__(length,height,self.uid)
+
+    def __repr__(self):
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nSide Length \t: {self.length} mm\nSide Height \t: {self.height} mm\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+    
+    def print(self):
+        '''
+        Prints Object parameters to console
+        '''
+        print(repr(self))
+
+    def displayShape(self):
+        '''
+        Displays shape as a image
+        '''
+        (arr2png(self.shapeMatrix)).show()
+
+    def printShape(self):
+        '''
+        Prints shape to console in binary 
+
+        #### Warning : CPU intensive task
+        '''
+        temp = ""
+        for li in self.shapeMatrix:
+            for num in li:
+                temp+=str(num)
+            temp+="\n"
+        print(temp)
+
+    def __generateShape__(self,length,height):
+        '''
+        Generates 2D binary shape matrix
+        '''
+        self.dimensions=[length,height,'mm,mm']
+        svgBuilder.createCanvas(length,height,self.svgPath)
+        s2p(self.svgPath,self.pngPath)
+        tranparencyFilter(self.pngPath)
+        self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
+        self.shapeFrameDimension=list(np.shape(self.shapeMatrix))

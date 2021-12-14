@@ -1,3 +1,4 @@
+from pyprogs.shapeManager import Canvas
 from shapeManager import CutSheet,Circle,Cone
 from functions import liAnalyse,npAnalyse,binaryFilter,p2aBugFixFunction
 '''
@@ -12,7 +13,7 @@ c.displayShape()
 c.tilt(20)
 print(c)
 c.printShape()
-'''
+
 c = Cone(30,10,0,"zxcvb1")
 c.displayShape()
 c.tilt(20)
@@ -20,3 +21,8 @@ input("...")
 c.displayShape()
 c.printShape()
 print(c)
+'''
+
+x=Canvas(1920,1080)
+x.displayShape()
+liAnalyse(x.shapeMatrix)

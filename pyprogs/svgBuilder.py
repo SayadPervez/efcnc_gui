@@ -28,10 +28,10 @@ def svgRotate(path,angle):
             pass
     os.system(f'inkscape --batch-process --actions="select-all:all;transform-rotate:{str(-angle)};FitCanvasToDrawing;export-filename:{path};export-do;" {path}')
 
-def createCanvas(width,height):
+def createCanvas(width,height,path):
     width = mm2pt(width)
     height = mm2pt(height)
-    with cairo.SVGSurface("canvas.svg", width,height) as surface:
+    with cairo.SVGSurface(path, width,height) as surface:
         context = cairo.Context(surface)
         context.scale(700, 700)
 
