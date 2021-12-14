@@ -67,10 +67,11 @@ def Circle(radius,filename):
         cr.fill()
     svgResize2Drawing(filename) 
 
-def Cone(height,radius,angle=0,name="Cone"):
+def Cone(height,radius,angle=0,filename=""):
+    if(filename==""):
+        raise Exception("Empty file name svgBuilder cone")
     radius = mm2pt(radius)
     height = mm2pt(height)
-    filename=name+".svg"
     l=sqrt(radius**2 + height**2)
     theta1=0
     theta2=(radius/l)*(2*pi)
