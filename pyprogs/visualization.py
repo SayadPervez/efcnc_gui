@@ -7,6 +7,12 @@ import matplotlib.pyplot as plt
 from functions import *
 from ezdxf import recover
 from ezdxf.addons.drawing import matplotlib
+from cairosvg import svg2png
+
+def s2p(spath,destinationPath):
+    with open(spath,"r") as f:
+        svg_code = f.read()
+    svg2png(bytestring=svg_code,write_to=destinationPath)
 
 def arr2png(arr,name_=""):
     if("shapes" in str(type(arr))):
