@@ -115,5 +115,8 @@ function cone_submit()
 
 function publish()
 {
-    socket.emit("process!",db);
+    if(Object.keys(db).length === 0)
+        toaster("Empty Inventory !","white-text red darken-3",false);
+    else
+        socket.emit("process!",db);
 }
