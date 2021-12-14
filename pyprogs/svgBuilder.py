@@ -35,7 +35,7 @@ def createCanvas(width,height):
         context = cairo.Context(surface)
         context.scale(700, 700)
 
-
+'''
 def Square(side,angle=0,name="Square"):
     side = mm2pt(side)
     filename=name+".svg"
@@ -44,19 +44,21 @@ def Square(side,angle=0,name="Square"):
         cr.rectangle(0,0,side,side)
         cr.fill()
     svgRotate(filename,angle)
+'''
 
-def Rectangle(l,b,angle=0,filename="Rectangle"):
+def Rectangle(l,b,angle=0,filename=""):
+    if(filename==""):
+        raise Exception("Empty file name svgBuilder rectangle")
     l = mm2pt(l)
     b = mm2pt(b)
     with cairo.SVGSurface(filename,sqrt(l**2 + b**2) , sqrt(l**2+b**2)) as surface:
         cr = cairo.Context(surface)
         cr.rectangle(0,0,l,b)
-        cr.fill()    
+        cr.fill()
     svgRotate(filename,angle)
 
-def Circle(radius,name="Circle"):
+def Circle(radius,filename):
     radius = mm2pt(radius)
-    filename=name+".svg"
     with cairo.SVGSurface(filename,2.5*radius , 2.5*radius) as surface:
         cr = cairo.Context(surface)
         theta1=0
