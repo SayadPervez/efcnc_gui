@@ -1,5 +1,4 @@
-from pyprogs.shapeManager import Canvas
-from shapeManager import CutSheet,Circle,Cone
+from shapeManager import CutSheet,Circle,Cone,Canvas
 from functions import liAnalyse,npAnalyse,binaryFilter,p2aBugFixFunction
 '''
 x=CutSheet(30,10,0,"abcdefgh1")

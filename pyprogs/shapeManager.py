@@ -224,7 +224,7 @@ class Canvas:
         self.surfaceArea = length*height
         self.pngPath = f"./PNG/{self.uid}.png"
         self.svgPath = f"./SVG/{self.uid}.svg"
-        self.__generateShape__(length,height,self.uid)
+        self.__generateShape__(length,height)
 
     def __repr__(self):
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nSide Length \t: {self.length} mm\nSide Height \t: {self.height} mm\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
