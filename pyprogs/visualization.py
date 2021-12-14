@@ -14,6 +14,9 @@ def s2p(spath,destinationPath):
         svg_code = f.read()
     svg2png(bytestring=svg_code,write_to=destinationPath)
 
+def showPNG(path):
+    (im.open(path)).show()
+
 def arr2png(arr,name_=""):
     if("shapes" in str(type(arr))):
         arr=arr.shapeMatrix

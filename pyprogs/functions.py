@@ -36,7 +36,7 @@ def evenize(a2dlist):
         return(a2dlist)
     if(i%2!=0):
         # if number of rows (height) is not even
-        min_index = int(min([sum(_) for _ in a2dlist]))
+        min_index = [int(sum(_)) for _ in a2dlist].index(min([int(sum(_)) for _ in a2dlist]))
         del(a2dlist[min_index])
         ret=a2dlist
     if(j%2!=0):
