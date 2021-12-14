@@ -110,3 +110,10 @@ function cone_submit()
     toaster("Cone object added to stack !","yellow-text text-darken-2");
     table_refresh();
 }
+
+//         Publisher
+
+function publish()
+{
+    socket.emit("process!",db);
+}

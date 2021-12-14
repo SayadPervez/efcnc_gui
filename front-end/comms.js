@@ -1,6 +1,5 @@
 var socket = io();
-socket.emit("Hi","Hi");
 
-socket.on("Hi",(rly)=>{
-    console.log(rly);
+socket.on("Process Confirmation",(status)=>{
+    console.log(status);
 })
