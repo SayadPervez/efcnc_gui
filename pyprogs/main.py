@@ -1,5 +1,5 @@
 from shapeManager import CutSheet,Circle,Cone,Canvas
-from functions import liAnalyse,npAnalyse,binaryFilter,p2aBugFixFunction
+from functions import *
 '''
 x=CutSheet(30,10,0,"abcdefgh1")
 x.displayShape()
@@ -20,8 +20,10 @@ input("...")
 c.displayShape()
 c.printShape()
 print(c)
-'''
 
 x=Canvas(1920,1080)
 x.displayShape()
 liAnalyse(x.shapeMatrix)
+'''
+
+clearFreeSpace()

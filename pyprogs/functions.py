@@ -1,5 +1,6 @@
 import numpy as np
 import collections as c
+import os
 
 # pospl -> POSition Point Line
 def pospl(pt1,pt2,pt3):
@@ -214,3 +215,9 @@ def p2aBugFixFunction(li2d):
                 templi.append(0)
         retli.append(templi)
     return(retli)
+
+def clearFreeSpace():
+    os.chdir("./PNG/")
+    li = os.listdir()
+    for _ in li:
+        os.remove(f"./{_}")
