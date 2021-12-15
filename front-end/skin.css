@@ -7,6 +7,7 @@ body{
     padding: 0 41.6px;
     background-image: url("./subtle-background.png");
     background-attachment: fixed;
+    min-height: 110vh;
 }
 
 .h{
