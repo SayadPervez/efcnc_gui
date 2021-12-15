@@ -216,7 +216,7 @@ def p2aBugFixFunction(li2d):
         retli.append(templi)
     return(retli)
 
-def clearFreeSpace():
+def freeSpace():
     os.chdir("./PNG/")
     li = os.listdir()
     for _ in li:

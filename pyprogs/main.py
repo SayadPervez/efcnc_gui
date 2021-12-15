@@ -26,4 +26,4 @@ x.displayShape()
 liAnalyse(x.shapeMatrix)
 '''
 
-clearFreeSpace()
+freeSpace()
