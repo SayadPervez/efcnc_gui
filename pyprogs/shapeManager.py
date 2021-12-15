@@ -1,5 +1,4 @@
 from functions import *
-import constants as const
 from math import sin,cos,radians,pi
 from visualization import arr2png, png2arr,rotate,s2p,showPNG,tranparencyFilter
 from random import randint as ri

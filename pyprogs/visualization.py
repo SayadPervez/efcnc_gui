@@ -2,7 +2,6 @@ import numpy as np
 from PIL import Image as im
 import PIL
 import cv2 as cv
-from constants import *
 import matplotlib.pyplot as plt
 from functions import *
 from ezdxf import recover
@@ -22,6 +21,10 @@ def s2p(spath,destinationPath):
     with open(spath,"r") as f:
         svg_code = f.read()
     svg2png(bytestring=svg_code,write_to=destinationPath)
+    img=im.open(destinationPath)
+    l,b=img.size
+    img=img.resize((l//4,b//4),resample=PIL.Image.NEAREST)
+    img.save(destinationPath)
 
 def showPNG(path):
     (im.open(path)).show()

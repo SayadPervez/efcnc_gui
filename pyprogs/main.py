@@ -25,4 +25,3 @@ x=Canvas(1920,1080)
 x.displayShape()
 liAnalyse(x.shapeMatrix)
 '''
-freeSpace()
