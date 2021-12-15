@@ -18,3 +18,9 @@ body{
     bottom:4rem;
     right:4rem;
 }
+
+#recycle_div{
+    position: fixed;
+    bottom:4rem;
+    left:4rem;
+}

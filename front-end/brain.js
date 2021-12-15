@@ -120,3 +120,8 @@ function publish()
     else
         socket.emit("process!",db);
 }
+
+function clean()
+{
+    socket.emit("Free Space","Please");
+}

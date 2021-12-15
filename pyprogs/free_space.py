@@ -1,10 +1,14 @@
 import os
 
-os.chdir("./PNG/")
-li = os.listdir()
-for _ in li:
-    os.remove(f"./{_}")
-os.chdir("./../SVG/")
-li = os.listdir()
-for _ in li:
-    os.remove(f"./{_}")
+try:
+    os.chdir("./PNG/")
+    li = os.listdir()
+    for _ in li:
+        os.remove(f"./{_}")
+    os.chdir("./../SVG/")
+    li = os.listdir()
+    for _ in li:
+        os.remove(f"./{_}")
+    print("Success")
+except Exception as e:
+    print("Failure")

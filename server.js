@@ -19,6 +19,15 @@ io.on('connection', (socket) => {
         console.log(db);
         io.to(socket.id).emit("Process Confirmation","Success");
     });
+
+    socket.on("Free Space",(x)=>{
+      console.log("Clear Request");
+      out=cmdline("cd ./pyprogs/ && python free_space.py");
+      if(out=="Success\r\n")
+        io.to(socket.id).emit("Free Space","Success");
+      else
+        io.to(socket.id).emit("Free Space","Failure");
+    });
 });
 
 function cmdline(command){
