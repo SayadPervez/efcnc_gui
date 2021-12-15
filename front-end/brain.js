@@ -1,5 +1,6 @@
 db = {};
 var Kount = 0;
+var canvasExists = false;
 
 //              Delete
 
@@ -11,10 +12,17 @@ function del_cancel()
 function del_submit()
 {
     var instance = M.Modal.getInstance(document.getElementById("modal_delete_row"));    instance.close()
-    toaster("Object Deleted","red darken-2 white-text",false);
+    
     var temp = document.getElementById("deletion_id").innerText;
+    if(db[temp]["shape_name"]=="Canvas")
+    {
+        canvasExists=false;
+        toaster("Canvas Deleted","red darken-2 white-text",false);
+    }
+    else{
+        toaster("Object Deleted","red darken-2 white-text",false);
+    }
     delete db[temp];table_refresh();
-
 }
 
 //              Cutsheet
@@ -45,6 +53,42 @@ function cutsheet_submit()
     var instance = M.Modal.getInstance(document.getElementById("modal_cutsheet"));    instance.close()
     toaster("Cutsheet object added to stack !","yellow-text text-darken-2");
     table_refresh();
+}
+
+//             Canvas
+
+function canvas_cancel()
+{
+    var w = document.getElementById("input_canvas_width");
+    var h = document.getElementById("input_canvas_height");
+    w.value="";
+    h.value="";
+    toaster("Canvas dropped !","red darken-3 white-text");
+}
+
+function canvas_submit()
+{
+    var w = document.getElementById("input_canvas_width");
+    var h = document.getElementById("input_canvas_height");
+    var W = w.value;    var H = h.value;
+    console.log("W:"+W,"H:"+H);
+    if(String(W)=="" || String(H)=="")
+    {
+        toaster("Empty Input","red-text text-darken-3 white");
+        return("");
+    }
+    if(canvasExists==true)
+    {
+        toaster("Canvas Already Exists","red-text text-darken-3 white");
+        return("");
+    }
+    w.value="";    h.value="";
+    const id_ = makeid(8);
+    db[id_]={id:id_,shape_name:"Canvas",dimensions:"w:"+W+" ; h:"+H};
+    var instance = M.Modal.getInstance(document.getElementById("modal_canvas"));    instance.close()
+    toaster("Canvas Created !","yellow-text text-darken-2");
+    table_refresh();
+    canvasExists=true;
 }
 
 //             Circle
@@ -124,4 +168,23 @@ function publish()
 function clean()
 {
     socket.emit("Free Space","Please");
+}
+
+function lock()
+{
+    var x=document.getElementById("lock_span");
+    if(x.innerText=="lock")
+    {
+        x.innerText="lock_open";
+        x.style.color = "red";
+        document.getElementById("canvas_width").disabled=false;
+        document.getElementById("canvas_height").disabled=false;
+    }
+    else
+    {
+        x.innerText="lock";
+        x.style.color = "green";
+        document.getElementById("canvas_width").disabled=true;
+        document.getElementById("canvas_height").disabled=true;
+    }
 }

@@ -18,18 +18,21 @@
     <div id="icon_div"><i class="material-icons" style="font-size: 4rem;margin-bottom:2rem;">dashboard</i></div>
 
     <div class="empty"></div>
-    <!--INPUT-->
-    <div class="input-field">
-        <input id="input_canvas_width" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
-        <label for="input_canvas_width" class="yellow-text text-darken-4"><strong>Canvas Width (w)</strong></label>
-    </div>
-    <div class="input-field">
-        <input id="input_canvas_height" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
-        <label for="input_canvas_height" class="yellow-text text-darken-4"><strong>Canvas Height (h)</strong></label>
-    </div>
 
     <!--Objects-->
-    <div class="row">
+    <div class="row" style="width:100%;margin-left: 0;">
+      <div class="col l3">
+        <div class="card z-depth-3">
+          <div class="card-image">
+            <img src="./canvas.png">
+            <span class="card-title">Card Title</span>
+            <a class="btn-large btn-floating halfway-fab waves-effect waves-light yellow darken-4 modal-trigger" data-target="modal_canvas"><i class="material-icons">add</i></a>
+          </div>
+          <div class="card-content">
+            <p><strong>Add a CANVAS</strong></p>
+          </div>
+        </div>
+      </div>
         <div class="col l3">
           <div class="card z-depth-3">
             <div class="card-image">
@@ -109,6 +112,30 @@
     </div>
 
     <!-- Modals -->
+    <div id="modal_canvas" class="modal">
+      <div class="modal-content">
+          <div class="row">
+              <div class="col l6">
+                  <img src="dim_rectangle.png">
+              </div>
+              <div class="col l6">
+                  <h4>Enter the Canvas Dimensions</h4>
+                  <div class="input-field">
+                      <input id="input_canvas_width" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                      <label for="input_canvas_width" class="yellow-text text-darken-4"><strong>Canvas Width (w)</strong></label>
+                  </div>
+                  <div class="input-field">
+                      <input id="input_canvas_height" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                      <label for="input_canvas_height" class="yellow-text text-darken-4"><strong>Canvas Height (h)</strong></label>
+                  </div>
+                  <div>
+                      <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="canvas_cancel()">Cancel</button>
+                      <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="canvas_submit()">Create Canvas</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
     <div id="modal_custom" class="modal">
         <div class="modal-content">
         <h4>Add a Custom Shape</h4>
