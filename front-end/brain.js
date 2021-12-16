@@ -157,12 +157,31 @@ function cone_submit()
 
 //         Publisher
 
+function process_cancel()
+{
+    toaster("Process Dropped","red darken-3 white-text",false);
+}
+
 function publish()
 {
     if(Object.keys(db).length === 0)
         toaster("Empty Inventory !","white-text red darken-3",false);
     else
-        socket.emit("process!",db);
+        if(canvasExists==false)
+            toaster("No CANVAS","white-text red darken-3",false);
+        else
+        {
+            socket.emit("process!",db);
+            toaster("Process Initiated","green-text white text-darken-3",false);
+            var btn_li=document.getElementsByClassName("btn")
+            for(var i = 0; i < btn_li.length; i++)
+                btn_li[i].disabled=true;
+            btn_li=document.getElementsByClassName("btn-large")
+            for(var i = 0; i < btn_li.length; i++)
+                btn_li[i].disabled=true;
+            document.getElementById("info_div").style.display="block";
+            document.getElementById("shopping_list").style.display="none";
+        }
 }
 
 function clean()

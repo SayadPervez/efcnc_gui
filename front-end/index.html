@@ -20,7 +20,7 @@
     <div class="empty"></div>
 
     <!--Objects-->
-    <div class="row" style="width:100%;margin-left: 0;">
+    <div id="shopping_list" class="row" style="width:100%;margin-left: 0;">
       <div class="col l3">
         <div class="card z-depth-3">
           <div class="card-image">
@@ -104,7 +104,11 @@
     <br><br><br><br><br><br>
     <!--Final blocks-->
     <div id="final_div">
-      <button onclick="publish()" class="waves-effect waves-dark yellow accent-4 black-text btn-large"><i class="material-icons right">dashboard</i><strong>Process</strong></button>
+      <button class="waves-effect waves-dark yellow accent-4 black-text btn-large modal-trigger" data-target="modal_process"><i class="material-icons right">dashboard</i><strong>Process</strong></button>
+    </div>
+
+    <div id="info_div">
+      <button id="info_butt" class="z-depth-3 waves-effect waves-light red white-text darken-4"><strong>Process Running ...</strong></button>
     </div>
     
     <div id="recycle_div">
@@ -230,7 +234,16 @@
             <button class="red darken-2 waves-effect waves-light btn" style="margin-right:20px;" onclick="del_submit()"><strong>Delete Object</strong></button>
         </div>
       </div>
-  </div>
+    </div>
+    <div id="modal_process" class="modal">
+      <div class="modal-content">
+        <h3>Process Publish Page :</h3>
+        <div>
+            <button id="publish_cancel" class="modal-close waves-effect waves-dark green btn" style="margin-right:20px;" onclick="process_cancel()">Cancel</button>
+            <button id="publish_run" class="red darken-2 waves-effect waves-light btn" style="margin-right:20px;" onclick="publish()"><strong>RUN !</strong></button>
+        </div>
+      </div>
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="./functions.js"></script>

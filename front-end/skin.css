@@ -34,6 +34,18 @@ body{
     left:41.6px;
 }
 
+#info_div{
+    position: fixed;
+    left:41.6px;
+    bottom:41.6px;
+    display: none;
+}
+
+#info_butt{
+    padding:0.7rem 1.5rem;
+    border-radius: 0.314rem;
+}
+
 .empty{
     width:100%;
     height:20vh;
