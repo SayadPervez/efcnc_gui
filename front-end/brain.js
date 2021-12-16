@@ -41,6 +41,7 @@ function cutsheet_submit()
 {
     var w = document.getElementById("input_sheet_width");
     var h = document.getElementById("input_sheet_height");
+    var k = document.getElementById("kount_cutsheet");
     var W = w.value;    var H = h.value;
     console.log("W:"+W,"H:"+H);
     if(String(W)=="" || String(H)=="")
@@ -48,9 +49,10 @@ function cutsheet_submit()
         toaster("Empty Input","red-text text-darken-3 white");
         return("");
     }
-    w.value="";    h.value="";document.getElementById("kount_cutsheet").value=1;
     const id_ = makeid(8);
-    db[id_]={id:id_,shape_name:"Cut-Sheet",dimensions:"w:"+W+" ; h:"+H};
+    for(var i=0;i<k.value;i++)
+        db[id_+String(i)]={id:id_+String(i),shape_name:"Cut-Sheet",dimensions:"w:"+W+" ; h:"+H};
+    w.value="";    h.value="";k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_cutsheet"));    instance.close()
     toaster("Cutsheet object added to stack !","yellow-text text-darken-2");
     table_refresh();
@@ -104,6 +106,7 @@ function circle_cancel()
 function circle_submit()
 {
     var r = document.getElementById("input_circle_radius");
+    var k = document.getElementById("kount_circle");
     var R = r.value;
     console.log("R:"+R);
     if(String(R)=="")
@@ -111,9 +114,11 @@ function circle_submit()
         toaster("Empty Input","red-text text-darken-3 white");
         return("");
     }
-    r.value="";document.getElementById("kount_circle").value=1;
+    r.value="";
     const id_ = makeid(8);
-    db[id_]={id:id_,shape_name:"Circle",dimensions:"r:"+R};
+    for(var i=0;i<k.value;i++)
+        db[id_+String(i)]={id:id_+String(i),shape_name:"Circle",dimensions:"r:"+R};
+    k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_circle"));    instance.close()
     toaster("Circle object added to stack !","yellow-text text-darken-2");
     table_refresh();
@@ -134,6 +139,7 @@ function cone_submit()
 {
     var h = document.getElementById("input_cone_height");
     var r = document.getElementById("input_cone_radius");
+    var k = document.getElementById("kount_cone");
     var H = h.value;  var R = r.value;
     var l = Math.round(Math.sqrt(R*R + H*H)*100)/100;
     var theta = 360*R/l;
@@ -148,9 +154,11 @@ function cone_submit()
         return("");
     }
     console.log("H:"+H,"R:"+R);
-    h.value="";    r.value="";document.getElementById("kount_cone").value=1;
+    h.value="";    r.value="";
     const id_ = makeid(8);
-    db[id_]={id:id_,shape_name:"Cone",dimensions:"h:"+H+" ; r:"+R};
+    for(var i=0;i<k.value;i++)
+        db[id_+String(i)]={id:id_+String(i),shape_name:"Cone",dimensions:"h:"+H+" ; r:"+R};
+    k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_cone"));    instance.close()
     toaster("Cone object added to stack !","yellow-text text-darken-2");
     table_refresh();
