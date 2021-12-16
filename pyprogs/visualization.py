@@ -12,7 +12,7 @@ def tranparencyFilter(pngpath):
     '''
     Converts transparent image to white
     '''
-    image = im.open(pngpath)
+    image = im.open(pngpath).convert("RGBA")
     new_image = im.new("RGBA", image.size, "WHITE") 
     new_image.paste(image, (0, 0), image)           
     new_image.convert('RGB').save(pngpath, "PNG")
