@@ -1,27 +1,14 @@
 from shapeManager import CutSheet,Circle,Cone,Canvas
 from functions import *
-'''
-x=CutSheet(30,10,0,"abcdefgh1")
-x.displayShape()
-x.tilt(20)
-print(x)
-x.printShape()
+import algorithm1,algorithm2,algorithm3,algorithm4
+from visualization import arr2png as a2p
 
-c = Circle(50,"qwerty1")
-c.displayShape()
-c.tilt(20)
-print(c)
-c.printShape()
+freeSpace()
 
-c = Cone(30,10,0,"zxcvb1")
-c.displayShape()
-c.tilt(20)
-input("...")
-c.displayShape()
-c.printShape()
-print(c)
+sheet=CutSheet(30,10,0,"abcdefgh1")
+circle = Circle(50,"qwerty1")
+cone = Cone(30,10,0,"zxcvb1")
+canva=Canvas(1920,1080)
 
-x=Canvas(1920,1080)
-x.displayShape()
-liAnalyse(x.shapeMatrix)
-'''
+out = algorithm1.run(canva,[sheet,circle,cone],log_=True)
+a2p(out).show()
