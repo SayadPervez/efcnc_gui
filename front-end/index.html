@@ -10,6 +10,7 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="./scrollbar.css">
+  <link rel="stylesheet" href="./slider.css">
   <link rel="stylesheet" href="./skin.css">
   <link rel="stylesheet" href="./priority.css">
   <title>EPMA</title>
@@ -147,6 +148,10 @@
             <input id="input_name" type="text" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
             <label for="input_name" class="yellow-text text-darken-4">Shape Name</label>
         </div>
+        <p class="yellow-text text-darken-4 bld">Select Range :</p>
+        <p class="range-field">
+          <input type="range" id="kount_custom" min="1" max="20" value="1" />
+        </p>
         <p><strong>Choose the SVG file :</strong></p>
         <input type="file" id="input_shape" name="input_shape" accept="image/svg+xml">
         </div>
@@ -171,6 +176,10 @@
                         <input id="input_sheet_height" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
                         <label for="input_sheet_height" class="yellow-text text-darken-4"><strong>Sheet Height (h)</strong></label>
                     </div>
+                    <p class="yellow-text text-darken-4 bld">Select Range :</p>
+                    <p class="range-field">
+                      <input type="range" id="kount_cutsheet" min="1" max="20" value="1" />
+                    </p>
                     <div>
                         <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="cutsheet_cancel()">Cancel</button>
                         <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="cutsheet_submit()">Create Object</button>
@@ -191,6 +200,10 @@
                         <input id="input_circle_radius" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
                         <label for="input_circle_radius" class="yellow-text text-darken-4"><strong>Circle Radius (r)</strong></label>
                     </div>
+                    <p class="yellow-text text-darken-4 bld">Select Range :</p>
+                    <p class="range-field">
+                      <input type="range" id="kount_circle" min="1" max="20" value="1" />
+                    </p>
                     <div>
                         <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="circle_cancel()">Cancel</button>
                         <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="circle_submit()">Create Object</button>
@@ -215,6 +228,10 @@
                         <input id="input_cone_radius" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
                         <label for="input_cone_radius" class="yellow-text text-darken-4"><strong>Cone Radius (r)</strong></label>
                     </div>
+                    <p class="yellow-text text-darken-4 bld">Select Range :</p>
+                    <p class="range-field">
+                      <input type="range" id="kount_cone" min="1" max="20" value="1" />
+                    </p>
                     <div>
                         <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="cone_cancel()">Cancel</button>
                         <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="cone_submit()">Create Object</button>

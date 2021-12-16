@@ -31,6 +31,7 @@ function cutsheet_cancel()
 {
     var w = document.getElementById("input_sheet_width");
     var h = document.getElementById("input_sheet_height");
+    document.getElementById("kount_cutsheet").value=1;
     w.value="";
     h.value="";
     toaster("Cutsheet object dropped !","red darken-3 white-text");
@@ -47,7 +48,7 @@ function cutsheet_submit()
         toaster("Empty Input","red-text text-darken-3 white");
         return("");
     }
-    w.value="";    h.value="";
+    w.value="";    h.value="";document.getElementById("kount_cutsheet").value=1;
     const id_ = makeid(8);
     db[id_]={id:id_,shape_name:"Cut-Sheet",dimensions:"w:"+W+" ; h:"+H};
     var instance = M.Modal.getInstance(document.getElementById("modal_cutsheet"));    instance.close()
@@ -96,7 +97,7 @@ function canvas_submit()
 function circle_cancel()
 {
     var r = document.getElementById("input_circle_radius");
-    r.value="";
+    r.value="";document.getElementById("kount_circle").value=1;
     toaster("Circle object dropped !","red darken-3 white-text");
 }
 
@@ -110,7 +111,7 @@ function circle_submit()
         toaster("Empty Input","red-text text-darken-3 white");
         return("");
     }
-    r.value=""
+    r.value="";document.getElementById("kount_circle").value=1;
     const id_ = makeid(8);
     db[id_]={id:id_,shape_name:"Circle",dimensions:"r:"+R};
     var instance = M.Modal.getInstance(document.getElementById("modal_circle"));    instance.close()
@@ -125,7 +126,7 @@ function cone_cancel()
     var h = document.getElementById("input_cone_height");
     var r = document.getElementById("input_cone_radius");
     h.value="";
-    r.value="";
+    r.value="";document.getElementById("kount_cone").value=1;
     toaster("Cone object dropped !","red darken-3 white-text");
 }
 
@@ -147,7 +148,7 @@ function cone_submit()
         return("");
     }
     console.log("H:"+H,"R:"+R);
-    h.value="";    r.value="";
+    h.value="";    r.value="";document.getElementById("kount_cone").value=1;
     const id_ = makeid(8);
     db[id_]={id:id_,shape_name:"Cone",dimensions:"h:"+H+" ; r:"+R};
     var instance = M.Modal.getInstance(document.getElementById("modal_cone"));    instance.close()
