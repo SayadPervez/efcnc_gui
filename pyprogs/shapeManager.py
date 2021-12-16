@@ -19,7 +19,7 @@ class CutSheet:
         self.triangleCompatible = 0
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
-        self.__generateShape__(length,height,angle,uid)
+        self.__generateShape__(length,height,angle)
 
     def __repr__(self):
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nSide Length \t: {self.length} mm\nSide Height \t: {self.height} mm\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
