@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image as im
 import PIL
 import cv2 as cv
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from functions import *
 from ezdxf import recover
 from ezdxf.addons.drawing import matplotlib
@@ -185,7 +185,7 @@ def color(shape,color):
 def outline_with_shape(shapemat,thick):
     if("shapes" in str(type(shapemat))):
         shapemat = shapemat.shapeMatrix
-        thick = thick*sampl
+        thick = thick
     a=arr2png(shapemat)
     a.save("./IMG/a.png")
     x,y=a.size
@@ -345,7 +345,7 @@ def free_surface_all(arr,pcent):
     arrFinal = np.array(arrFinal)
     arrFinal = np.where(arrFinal=='*','b',arrFinal)
     return(arrFinal.tolist())
-
+'''
 def pieChart(li):
     li[0],li[2] = li[2],li[0]
     mylabels = ["Wastage","Re-usable","Shapes"]
@@ -354,7 +354,7 @@ def pieChart(li):
     plt.pie(li, labels = mylabels, explode = myexplode, colors=mycolors,startangle = 210,autopct='%1.0f%%')
     plt.title("Canvas Efficiency Chart")
     plt.show() 
-
+'''
 def invertColor(imgarray):
     x = np.array(imgarray,dtype=str)
     x[x=='0']=1
