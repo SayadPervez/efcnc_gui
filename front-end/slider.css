@@ -14,5 +14,4 @@ input[type=range]::-webkit-slider-thumb {
   }
   input[type=range] + .thumb.active .value {
     color: black;
-    font-weight: 600 !important;
   }
