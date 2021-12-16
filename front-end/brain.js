@@ -216,3 +216,57 @@ function lock()
         document.getElementById("canvas_height").disabled=true;
     }
 }
+
+//               CUSTOM OBJECTS
+function custom_cancel()
+{
+    var k = document.getElementById("kount_custom");
+    var f = document.getElementById("myfileinput");
+    document.getElementById("input_name").value="";
+    k.value=1;    f.type="password";    f.type="file";
+    toaster("Custom object dropped !","red darken-3 white-text");
+}
+
+function custom_submit(filedata)
+{
+    var n = document.getElementById("input_name");
+    var k = document.getElementById("kount_custom");
+    if(n.value.trim()=="")
+    {
+        toaster("No Shape Name Specified","white-text red darken-3",false);
+        return("");
+    } 
+    //console.log(filedata);
+    const id_ = makeid(8);
+    for(var i=0;i<k.value;i++)
+        db[id_+String(i)]={id:id_+String(i),shape_name:"CUSTOM-"+String(n.value.trim()),dimensions:"File Upload Successful",filedata:filedata};
+    k.value=1;n.value = "";
+    var instance = M.Modal.getInstance(document.getElementById("modal_custom"));    instance.close()
+    toaster("Custom object added to stack !","yellow-text text-darken-2");
+    table_refresh();
+    var k = document.getElementById("kount_custom");
+    var f = document.getElementById("myfileinput");
+    document.getElementById("input_name").value="";
+    k.value=1;    f.type="password";    f.type="file";
+    console.log(filedata);
+}
+
+var button = document.getElementById("send-file-button");
+var fileInput = document.getElementById("myfileinput");
+var output = document.getElementById("output");
+
+button.onclick = function () {
+  var files = fileInput.files;
+  if(files.length==0)
+    {
+        toaster("No File Uploaded","white-text red darken-3",false);
+        return("")   ;
+    }
+  var reader = new FileReader();
+  reader.onload = function () {
+    custom_submit(reader.result);
+  };
+  if(files[0]) {
+    reader.readAsText(files[0]);
+  }
+};

@@ -148,16 +148,17 @@
             <input id="input_name" type="text" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
             <label for="input_name" class="yellow-text text-darken-4">Shape Name</label>
         </div>
+        <div id="output" style="display: none;"></div>
         <p class="yellow-text text-darken-4 bld">Select Range :</p>
         <p class="range-field">
           <input type="range" id="kount_custom" min="1" max="20" value="1" />
         </p>
         <p><strong>Choose the SVG file :</strong></p>
-        <input type="file" id="input_shape" name="input_shape" accept="image/svg+xml">
+        <input type="file" id="myfileinput" name="input_shape" accept="image/svg+xml">
         </div>
         <div class="modal-footer">
-        <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;">Cancel</button>
-        <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;">Create Object</button>
+        <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="custom_cancel()">Cancel</button>
+        <button id="send-file-button" class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;">Create Object</button>
         </div>
     </div>
     <div id="modal_cutsheet" class="modal">
