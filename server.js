@@ -15,8 +15,7 @@ io.on('connection', (socket) => {
     });
     //process reception
     socket.on("process!",(db)=>{
-        //console.log(JSON.stringify(db));
-        console.log(db);
+        console.log(JSON.stringify(db));
         io.to(socket.id).emit("Process Confirmation","Success");
     });
     socket.on("mod.js",(data)=>{
