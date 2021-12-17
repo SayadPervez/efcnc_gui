@@ -7,6 +7,10 @@ const io = new Server(server);
 
 app.use(express.static('./front-end'));
 
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
 io.on('connection', (socket) => {
     //testing
     socket.on('Hi', (msg) => {
@@ -15,7 +19,14 @@ io.on('connection', (socket) => {
     });
     //process reception
     socket.on("process!",(db)=>{
-        console.log(JSON.stringify(db));
+        x=( 
+          replaceAll(
+          replaceAll(
+          replaceAll(replaceAll(JSON.stringify(db),'\n',''),"\r",""),
+          '\"','"'
+          ),'"','^')
+          );
+        console.log(cmdline(`cd ./pyprogs/ && python main.py "${x}"`));
         io.to(socket.id).emit("Process Confirmation","Success");
     });
     socket.on("mod.js",(data)=>{
