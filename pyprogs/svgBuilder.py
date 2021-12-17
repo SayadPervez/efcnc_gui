@@ -131,6 +131,7 @@ def Frustum(R,r,h,angle=0,filename=""):
     t=sqrt(h**2 + (R-r)**2)
     L=t*R/(R-r)
     theta=(R/L)*(2*pi)
+    thetarot = (R/L)*(2*180)
     l=L-t
     with cairo.SVGSurface(filename,2.5*L,2.5*L) as surface:
         cr = cairo.Context(surface)
@@ -173,4 +174,3 @@ def Segment(R,r,segment_angle,angle=0,filename=""):
         cr.fill()
     svgRotate(filename,angle)
 
-Sector(50,120,0,"./PNG/asdf.svg")
