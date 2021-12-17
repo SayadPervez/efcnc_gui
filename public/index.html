@@ -1,0 +1,275 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="./scrollbar.css">
+  <link rel="stylesheet" href="./slider.css">
+  <link rel="stylesheet" href="./skin.css">
+  <link rel="stylesheet" href="./priority.css">
+  <title>EPMA</title>
+</head>
+<body>
+    <div id="icon_div"><i class="material-icons" style="font-size: 4rem;margin-bottom:2rem;">dashboard</i></div>
+
+    <div class="empty"></div>
+
+    <!--Objects-->
+    <div id="shopping_list" class="row" style="width:100%;margin-left: 0;">
+      <div class="col l3">
+        <div class="card z-depth-3">
+          <div class="card-image">
+            <img src="./canvas.png">
+            <span class="card-title">Card Title</span>
+            <a class="btn-large btn-floating halfway-fab waves-effect waves-light yellow darken-4 modal-trigger" data-target="modal_canvas"><i class="material-icons">add</i></a>
+          </div>
+          <div class="card-content">
+            <p><strong>Add a CANVAS</strong></p>
+          </div>
+        </div>
+      </div>
+        <div class="col l3">
+          <div class="card z-depth-3">
+            <div class="card-image">
+              <img src="./cutsheet.png">
+              <span class="card-title">Card Title</span>
+              <a class="btn-large btn-floating halfway-fab waves-effect waves-light yellow darken-4 modal-trigger" data-target="modal_cutsheet"><i class="material-icons">add</i></a>
+            </div>
+            <div class="card-content">
+              <p><strong>Add a Cut Sheet</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3">
+            <div class="card z-depth-3">
+              <div class="card-image">
+                <img src="./circle.png">
+                <span class="card-title">Card Title</span>
+                <a class="btn-large btn-floating halfway-fab waves-effect waves-light yellow darken-4 modal-trigger" data-target="modal_circle"><i class="material-icons">add</i></a>
+              </div>
+              <div class="card-content">
+                <p><strong>Add a Circle</strong></p>
+              </div>
+            </div>
+          </div>
+          <div class="col l3">
+            <div class="card z-depth-3">
+              <div class="card-image">
+                <img src="./cone.png">
+                <span class="card-title">Card Title</span>
+                <a class="btn-large btn-floating halfway-fab waves-effect waves-light yellow darken-4 modal-trigger" data-target="modal_cone"><i class="material-icons">add</i></a>
+              </div>
+              <div class="card-content">
+                <p><strong>Add a Cone</strong></p>
+              </div>
+            </div>
+          </div>
+          <div class="col l3">
+            <div class="card z-depth-3">
+              <div class="card-image">
+                <img src="./custom.png">
+                <span class="card-title">Card Title</span>
+                <a class="btn-large btn-floating halfway-fab waves-effect waves-light yellow darken-4 modal-trigger" data-target="modal_custom"><i class="material-icons">add</i></a>
+              </div>
+              <div class="card-content">
+                <p><strong>Add a Custom Object</strong></p>
+              </div>
+            </div>
+          </div>
+    </div>
+    
+    <div id="Inventory-div" class="row">
+        <div class="col l2"></div>
+        <div class="col l8">
+          <h3 class="center-align">Inventory</h3><table class="highlight centered">
+            <thead>
+              <tr>
+                  <th>Shape name</th>
+                  <th>Dimensions</th>
+                  <th>Shape ID</th>
+                  <th><i class="material-icons">clear</i></th>
+              </tr>
+            </thead>
+    
+            <tbody id="table_body">
+            </tbody>
+        </table></div>
+        <div class="col l2"></div>
+    </div>
+    <br><br><br><br><br><br>
+    <!--Final blocks-->
+    <div id="final_div">
+      <button class="waves-effect waves-dark yellow accent-4 black-text btn-large modal-trigger" data-target="modal_process"><i class="material-icons right">dashboard</i><strong>Process</strong></button>
+    </div>
+
+    <div id="info_div">
+      <button id="info_butt" class="z-depth-3 waves-effect waves-light red white-text darken-4"><strong>Process Running ...</strong></button>
+    </div>
+    
+    <div id="recycle_div">
+      <button onclick="clean()" class="waves-effect waves-dark green accent-4 black-text btn-large"><i class="material-icons">cleaning_services</i></button>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal_canvas" class="modal">
+      <div class="modal-content">
+          <div class="row">
+              <div class="col l6">
+                  <img src="dim_rectangle.png">
+              </div>
+              <div class="col l6">
+                  <h4>Enter the Canvas Dimensions</h4>
+                  <div class="input-field">
+                      <input id="input_canvas_width" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                      <label for="input_canvas_width" class="yellow-text text-darken-4"><strong>Canvas Width (w)</strong></label>
+                  </div>
+                  <div class="input-field">
+                      <input id="input_canvas_height" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                      <label for="input_canvas_height" class="yellow-text text-darken-4"><strong>Canvas Height (h)</strong></label>
+                  </div>
+                  <div>
+                      <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="canvas_cancel()">Cancel</button>
+                      <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="canvas_submit()">Create Canvas</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    <div id="modal_custom" class="modal">
+        <div class="modal-content">
+        <h4>Add a Custom Shape</h4>
+        <div class="input-field">
+            <input id="input_name" type="text" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+            <label for="input_name" class="yellow-text text-darken-4">Shape Name</label>
+        </div>
+        <div id="output" style="display: none;"></div>
+        <p class="yellow-text text-darken-4 bld">Select Range :</p>
+        <p class="range-field">
+          <input type="range" id="kount_custom" min="1" max="20" value="1" />
+        </p>
+        <p><strong>Choose the SVG file :</strong></p>
+        <input type="file" id="myfileinput" name="input_shape" accept="image/svg+xml">
+        </div>
+        <div class="modal-footer">
+        <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="custom_cancel()">Cancel</button>
+        <button id="send-file-button" class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;">Create Object</button>
+        </div>
+    </div>
+    <div id="modal_cutsheet" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col l6">
+                    <img src="dim_rectangle.png">
+                </div>
+                <div class="col l6">
+                    <h4>Enter the Cut Sheet Dimensions</h4>
+                    <div class="input-field">
+                        <input id="input_sheet_width" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                        <label for="input_sheet_width" class="yellow-text text-darken-4"><strong>Sheet Width (w)</strong></label>
+                    </div>
+                    <div class="input-field">
+                        <input id="input_sheet_height" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                        <label for="input_sheet_height" class="yellow-text text-darken-4"><strong>Sheet Height (h)</strong></label>
+                    </div>
+                    <p class="yellow-text text-darken-4 bld">Select Range :</p>
+                    <p class="range-field">
+                      <input type="range" id="kount_cutsheet" min="1" max="20" value="1" />
+                    </p>
+                    <div>
+                        <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="cutsheet_cancel()">Cancel</button>
+                        <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="cutsheet_submit()">Create Object</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal_circle" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col l6">
+                    <img src="dim_circle.png">
+                </div>
+                <div class="col l6">
+                    <h4>Enter the Circle Dimensions</h4>
+                    <div class="input-field">
+                        <input id="input_circle_radius" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                        <label for="input_circle_radius" class="yellow-text text-darken-4"><strong>Circle Radius (r)</strong></label>
+                    </div>
+                    <p class="yellow-text text-darken-4 bld">Select Range :</p>
+                    <p class="range-field">
+                      <input type="range" id="kount_circle" min="1" max="20" value="1" />
+                    </p>
+                    <div>
+                        <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="circle_cancel()">Cancel</button>
+                        <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="circle_submit()">Create Object</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal_cone" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col l6">
+                    <img src="dim_cone.png">
+                </div>
+                <div class="col l6">
+                    <h4>Enter the Cone Dimensions</h4>
+                    <div class="input-field">
+                        <input id="input_cone_height" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                        <label for="input_cone_height" class="yellow-text text-darken-4"><strong>Cone Height (h)</strong></label>
+                    </div>
+                    <div class="input-field">
+                        <input id="input_cone_radius" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                        <label for="input_cone_radius" class="yellow-text text-darken-4"><strong>Cone Radius (r)</strong></label>
+                    </div>
+                    <p class="yellow-text text-darken-4 bld">Select Range :</p>
+                    <p class="range-field">
+                      <input type="range" id="kount_cone" min="1" max="20" value="1" />
+                    </p>
+                    <div>
+                        <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="cone_cancel()">Cancel</button>
+                        <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="cone_submit()">Create Object</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal_delete_row" class="modal">
+      <div class="modal-content">
+        <h4>Confirm Deletion</h4>
+        <p>Are you sure about deleteing the following object ?</p>
+        <p id="deletion_modal_contents"></p>
+
+        <div>
+            <button class="modal-close waves-effect waves-dark green btn" style="margin-right:20px;" onclick="del_cancel()">Cancel</button>
+            <button class="red darken-2 waves-effect waves-light btn" style="margin-right:20px;" onclick="del_submit()"><strong>Delete Object</strong></button>
+        </div>
+      </div>
+    </div>
+    <div id="modal_process" class="modal">
+      <div class="modal-content">
+        <h3>Process Publish Page :</h3>
+        <div>
+            <button id="publish_cancel" class="modal-close waves-effect waves-dark green btn" style="margin-right:20px;" onclick="process_cancel()">Cancel</button>
+            <button id="publish_run" class="red darken-2 waves-effect waves-light btn" style="margin-right:20px;" onclick="publish()"><strong>RUN !</strong></button>
+        </div>
+      </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="./functions.js"></script>
+<script src="./brain.js"></script>
+<script src="./mbrain.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--<script src="/socket.io/socket.io.js"></script>-->
+<script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
+<script src="./comms.js"></script>
+</body>
+</html>
