@@ -19,7 +19,11 @@ io.on('connection', (socket) => {
         console.log(db);
         io.to(socket.id).emit("Process Confirmation","Success");
     });
-
+    socket.on("mod.js",(data)=>{
+      //console.log(data);
+      io.to(socket.id).emit("die","from server");
+      io.emit("notification",data);
+    });
     socket.on("Free Space",(x)=>{
       console.log("Clear Request");
       out=cmdline("cd ./pyprogs/ && python free_space.py");

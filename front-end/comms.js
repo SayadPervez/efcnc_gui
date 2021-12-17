@@ -4,6 +4,10 @@ socket.on("Process Confirmation",(status)=>{
     console.log(status);
 });
 
+socket.on("notification",(data)=>{
+    toaster(data,"white-text green darken-2 ");
+});
+
 socket.on("Free Space",(status)=>{
     if(status=="Success")
         toaster("Cache Cleared","green-text white text-darken-2");
