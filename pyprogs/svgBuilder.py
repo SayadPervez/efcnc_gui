@@ -107,7 +107,7 @@ def svgPlacer(canvas,svgObjects,x,y):
 
 def Sector(radius,sector_angle,angle=0,filename=""):
     if(filename==""):
-        raise Exception("Empty file name svgBuilder cone")
+        raise Exception("Empty file name svgBuilder Sector")
     l=mm2pt(radius)
     sector_angle=sector_angle*pi/180
     with cairo.SVGSurface(filename,2.5*l,2.5*l) as surface:
@@ -116,9 +116,13 @@ def Sector(radius,sector_angle,angle=0,filename=""):
         cr.arc(l+2,l+2,l,0,sector_angle)
         cr.close_path()
         cr.fill()
-    svgRotate(filename,angle)
+    if(angle==0):
+        if(sector_angle<=180):
+            svgRotate(filename,angle+90+(sector_angle/2*(180/pi)))
+    else:
+        svgRotate(filename,angle)
 
-def frustum(R,r,h,angle=0,filename=""):
+def Frustum(R,r,h,angle=0,filename=""):
     if(filename==""):
         raise Exception("Empty file name svgBuilder cone")
     R=mm2pt(R)
@@ -148,7 +152,7 @@ def xy(r,theta):
     y=r*sin(theta)
     return x,y
 
-def segment(R,r,segment_angle,angle=0,filename=""):
+def Segment(R,r,segment_angle,angle=0,filename=""):
     if(filename==""):
         raise Exception("Empty file name svgBuilder cone")
     R=mm2pt(R)
@@ -167,4 +171,6 @@ def segment(R,r,segment_angle,angle=0,filename=""):
         cr.curve_to(x3+R,y3+R,x2+R,y2+R,x1+R,y1+R)
         cr.line_to(X1+R,Y1+R)
         cr.fill()
-    svgRotate(filename,angle,outputFileName=filename)
+    svgRotate(filename,angle)
+
+Sector(50,120,0,"./PNG/asdf.svg")
