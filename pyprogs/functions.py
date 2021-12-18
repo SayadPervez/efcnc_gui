@@ -1,6 +1,7 @@
 import numpy as np
 import collections as c
 import os
+import subprocess
 
 # pospl -> POSition Point Line
 def pospl(pt1,pt2,pt3):
@@ -220,4 +221,4 @@ def freeSpace():
     os.system("python free_space.py")
 
 def pushNotification(msg):
-    os.system(f'node ./mod.js "{msg}"')
+    subprocess.call(f'nodemon ./mod.js "{msg}"',shell=True)

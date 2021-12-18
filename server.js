@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
         console.log(cmdline(`cd ./pyprogs/ && python main.py "${x}"`));
         io.to(socket.id).emit("Process Confirmation","Success");
     });
-    socket.on("mod.js",(data)=>{
+    socket.on("_mod.js",(data)=>{
       //console.log(data);
       io.to(socket.id).emit("die","from server");
       io.emit("notification",data);

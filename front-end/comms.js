@@ -5,6 +5,7 @@ socket.on("Process Confirmation",(status)=>{
 });
 
 socket.on("notification",(data)=>{
+    console.log("Notif : ",data);
     toaster(data,"white-text green darken-2 ");
 });
 
