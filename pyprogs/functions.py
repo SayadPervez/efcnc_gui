@@ -218,3 +218,6 @@ def p2aBugFixFunction(li2d):
 
 def freeSpace():
     os.system("python free_space.py")
+
+def pushNotification(msg):
+    os.system(f'node ./mod.js "{msg}"')
