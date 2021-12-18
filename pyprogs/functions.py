@@ -1,7 +1,7 @@
 import numpy as np
 import collections as c
 import os
-import subprocess
+from time import sleep
 
 # pospl -> POSition Point Line
 def pospl(pt1,pt2,pt3):
@@ -218,7 +218,8 @@ def p2aBugFixFunction(li2d):
     return(retli)
 
 def freeSpace():
-    os.system("python free_space.py")
+    os.system("python free_space.py && python clearlog.py")
 
 def pushNotification(msg):
-    subprocess.call(f'nodemon ./mod.js "{msg}"',shell=True)
+    with open("./log.txt","w") as f:
+        f.write(msg)

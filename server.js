@@ -4,12 +4,24 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+const fs = require('fs')
+
+var data = fs.readFileSync('./pyprogs/log.txt', 'utf8');
 
 app.use(express.static('./front-end'));
 
 function replaceAll(str, find, replace) {
   return str.replace(new RegExp(find, 'g'), replace);
 }
+
+setInterval(function(){ 
+  d = fs.readFileSync('./pyprogs/log.txt', 'utf8')
+  if(d!=data)
+  {
+    io.emit("notification",d);
+    data = d;
+  }
+},1000)
 
 io.on('connection', (socket) => {
     //testing
