@@ -18,7 +18,7 @@ setInterval(function(){
   d = fs.readFileSync('./pyprogs/log.txt', 'utf8')
   if(d!=data)
   {
-    io.emit("notification",d);
+    io.emit("logs",d);
     data = d;
   }
 },1000)

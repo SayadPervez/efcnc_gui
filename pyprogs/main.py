@@ -23,13 +23,10 @@ def RUN(jsonString):
             w,h = list(map(float,dim_))
             Canvas(w,h)
             pushNotification("Canvas Created")
-            time.sleep(1.2)
         elif(name_=="Cut-Sheet"):
             w,h = list(map(float,dim_))
             CutSheet(w,h,0,id_)
             pushNotification("Cut-Sheet Created")
-            print("cutsheet created")
-            time.sleep(1.2)
 
 if len(sys.argv)>1:
     print("server started")
