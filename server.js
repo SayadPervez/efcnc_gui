@@ -4,21 +4,12 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
-const fs = require('fs')
-
-var data = fs.readFileSync('./pyprogs/log.txt', 'utf8');
 
 app.use(express.static('./front-end'));
 
 function replaceAll(str, find, replace) {
   return str.replace(new RegExp(find, 'g'), replace);
 }
-
-setInterval(function(){ 
-  d = fs.readFile('./pyprogs/log.txt', 'utf8',()=>{
-    io.emit("logs",d);
-  })
-},1000)
 
 io.on('connection', (socket) => {
     //testing
@@ -28,7 +19,6 @@ io.on('connection', (socket) => {
     });
     //process reception
     socket.on("process!",(db)=>{
-      fs.writeFile('./pyprogs/log.txt', '',()=>{});
         x=( 
           replaceAll(
           replaceAll(

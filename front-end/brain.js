@@ -189,7 +189,6 @@ function publish()
             for(var i = 0; i < btn_li.length; i++)
                 btn_li[i].disabled=true;
             document.getElementById("info_div").style.display="block";
-            document.getElementById("log_div").style.display="block";
             document.getElementById("shopping_list").style.display="none";
         }
 }

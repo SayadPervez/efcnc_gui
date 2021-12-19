@@ -60,15 +60,3 @@ body{
     font-weight: 600 !important;
     opacity: 1 !important; /* Firefox */
   }
-
-#log_div{
-    background-color: rgb(240, 235, 230);
-    color: rgb(29, 29, 29);
-    font-weight: bold;
-    padding:0.7rem 1.2rem;
-    margin:1.5rem auto;
-    width:80%;
-    height:50vh;
-    overflow: auto;
-    display: none;
-}
