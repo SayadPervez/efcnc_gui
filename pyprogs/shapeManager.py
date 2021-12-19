@@ -263,3 +263,56 @@ class Canvas:
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
+
+class Custom:
+    '''
+    Give side in milli-meter( mm )
+    '''
+    def __init__(self,filecontents,uid):
+        self.uid = uid
+        self.myShape="Custom"
+        self.fileContents = filecontents
+        self.angle = 0
+        self.pngPath = f"./PNG/{self.uid}.png"
+        self.svgPath = f"./SVG/{self.uid}.svg"
+        self.__generateShape__(filecontents)
+
+    def __repr__(self):
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+    
+    def print(self):
+        '''
+        Prints Object parameters to console
+        '''
+        print(repr(self))
+
+    def displayShape(self):
+        '''
+        Displays shape as a image
+        '''
+        (arr2png(self.shapeMatrix)).show()
+
+    def printShape(self):
+        '''
+        Prints shape to console in binary 
+
+        #### Warning : CPU intensive task
+        '''
+        temp = ""
+        for li in self.shapeMatrix:
+            for num in li:
+                temp+=str(num)
+            temp+="\n"
+        print(temp)
+
+    def __generateShape__(self,fc):
+        '''
+        Generates 2D binary shape matrix
+        '''
+        with open(self.svgPath,"w") as f:
+            f.write(fc)
+        s2p(self.svgPath,self.pngPath)
+        tranparencyFilter(self.pngPath)
+        self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
+        self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
+        self.surfaceArea = self.shapeFrameDimension[0]*self.shapeFrameDimension[1]

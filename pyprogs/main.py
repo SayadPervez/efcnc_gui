@@ -27,6 +27,18 @@ def RUN(jsonString):
             w,h = list(map(float,dim_))
             CutSheet(w,h,0,id_)
             pushNotification("Cut-Sheet Created")
+        elif(name_=="Circle"):
+            r = float(dim_[0])
+            Circle(r,id_)
+            pushNotification("Circle Created")
+        elif(name_=="Cone"):
+            h,r = list(map(float,dim_))
+            Cone(h,r,0,id_)
+            pushNotification("Cone Created")
+        elif(name_.startswith("CUSTOM-")):
+            fd = obj["filedata"]
+            Cone(h,r,0,id_)
+            pushNotification("Custom Object Created")
 
 if len(sys.argv)>1:
     print("server started")

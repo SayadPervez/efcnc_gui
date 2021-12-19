@@ -1,2 +1,4 @@
 --> Canvas Created
 --> Cut-Sheet Created
+--> Circle Created
+--> Cone Created
