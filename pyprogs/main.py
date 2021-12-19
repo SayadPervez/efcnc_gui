@@ -50,6 +50,7 @@ def RUN(jsonString):
             fd = obj["filedata"]
             Custom(fd,id_)
             pushNotification("Custom Object Created")
+        pushNotification("Process Completed")
 
 if len(sys.argv)>1:
     print("server started")

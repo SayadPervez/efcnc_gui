@@ -223,5 +223,4 @@ def freeSpace():
         f.write("")
 
 def pushNotification(msg):
-    with open("./log.txt","a") as f:
-        f.write("--> "+str(msg)+"\n")
+    os.system(f'python pysock.py "{msg}"')

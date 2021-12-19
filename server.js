@@ -13,6 +13,7 @@ function replaceAll(str, find, replace) {
 
 io.on('connection', (socket) => {
     //testing
+    console.log("Connect "+String(socket.id))
     socket.on('Hi', (msg) => {
       console.log('message: ' + JSON.stringify(msg));
       io.to(socket.id).emit("Hi","Hi");
@@ -30,7 +31,6 @@ io.on('connection', (socket) => {
         io.to(socket.id).emit("Process Confirmation","Success");
     });
     socket.on("_mod.js",(data)=>{
-      //console.log(data);
       io.to(socket.id).emit("die","from server");
       io.emit("notification",data);
     });
