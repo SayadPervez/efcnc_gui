@@ -183,7 +183,7 @@ def color(shape,color):
     return(a)
 
 def outline_with_shape(shapemat,thick):
-    if("shapes" in str(type(shapemat))):
+    if("shapeManager" in str(type(shapemat))):
         shapemat = shapemat.shapeMatrix
         thick = thick
     a=arr2png(shapemat)

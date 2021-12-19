@@ -223,4 +223,5 @@ def freeSpace():
         f.write("")
 
 def pushNotification(msg):
-    os.system(f'python pysock.py "{msg}"')
+    pass
+    #os.system(f'python pysock.py "{msg}"')
