@@ -91,7 +91,7 @@ def canvasExtracter(path):
     half2=(data[data.index("<g")+gMain.index(">")+1:])
     return(half1,half2)
 
-def svgPlacer(canvas,svgObjects,x,y):
+def svgPlacer(canvas,svgObjects,x,y,thickness):
     if(type(svgObjects)==type([])):
         if(not(len(svgObjects)==len(x)==len(y))):
             raise Exception("Unequal Array Length - SVGPLACER")
@@ -100,7 +100,7 @@ def svgPlacer(canvas,svgObjects,x,y):
     h1,h2=canvasExtracter(canvas)
     st=""
     for i,svg in enumerate(svgObjects):
-        st+=f'<g id="{str(i)}" transform="translate({mm2pt(x[i])},{mm2pt(y[i])})">'+objectExtractor(svg)+"</g>"
+        st+=f'<g id="{str(i)}" transform="translate({mm2pt(x[i])+(mm2pt(thickness)*(i+1))},{mm2pt(y[i])+(mm2pt(thickness)*(i+1))})">'+objectExtractor(svg)+"</g>"
     output = h1+st+h2
     with open(canvas,"w") as f:
         f.write(output)

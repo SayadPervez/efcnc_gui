@@ -19,7 +19,7 @@ def RUN(jsonString):
         if("__data__" == objectkey):
             thickness .append( int((db["__data__"])["t"]) )
             alg .append( int((db["__data__"])["a"]) )
-            beep(100,700)
+            beep(4000,700)
             continue
         obj = db[objectkey]
         id_ = objectkey
@@ -88,7 +88,7 @@ def RUN(jsonString):
         px,py = math.floor(px/100*cx),math.floor(py/100*cy)
         xl.append(px)
         yl.append(py)
-    svgPlacer(canvas__.svgPath,[_.svgPath for _ in shapes],xl,yl)
+    svgPlacer(canvas__.svgPath,[_.svgPath for _ in shapes],xl,yl,thickness[0])
     #arr2png(out).show()
     print("end")
 

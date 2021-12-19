@@ -1,6 +1,7 @@
 import functions as func
 import numpy as np
 from math import ceil
+from winsound import Beep as beep
 
 def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
     if(type(constCompute)==type(100)):
@@ -67,6 +68,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
             cArray = np.copy(newCanvas)
             if(log_):
                 print(f"Completed placing {shape.myShape}")
+                beep(4000,1000)
     ret = cArray.tolist()
     return(ret)
 
