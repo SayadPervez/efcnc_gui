@@ -135,6 +135,15 @@ function cone_cancel()
     toaster("Cone object dropped !","red darken-3 white-text");
 }
 
+function sector_cancel()
+{
+    var r = document.getElementById("input_sector_radius");
+    var a = document.getElementById("input_sector_angle");
+    a.value="";
+    r.value="";document.getElementById("kount_sector").value=1;
+    toaster("Sector object dropped !","red darken-3 white-text");
+}
+
 function cone_submit()
 {
     var h = document.getElementById("input_cone_height");
@@ -161,6 +170,28 @@ function cone_submit()
     k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_cone"));    instance.close()
     toaster("Cone object added to stack !","yellow-text text-darken-2");
+    table_refresh();
+}
+
+function sector_submit()
+{
+    var r = document.getElementById("input_sector_radius");
+    var a = document.getElementById("input_sector_angle");
+    var k = document.getElementById("kount_sector");
+    var A = a.value;  var R = r.value;
+    if(String(R)=="" || String(A)=="")
+    {
+        toaster("Empty Input","red-text text-darken-3 white");
+        return("");
+    }
+    console.log("R:"+R,"θ:"+A);
+    r.value="";    a.value="";
+    const id_ = makeid(8);
+    for(var i=0;i<k.value;i++)
+        db[id_+String(i)]={id:id_+String(i),shape_name:"Sector",dimensions:"r:"+R+" ; θ:"+A};
+    k.value=1;
+    var instance = M.Modal.getInstance(document.getElementById("modal_sector"));    instance.close()
+    toaster("Sector object added to stack !","yellow-text text-darken-2");
     table_refresh();
 }
 
