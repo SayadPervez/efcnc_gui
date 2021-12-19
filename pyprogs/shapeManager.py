@@ -286,6 +286,11 @@ class Custom:
         '''
         print(repr(self))
 
+    def tilt(self,angle):
+        self.angle += angle
+        self.shapeMatrix=rotate(evenize(self.shapeMatrix),angle)
+        self.shapeFrameDimension = [len(self.shapeMatrix[0]),len(self.shapeMatrix)]
+
     def displayShape(self):
         '''
         Displays shape as a image
