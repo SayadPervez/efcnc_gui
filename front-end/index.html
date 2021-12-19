@@ -85,6 +85,18 @@
           <div class="col l3">
             <div class="card z-depth-3">
               <div class="card-image">
+                <img src="./frustum.png">
+                <span class="card-title">Card Title</span>
+                <a class="btn-large btn-floating halfway-fab waves-effect waves-light yellow darken-4 modal-trigger" data-target="modal_frustum"><i class="material-icons">add</i></a>
+              </div>
+              <div class="card-content">
+                <p><strong>Add a Frustum</strong></p>
+              </div>
+            </div>
+          </div>
+          <div class="col l3">
+            <div class="card z-depth-3">
+              <div class="card-image">
                 <img src="./custom.png">
                 <span class="card-title">Card Title</span>
                 <a class="btn-large btn-floating halfway-fab waves-effect waves-light yellow darken-4 modal-trigger" data-target="modal_custom"><i class="material-icons">add</i></a>
@@ -254,6 +266,38 @@
             </div>
         </div>
     </div>
+    <div id="modal_frustum" class="modal">
+      <div class="modal-content">
+          <div class="row">
+              <div class="col l6">
+                  <img src="dim_frustum.png">
+              </div>
+              <div class="col l6">
+                  <h4>Enter the Frustum Dimensions</h4>
+                  <div class="input-field">
+                      <input id="input_frustum_height" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                      <label for="input_frustum_height" class="yellow-text text-darken-4"><strong>Frustum Height (h)</strong></label>
+                  </div>
+                  <div class="input-field">
+                      <input id="input_frustum_R" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                      <label for="input_frustum_R" class="yellow-text text-darken-4"><strong>Frustum Radius (R)</strong></label>
+                  </div>
+                  <div class="input-field">
+                    <input id="input_frustum_r" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                    <label for="input_frustum_r" class="yellow-text text-darken-4"><strong>Frustum Radius (r)</strong></label>
+                </div>
+                  <p class="yellow-text text-darken-4 bld">Select Range :</p>
+                  <p class="range-field">
+                    <input type="range" id="kount_frustum" min="1" max="20" value="1" />
+                  </p>
+                  <div>
+                      <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="frustum_cancel()">Cancel</button>
+                      <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="frustum_submit()">Create Object</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
     <div id="modal_sector" class="modal">
       <div class="modal-content">
           <div class="row">
