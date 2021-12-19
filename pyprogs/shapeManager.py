@@ -222,12 +222,88 @@ class Sector:
         self.myShape="sector"
         self.radius = sector_radius
         self.sector_angle = sector_angle
+        self.theta = sector_angle
         self.angle = 0
         self.surfaceArea = pi*(sector_radius**2)*sector_angle/360
         self.cornerCompatible = 0
-        #self.flatAngle = ((180 - self.angle)/2)+self.angle
+        self.flatAngle = ((180 - self.theta)/2)+self.theta
         self.triangleCompatible = 3
         self.__generateShapeMatrix__(sector_radius,sector_angle,angle)
+
+    def __repr__(self):
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+    
+    def tilt(self,angle):
+        self.angle = angle
+        self.shapeMatrix=rotate(evenize(self.shapeMatrix),angle)
+        self.shapeFrameDimension = [len(self.shapeMatrix[0]),len(self.shapeMatrix)]
+
+    def flaTilt(self,direction=1):
+        if(self.theta<180):
+            self.tilt((direction/abs(direction))*self.flatAngle)
+        else:
+            self.tilt(180)
+
+    def print(self):
+        '''
+        Prints Object parameters to console
+        '''
+        print(repr(self))
+
+    def printShape(self):
+        '''
+        Prints shape to console in binary 
+
+        #### Warning : CPU intensive task
+        '''
+        temp = ""
+        for li in self.shapeMatrix:
+            for num in li:
+                temp+=str(num)
+            temp+="\n"
+        print(temp)
+
+    def displayShape(self):
+        '''
+        Displays shape as a image
+        '''
+        (arr2png(self.shapeMatrix)).show()
+    
+    def isPointInCircle(self,ptX,ptY,radius):
+        if( (ptX-radius)**2 + (ptY-(self.width))**2 <= radius**2 ):
+            return(True)
+        else:
+            return(False)
+
+    def __generateShapeMatrix__(self,rad,sec_angle,angle):
+        '''
+        Generates 2D binary shape matrix
+        '''
+        svgBuilder.Sector(rad,sec_angle,angle,self.svgPath)
+        s2p(self.svgPath,self.pngPath)
+        tranparencyFilter(self.pngPath)
+        self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
+        self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
+
+class Frustum:
+    '''
+    Give sector radius & sector-angle in milli-meter( mm )
+    '''
+    def __init__(self,R,r,h,angle,uid):
+        self.uid = uid
+        self.pngPath = f"./PNG/{uid}.png"
+        self.svgPath = f"./SVG/{uid}.svg"
+        self.myShape="segment"
+        self.R = R
+        self.r = r
+        self.h = h
+        l = h**2 + (R-r)**2
+        self.angle = 0
+        self.surfaceArea = pi*l*(R+r)
+        self.cornerCompatible = 0
+        self.flatAngle = 180
+        self.triangleCompatible = 3
+        self.__generateShapeMatrix__(R,r,h,angle)
 
     def __repr__(self):
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
@@ -272,11 +348,83 @@ class Sector:
         else:
             return(False)
 
-    def __generateShapeMatrix__(self,rad,sec_angle,angle):
+    def __generateShapeMatrix__(self,R,r,h,angle):
         '''
         Generates 2D binary shape matrix
         '''
-        svgBuilder.Sector(rad,sec_angle,angle,self.svgPath)
+        svgBuilder.Frustum(R,r,h,angle,self.svgPath)
+        s2p(self.svgPath,self.pngPath)
+        tranparencyFilter(self.pngPath)
+        self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
+        self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
+
+class Segment:
+    '''
+    Give sector radius & sector-angle in milli-meter( mm )
+    '''
+    def __init__(self,R,r,t,angle,uid):
+        self.uid = uid
+        self.pngPath = f"./PNG/{uid}.png"
+        self.svgPath = f"./SVG/{uid}.svg"
+        self.myShape="segment"
+        self.R = R
+        self.r = r
+        self.t = t
+        self.angle = 0
+        self.surfaceArea = pi*(t/360)*(R**2-r**2)
+        self.cornerCompatible = 0
+        self.flatAngle = 180
+        self.triangleCompatible = 3
+        self.__generateShapeMatrix__(R,r,t,angle)
+
+    def __repr__(self):
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+    
+    def tilt(self,angle):
+        self.angle = angle
+        self.shapeMatrix=rotate(evenize(self.shapeMatrix),angle)
+        self.shapeFrameDimension = [len(self.shapeMatrix[0]),len(self.shapeMatrix)]
+
+    def flaTilt(self,direction=1):
+        self.shapeMatrix = evenize(self.shapeMatrix)
+        self.tilt(180)
+
+    def print(self):
+        '''
+        Prints Object parameters to console
+        '''
+        print(repr(self))
+
+    def printShape(self):
+        '''
+        Prints shape to console in binary 
+
+        #### Warning : CPU intensive task
+        '''
+        temp = ""
+        for li in self.shapeMatrix:
+            for num in li:
+                temp+=str(num)
+            temp+="\n"
+        print(temp)
+
+    def displayShape(self):
+        '''
+        Displays shape as a image
+        '''
+        (arr2png(self.shapeMatrix)).show()
+    
+    def isPointInCircle(self,ptX,ptY,radius):
+        if( (ptX-radius)**2 + (ptY-(self.width))**2 <= radius**2 ):
+            return(True)
+        else:
+            return(False)
+
+    def __generateShapeMatrix__(self,R,r,t,angle):
+        '''
+        Generates 2D binary shape matrix
+        '''
+        svgBuilder.Segment(R,r,t,angle,self.svgPath)
         s2p(self.svgPath,self.pngPath)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))

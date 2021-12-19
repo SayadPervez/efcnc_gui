@@ -215,7 +215,7 @@ function segment_submit()
     h.value="";    r.value=""; R.value="";
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
-        db[id_+String(i)]={id:id_+String(i),shape_name:"Segment",dimensions:"R:"+R_+" ; r:"+r_+" ; θ:"+h_ };
+        db[id_+String(i)]={id:id_+String(i),shape_name:"Segment",dimensions:"R:"+R_+" ; r:"+r_+" ; t:"+h_ };
     k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_segment"));    instance.close()
     toaster("Segment object added to stack !","yellow-text text-darken-2");

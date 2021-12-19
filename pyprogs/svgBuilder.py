@@ -124,13 +124,14 @@ def Sector(radius,sector_angle,angle=0,filename=""):
 
 def Frustum(R,r,h,angle=0,filename=""):
     if(filename==""):
-        raise Exception("Empty file name svgBuilder cone")
+        raise Exception("Empty file name svgBuilder frustum")
     R=mm2pt(R)
     r=mm2pt(r)
     h=mm2pt(h)
     t=sqrt(h**2 + (R-r)**2)
     L=t*R/(R-r)
     theta=(R/L)*(2*pi)
+    trot = (R/L)*(2*180)
     l=L-t
     with cairo.SVGSurface(filename,2.5*L,2.5*L) as surface:
         cr = cairo.Context(surface)
@@ -145,7 +146,10 @@ def Frustum(R,r,h,angle=0,filename=""):
         cr.set_line_width(0.2)
         cr.stroke_preserve()
         cr.fill()
-    svgRotate(filename,angle)
+    if(angle==0):
+        svgRotate(filename,(trot/2)+90)
+    else:
+        svgRotate(filename,angle)
 
 def xy(r,theta,centre_x,centre_y):
       X=centre_x + r* cos(theta)
@@ -154,10 +158,11 @@ def xy(r,theta,centre_x,centre_y):
 
 def Segment(R,r,segment_angle,angle=0,filename=""):
     if(filename==""):
-        raise Exception("Empty file name svgBuilder cone")
+        raise Exception("Empty file name svgBuilder segment")
     R=mm2pt(R)
     r=mm2pt(r)
     theta=segment_angle*pi/180
+    trot=segment_angle
     with cairo.SVGSurface(filename,2.5*R,2.5*R) as surface:
         cr = cairo.Context(surface)
         X1,Y1=xy(R,0,R,R)
@@ -171,4 +176,7 @@ def Segment(R,r,segment_angle,angle=0,filename=""):
         cr.set_line_width(0.2)
         cr.stroke_preserve()
         cr.fill()
-    svgRotate(filename,angle)
+    if(angle==0):
+        svgRotate(filename,(trot/2)+90)
+    else:
+        svgRotate(filename,angle)

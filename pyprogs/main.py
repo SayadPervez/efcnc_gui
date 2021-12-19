@@ -1,4 +1,3 @@
-import time
 from shapeManager import *
 from functions import *
 import algorithm1,algorithm2,algorithm3,algorithm4
@@ -39,6 +38,14 @@ def RUN(jsonString):
             r,t = list(map(float,dim_))
             Sector(r,t,0,id_)
             pushNotification("Sector Created")
+        elif(name_=="Frustum"):
+            h,R,r = list(map(float,dim_))
+            Frustum(R,r,h,0,id_)
+            pushNotification("Frustum Created")
+        elif(name_=="Segment"):
+            R,r,t = list(map(float,dim_))
+            Segment(R,r,t,0,id_)
+            pushNotification("Segment Created")
         elif(name_.startswith("CUSTOM-")):
             fd = obj["filedata"]
             Custom(fd,id_)
