@@ -188,7 +188,7 @@ function sector_submit()
     r.value="";    a.value="";
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
-        db[id_+String(i)]={id:id_+String(i),shape_name:"Sector",dimensions:"r:"+R+" ; θ:"+A};
+        db[id_+String(i)]={id:id_+String(i),shape_name:"Sector",dimensions:"r:"+R+" ; theta:"+A};
     k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_sector"));    instance.close()
     toaster("Sector object added to stack !","yellow-text text-darken-2");
