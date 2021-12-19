@@ -195,7 +195,7 @@ class Cone:
         (arr2png(self.shapeMatrix)).show()
     
     def isPointInCircle(self,ptX,ptY,radius):
-        if( (ptX-radius)**2 + (ptY-(self.width*const.sampl/2))**2 <= radius**2 ):
+        if( (ptX-radius)**2 + (ptY-(self.width))**2 <= radius**2 ):
             return(True)
         else:
             return(False)
