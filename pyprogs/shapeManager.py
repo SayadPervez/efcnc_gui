@@ -211,6 +211,77 @@ class Cone:
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
 
+class Sector:
+    '''
+    Give sector radius & sector-angle in milli-meter( mm )
+    '''
+    def __init__(self,sector_radius,sector_angle,angle,uid):
+        self.uid = uid
+        self.pngPath = f"./PNG/{uid}.png"
+        self.svgPath = f"./SVG/{uid}.svg"
+        self.myShape="sector"
+        self.radius = sector_radius
+        self.sector_angle = sector_angle
+        self.angle = 0
+        self.surfaceArea = pi*(sector_radius**2)*sector_angle/360
+        self.cornerCompatible = 0
+        #self.flatAngle = ((180 - self.angle)/2)+self.angle
+        self.triangleCompatible = 3
+        self.__generateShapeMatrix__(sector_radius,sector_angle,angle)
+
+    def __repr__(self):
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+    
+    def tilt(self,angle):
+        self.angle = angle
+        self.shapeMatrix=rotate(evenize(self.shapeMatrix),angle)
+        self.shapeFrameDimension = [len(self.shapeMatrix[0]),len(self.shapeMatrix)]
+
+    def flaTilt(self,direction=1):
+        self.shapeMatrix = evenize(self.shapeMatrix)
+        self.tilt(180)
+
+    def print(self):
+        '''
+        Prints Object parameters to console
+        '''
+        print(repr(self))
+
+    def printShape(self):
+        '''
+        Prints shape to console in binary 
+
+        #### Warning : CPU intensive task
+        '''
+        temp = ""
+        for li in self.shapeMatrix:
+            for num in li:
+                temp+=str(num)
+            temp+="\n"
+        print(temp)
+
+    def displayShape(self):
+        '''
+        Displays shape as a image
+        '''
+        (arr2png(self.shapeMatrix)).show()
+    
+    def isPointInCircle(self,ptX,ptY,radius):
+        if( (ptX-radius)**2 + (ptY-(self.width))**2 <= radius**2 ):
+            return(True)
+        else:
+            return(False)
+
+    def __generateShapeMatrix__(self,rad,sec_angle,angle):
+        '''
+        Generates 2D binary shape matrix
+        '''
+        svgBuilder.Sector(rad,sec_angle,angle,self.svgPath)
+        s2p(self.svgPath,self.pngPath)
+        tranparencyFilter(self.pngPath)
+        self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
+        self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
+
 class Canvas:
     '''
     Give side in milli-meter( mm )

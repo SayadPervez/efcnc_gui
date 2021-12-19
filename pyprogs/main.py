@@ -35,6 +35,10 @@ def RUN(jsonString):
             h,r = list(map(float,dim_))
             Cone(h,r,0,id_)
             pushNotification("Cone Created")
+        elif(name_=="Sector"):
+            r,t = list(map(float,dim_))
+            Sector(r,t,0,id_)
+            pushNotification("Sector Created")
         elif(name_.startswith("CUSTOM-")):
             fd = obj["filedata"]
             Custom(fd,id_)
