@@ -154,6 +154,16 @@ function frustum_cancel()
     toaster("Frustum object dropped !","red darken-3 white-text");
 }
 
+function segment_cancel()
+{
+    var R = document.getElementById("input_segment_R")
+    var r = document.getElementById("input_segment_r");
+    var h = document.getElementById("input_segment_angle");
+    h.value="";R.value="";
+    r.value="";document.getElementById("kount_segment").value=1;
+    toaster("Segment object dropped !","red darken-3 white-text");
+}
+
 function frustum_submit()
 {
     var h = document.getElementById("input_frustum_height");
@@ -183,6 +193,35 @@ function frustum_submit()
     table_refresh();
 }
 
+function segment_submit()
+{
+    var h = document.getElementById("input_segment_angle");
+    var r = document.getElementById("input_segment_r");
+    var R = document.getElementById("input_segment_R");
+    var k = document.getElementById("kount_segment");
+    var h_ = h.value;  var r_ = r.value; var R_ = R.value;
+    if(String(h_)=="" || String(r_)=="" || String(R_)=="")
+    {
+        toaster("Empty Input","red-text text-darken-3 white");
+        return("");
+    }
+    if(Number(r_)>Number(R_))
+    {
+        toaster("Segment<br>r > R error","red-text text-darken-3 white");
+        console.log(r_,">",R_,r_>R_);
+        return("");
+    }
+    console.log("θ:"+h_,"r:"+r_,"R"+R_);
+    h.value="";    r.value=""; R.value="";
+    const id_ = makeid(8);
+    for(var i=0;i<k.value;i++)
+        db[id_+String(i)]={id:id_+String(i),shape_name:"Segment",dimensions:"R:"+R_+" ; r:"+r_+" ; θ:"+h_ };
+    k.value=1;
+    var instance = M.Modal.getInstance(document.getElementById("modal_segment"));    instance.close()
+    toaster("Segment object added to stack !","yellow-text text-darken-2");
+    table_refresh();
+}
+
 function cone_submit()
 {
     var h = document.getElementById("input_cone_height");
@@ -196,7 +235,7 @@ function cone_submit()
         toaster("Empty Input","red-text text-darken-3 white");
         return("");
     }
-    if(theta<0 || theta>360)
+    if(Number(theta)<0 || Number(theta)>360)
     {
         toaster("Invalid Cone Dimensions<br>"+String(theta),"red-text text-darken-3 white");
         return("");
