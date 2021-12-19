@@ -37,7 +37,7 @@ def RUN(jsonString):
             pushNotification("Cone Created")
         elif(name_.startswith("CUSTOM-")):
             fd = obj["filedata"]
-            Cone(h,r,0,id_)
+            Custom(fd,id_)
             pushNotification("Custom Object Created")
 
 if len(sys.argv)>1:

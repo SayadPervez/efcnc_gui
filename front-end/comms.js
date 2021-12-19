@@ -1,7 +1,7 @@
 var socket = io();
 
 socket.on("Process Confirmation",(status)=>{
-    console.log(status);
+    toaster("File creation "+String(status),"white-text green darken-2 ");
 });
 
 socket.on("notification",(data)=>{

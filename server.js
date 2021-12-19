@@ -15,12 +15,9 @@ function replaceAll(str, find, replace) {
 }
 
 setInterval(function(){ 
-  d = fs.readFileSync('./pyprogs/log.txt', 'utf8')
-  if(d!=data)
-  {
+  d = fs.readFile('./pyprogs/log.txt', 'utf8',()=>{
     io.emit("logs",d);
-    data = d;
-  }
+  })
 },1000)
 
 io.on('connection', (socket) => {
@@ -31,6 +28,7 @@ io.on('connection', (socket) => {
     });
     //process reception
     socket.on("process!",(db)=>{
+      fs.writeFile('./pyprogs/log.txt', '',()=>{});
         x=( 
           replaceAll(
           replaceAll(
