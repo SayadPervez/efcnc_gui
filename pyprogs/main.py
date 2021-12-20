@@ -68,7 +68,11 @@ def RUN(jsonString):
     print("algorithm:",alg[0])
     print("thickness:",thickness[0])
     for obj in objList:
-        obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//4)+1)
+        if(thickness[0]<6):
+            obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//4)+1)
+        else:
+            obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//2+1)*2)
+            print("else thickness executed")
     print("Starting low level algorithm")
     if(alg[0] == 1):
         out,shapes = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=1000,returnOrder=True))
