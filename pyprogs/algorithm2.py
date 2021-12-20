@@ -111,7 +111,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                         pass
                     else:
                         isObjectPlaced=True
-                        shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
+                        shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
                         memoryX=row+(71/100*sx)
                         memoryY=col+(71/100*sy)
                         #print("row changes")
@@ -127,7 +127,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                             pass
                         else:
                             isObjectPlaced=True
-                            shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
+                            shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
                             memoryX=row+(71/100*sx)
                             memoryY=col+(71/100*sy)
                             #print("col changes")
@@ -144,7 +144,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                                 pass
                             else:
                                 doublebreak=True
-                                shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
+                                shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
                                 memoryX=row+(71/100*sx)
                                 memoryY=col+(71/100*sy)
                                 break
@@ -162,7 +162,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                             pass
                         else:
                             doublebreak=True
-                            shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
+                            shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
                             memoryX=row+(71/100*sx)
                             memoryY=col+(71/100*sy)
                             break
