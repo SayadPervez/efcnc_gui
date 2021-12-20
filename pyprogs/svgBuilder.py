@@ -92,6 +92,9 @@ def canvasExtracter(path):
     return(half1,half2)
 
 def svgPlacer(canvas,svgObjects,x,y,thickness):
+    prev_x,prev_y=None,None
+    mfx,mfy=1,1
+    movex,movey=1,1
     if(type(svgObjects)==type([])):
         if(not(len(svgObjects)==len(x)==len(y))):
             raise Exception("Unequal Array Length - SVGPLACER")
@@ -100,7 +103,32 @@ def svgPlacer(canvas,svgObjects,x,y,thickness):
     h1,h2=canvasExtracter(canvas)
     st=""
     for i,svg in enumerate(svgObjects):
-        st+=f'<g id="{str(i)}" transform="translate({mm2pt(x[i])+(mm2pt(thickness)*(i+1))},{mm2pt(y[i])+(mm2pt(thickness)*(i+1))})">'+objectExtractor(svg)+"</g>"
+        st+=f'<g id="{str(i)}" transform="translate({mm2pt(x[i])},{mm2pt(y[i])})">'+objectExtractor(svg)+"</g>"
+        '''
+        if(i!=0 and x[i]!=prev_x and y[i]!=prev_y):
+            print(x[i],prev_x,"\n",y[i],prev_y,"\nif 1")
+            mfx+=1
+            mfy+=1
+            movex=1/mfx
+            movey=1/mfy
+        elif(i!=0 and x[i]==prev_x and y[i]!=prev_y):
+            print(x[i],prev_x,"\n",y[i],prev_y,"\nif 2")
+            mfx+=0
+            mfy+=1
+            movex=0
+            movey=1/mfy
+        elif(i!=0 and x[i]!=prev_x and y[i]==prev_y):
+            print(x[i],prev_x,"\n",y[i],prev_y,"\nif 3")
+            mfx+=0
+            mfy+=1
+            movex=1/mfx
+            movey=0
+        elif(1==0):
+            mfx,mfy=1,1
+        print("-------")
+        st+=f'<g id="{str(i)}" transform="translate({mm2pt(x[i])+(mm2pt(thickness)*(mfx*movex))},{mm2pt(y[i])+(mm2pt(thickness)*(mfy*movey))})">'+objectExtractor(svg)+"</g>"
+        prev_x,prev_y = x[i],y[i]
+        '''
     output = h1+st+h2
     with open(canvas,"w") as f:
         f.write(output)

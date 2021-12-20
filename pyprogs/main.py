@@ -82,7 +82,7 @@ def RUN(jsonString):
         raise Exception("Invalid Algorithm")
     print("Starting svg positioning")
     xl,yl=[],[]
-    cx,cy = canvas__.shapeFrameDimension
+    cx,cy = canvas__.length,canvas__.height
     for shape in shapes:
         px , py , _ = shape.low_res_pos
         px,py = math.floor(px/100*cx),math.floor(py/100*cy)
