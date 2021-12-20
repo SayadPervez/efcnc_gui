@@ -302,7 +302,7 @@ class Frustum:
         self.surfaceArea = pi*l*(R+r)
         self.cornerCompatible = 0
         self.flatAngle = 180
-        self.triangleCompatible = 3
+        self.triangleCompatible = 2
         self.__generateShapeMatrix__(R,r,h,angle)
 
     def __repr__(self):
@@ -374,7 +374,7 @@ class Segment:
         self.surfaceArea = pi*(t/360)*(R**2-r**2)
         self.cornerCompatible = 0
         self.flatAngle = 180
-        self.triangleCompatible = 3
+        self.triangleCompatible = 2
         self.__generateShapeMatrix__(R,r,t,angle)
 
     def __repr__(self):
@@ -495,6 +495,8 @@ class Custom:
         self.pngPath = f"./PNG/{self.uid}.png"
         self.svgPath = f"./SVG/{self.uid}.svg"
         self.__generateShape__(filecontents)
+        self.cornerCompatible=-1
+        self.triangleCompatible=-1
 
     def __repr__(self):
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
