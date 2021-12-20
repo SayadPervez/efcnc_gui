@@ -17,7 +17,7 @@ def RUN(jsonString):
     db = (jsonparser(jsonString))
     for objectkey in db:
         if("__data__" == objectkey):
-            thickness .append( int((db["__data__"])["t"]) )
+            thickness .append( float((db["__data__"])["t"]) )
             alg .append( int((db["__data__"])["a"]) )
             beep(4000,700)
             continue
@@ -68,7 +68,7 @@ def RUN(jsonString):
     print("algorithm:",alg[0])
     print("thickness:",thickness[0])
     for obj in objList:
-        obj.shapeMatrix = outline_with_shape(obj,thickness[0])
+        obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//4)+1)
     print("Starting low level algorithm")
     if(alg[0] == 1):
         out,shapes = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=1000,returnOrder=True))
