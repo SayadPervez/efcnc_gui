@@ -131,7 +131,7 @@ def triangleSort(objectList):
     for obj in objectList:
         ret[obj] = {"sa":obj.surfaceArea,"cc":obj.triangleCompatible}
     ret = dict(sorted(ret.items(),key = lambda item:item[1]["cc"]))
-    return(list(ret.keys())[::-1])
+    return(list(ret.keys()))
 
 def typeToggle(li):
     retli=[]

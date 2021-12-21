@@ -1,11 +1,23 @@
 from shapeManager import *
 from visualization import *
-import algorithm1,algorithm2,algorithm4
-from svgBuilder import svgPlacer
+import algorithm1,algorithm2,algorithm4,algorithm3
+from svgBuilder import svgPlacer,svgRotate
 
+freeSpace()
 thickness = [3]
-canvas__ = Canvas(400,400)
-objList = [CutSheet(395,90,0,"csgo"),CutSheet(30,300,0,"cs2"),Circle(30,"circle_2_12_"),Circle(50,"circle_2_234234_"),Circle(40,"circle_2_q3weqwer_"),Circle(30,"circle_2__"),Circle(40,"circle_1__"),Circle(90,"circle_2_3_"),Circle(40,"circle1_2_1_"),Circle(30,"circlesrdfe1_2_1_")]
+canvas__ = Canvas(200,200)
+objList = [
+    Cone(50,30,0,"Conehere"),
+    Cone(50,30,0,"Conehere1"),
+    Cone(50,30,0,"Conehere2"),
+    Cone(20,10,0,"Conehere3"),
+    Cone(20,10,0,"Conehere4"),
+    Cone(20,10,0,"Conehere5"),
+    Cone(20,10,0,"Conehere6"),
+    Cone(20,10,0,"Conehere7"),
+    Cone(20,10,0,"Conehere6"),
+    Cone(20,10,0,"Conehere7")
+    ]
 
 for obj in objList:
         if(thickness[0]<6):
@@ -13,8 +25,12 @@ for obj in objList:
         else:
             obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//2+1)*2)
 
-out,shapes = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=50,returnOrder=True))
+out,shapes = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=50,returnOrder=True))
 arr2png(out).show()
+# for A3
+if(True):
+    for shape in shapes:
+        svgRotate(shape.svgPath,shape.angle)
 xl,yl=[],[]
 cx,cy = canvas__.length,canvas__.height
 for shape in shapes:

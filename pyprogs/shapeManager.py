@@ -158,7 +158,7 @@ class Cone:
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Radius \t: {self.cone_radius} mm\nShape Height \t: {self.cone_height} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
     
     def tilt(self,angle):
-        self.angle = angle
+        self.angle += angle
         self.shapeMatrix=rotate(evenize(self.shapeMatrix),angle)
         self.shapeFrameDimension = [len(self.shapeMatrix[0]),len(self.shapeMatrix)]
 
@@ -234,7 +234,7 @@ class Sector:
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
     
     def tilt(self,angle):
-        self.angle = angle
+        self.angle += angle
         self.shapeMatrix=rotate(evenize(self.shapeMatrix),angle)
         self.shapeFrameDimension = [len(self.shapeMatrix[0]),len(self.shapeMatrix)]
 
@@ -309,7 +309,7 @@ class Frustum:
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
     
     def tilt(self,angle):
-        self.angle = angle
+        self.angle += angle
         self.shapeMatrix=rotate(evenize(self.shapeMatrix),angle)
         self.shapeFrameDimension = [len(self.shapeMatrix[0]),len(self.shapeMatrix)]
 
@@ -381,7 +381,7 @@ class Segment:
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
     
     def tilt(self,angle):
-        self.angle = angle
+        self.angle += angle
         self.shapeMatrix=rotate(evenize(self.shapeMatrix),angle)
         self.shapeFrameDimension = [len(self.shapeMatrix[0]),len(self.shapeMatrix)]
 
