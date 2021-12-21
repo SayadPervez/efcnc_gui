@@ -10,6 +10,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
         constCompute = 100
     else:
         constCompute = False
+    unplacedShapes=[]
+    placedShapes=[]
     cArray = np.array(canvas.shapeMatrix,dtype=float) #cArray => canvasArray
     cx,cy = np.shape(cArray)
     stepX = ceil(cx/constCompute) if constCompute else 1
@@ -18,6 +20,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
     memoryY = 0
     if(col==False):
         for shape in shapeList:
+            shapePlaced = False
             sArray = np.array(shape.shapeMatrix,dtype=float)
             sx,sy = np.shape(sArray)
             newCanvas = np.copy(cArray)
@@ -32,17 +35,24 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                         pass
                     else:
                         doublebreak=True
+                        shapePlaced=True
                         shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
                         memoryX=row+(71/100*sx)
                         memoryY=col+(71/100*sy)
                         break
                 if(doublebreak==True):
                     break
-            cArray = np.copy(newCanvas)
-            if(log_):
+            if(log_ and shapePlaced):
                 print(f"Completed placing {shape.myShape}")
+                shape.placed=True
+                placedShapes.append(shape)
+                cArray = np.copy(newCanvas)
+            else:
+                unplacedShapes.append(shape)
+                shape.placed=False
     else:
         for shape in shapeList:
+            shapePlaced=False
             sArray = np.array(shape.shapeMatrix,dtype=float)
             sx,sy = np.shape(sArray)
             newCanvas = np.copy(cArray)
@@ -59,18 +69,23 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                         pass
                     else:
                         doublebreak=True
+                        shapePlaced=True
                         shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
                         memoryX=row+(71/100*sx)
                         memoryY=col+(71/100*sy)
                         break
                 if(doublebreak==True):
                     break
-            cArray = np.copy(newCanvas)
-            if(log_):
+            if(log_ and shapePlaced):
                 print(f"Completed placing {shape.myShape}")
-                beep(4000,1000)
+                shape.placed=True
+                placedShapes.append(shape)
+                cArray = np.copy(newCanvas)
+            else:
+                unplacedShapes.append(shape)
+                shape.placed=False
     ret = cArray.tolist()
-    return(ret)
+    return(ret,placedShapes,unplacedShapes)
 
 def run(canvas,shapeList,col=True,log_=False,timeComplexity=False,constCompute=False,memory_=False,noSort=False,returnOrder=False):
     if(noSort==False):
@@ -93,6 +108,4 @@ def run(canvas,shapeList,col=True,log_=False,timeComplexity=False,constCompute=F
     # If program passes till here,
     # All the given shapes can be theoretically arranged in the canvas. Practically, I doubt it
     #print(d)
-    if(returnOrder):
-        return(fitting(canvas,shapeList,col,log_,constCompute),shapeList)
     return(fitting(canvas,shapeList,col,log_,constCompute))

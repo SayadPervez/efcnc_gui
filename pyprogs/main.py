@@ -8,7 +8,7 @@ from json import loads as jsonparser
 import math
 from winsound import Beep as beep
 
-objList=[]
+objList,cc=[],[]
 thickness=[]
 alg = []
 canvas__=None
@@ -19,7 +19,7 @@ def RUN(jsonString):
         if("__data__" == objectkey):
             thickness .append( float((db["__data__"])["t"]) )
             alg .append( int((db["__data__"])["a"]) )
-            beep(4000,700)
+            cc .append( int((db["__data__"])["c"]) )
             continue
         obj = db[objectkey]
         id_ = objectkey
@@ -75,13 +75,13 @@ def RUN(jsonString):
             print("else thickness executed")
     print("Starting low level algorithm")
     if(alg[0] == 1):
-        out,shapes = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=1000,returnOrder=True))
+        out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     elif(alg[0] == 2):
-        out,shapes = binaryFilter(algorithm2.run(canvas__,objList,log_=True,constCompute=80,returnOrder=True))
+        out,shapes = binaryFilter(algorithm2.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     elif(alg[0] == 3):
-        out,shapes = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=1000,returnOrder=True))
+        out,shapes = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     elif(alg[0] == 4):
-        out,shapes = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=1000,returnOrder=True))
+        out,shapes = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     else:
         raise Exception("Invalid Algorithm")
     if(alg[0] == 3):
@@ -98,9 +98,8 @@ def RUN(jsonString):
         yl.append(py)
     svgPlacer(canvas__.svgPath,[_.svgPath for _ in shapes],xl,yl,thickness[0])
     #arr2png(out).show()
-    print("end")
+    print("Success")
 
 if len(sys.argv)>1:
-    print("server started")
     freeSpace()
     RUN((sys.argv[1]).replace("^",'"'))
