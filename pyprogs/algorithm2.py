@@ -12,6 +12,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
         constCompute = 100
     else:
         constCompute = 1
+    unplacedShapes=[]
+    placedShapes=[]
     stepX = ceil(cx/constCompute)
     stepY = ceil(cy/constCompute)
     memoryX = 0
@@ -21,8 +23,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
             sArray = np.array(shape.shapeMatrix,dtype=float)
             sx,sy = np.shape(sArray)
             newCanvas = np.copy(cArray)
+            isObjectPlaced = False
             if(shape.cornerCompatible==1):
-                isObjectPlaced = False
                 for row in range(0,cx-sx,stepX):
                     col=0
                     if(row<memoryX and col<memoryY):
@@ -65,6 +67,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                             if(func.isInterfering(newCanvas)):
                                 pass
                             else:
+                                isObjectPlaced=True
                                 doublebreak=True
                                 shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
                                 memoryX=row+(71/100*sx)
@@ -84,23 +87,28 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                             pass
                         else:
                             doublebreak=True
+                            isObjectPlaced=True
                             shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
                             memoryX=row+(71/100*sx)
                             memoryY=col+(71/100*sy)
                             break
                     if(doublebreak==True):
                         break
-            cArray = np.copy(newCanvas)
-            if(log_):
+            if(log_ and isObjectPlaced):
+                shape.placed=True
+                placedShapes.append(shape)
+                cArray = np.copy(newCanvas)
                 print(f"Completed placing {shape.myShape}")
-                beep(4000,1000)
+            else:
+                unplacedShapes.append(shape)
+                shape.placed=False
     else:
         for shape in shapeList:
             sArray = np.array(shape.shapeMatrix,dtype=float)
             sx,sy = np.shape(sArray)
             newCanvas = np.copy(cArray)
+            isObjectPlaced = False
             if(shape.cornerCompatible==1):
-                isObjectPlaced = False
                 for row in range(0,cx-sx,stepX):
                     col=0
                     if(row<memoryX and col<memoryY):
@@ -144,6 +152,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                                 pass
                             else:
                                 doublebreak=True
+                                isObjectPlaced = True
                                 shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
                                 memoryX=row+(71/100*sx)
                                 memoryY=col+(71/100*sy)
@@ -162,18 +171,23 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                             pass
                         else:
                             doublebreak=True
+                            isObjectPlaced = True
                             shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
                             memoryX=row+(71/100*sx)
                             memoryY=col+(71/100*sy)
                             break
                     if(doublebreak==True):
                         break
-            cArray = np.copy(newCanvas)
-            if(log_):
+            if(log_ and isObjectPlaced):
+                shape.placed=True
+                placedShapes.append(shape)
+                cArray = np.copy(newCanvas)
                 print(f"Completed placing {shape.myShape}")
-                beep(4000,1000)
+            else:
+                unplacedShapes.append(shape)
+                shape.placed=False
     ret = cArray.tolist()
-    return(ret)
+    return(ret,placedShapes,unplacedShapes)
 
 def run(canvas,shapeList,col=True,log_=False,constCompute=False,returnOrder=False):
     shapeList=func.sortEdgeCorners(shapeList)
@@ -192,6 +206,4 @@ def run(canvas,shapeList,col=True,log_=False,constCompute=False,returnOrder=Fals
     # If program passes till here,
     # All the given shapes can be theoretically arranged in the canvas. Practically, I doubt it
     #print(d)
-    if(returnOrder):
-        return(fitting(canvas,shapeList,col,log_,constCompute),shapeList)
     return(fitting(canvas,shapeList,col,log_,constCompute))

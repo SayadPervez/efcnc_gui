@@ -18,7 +18,7 @@ for obj in objList:
         else:
             obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//2+1)*2)
 
-out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=75,returnOrder=True))
+out,shapes,up = binaryFilter(algorithm2.run(canvas__,objList,log_=True,constCompute=75,returnOrder=True))
 arr2png(out).show()
 # for A3
 if(True):
