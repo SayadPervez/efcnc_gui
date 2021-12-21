@@ -22,8 +22,6 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
         isObjectPlaced=False
         for row in range(0,cx-sx,stepX):
             col=0
-            if(row<memoryX and col<memoryY):
-                continue
             newCanvas = np.copy(cArray)
             newCanvas[row:row+sx,col:col+sy]+=sArray
             if(func.isInterfering(newCanvas)):
@@ -36,22 +34,18 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
         if(isObjectPlaced==False):
             for col in range(0,cy-sy,stepY):
                 row=0
-                if(row<memoryX and col<memoryY):
-                    continue
                 newCanvas = np.copy(cArray)
                 newCanvas[row:row+sx,col:col+sy]+=sArray
                 if(func.isInterfering(newCanvas)):
                     pass
                 else:
                     isObjectPlaced=True
-                    shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
+                    shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
                     print("choice 2")
                     break
         if(isObjectPlaced==False):
             for row in range(0,cx-sx,stepX):
                 col=cy-sy
-                if(row<memoryX and col<memoryY):
-                    continue
                 newCanvas = np.copy(cArray)
                 newCanvas[row:row+sx,col:col+sy]+=sArray
                 if(func.isInterfering(newCanvas)):
@@ -64,8 +58,6 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
         if(isObjectPlaced==False):
             for col in range(0,cy-sy,stepY):
                 row=cx-sx
-                if(row<memoryX and col<memoryY):
-                    continue
                 newCanvas = np.copy(cArray)
                 newCanvas[row:row+sx,col:col+sy]+=sArray
                 if(func.isInterfering(newCanvas)):
