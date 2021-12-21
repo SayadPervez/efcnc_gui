@@ -289,7 +289,7 @@ function publish()
             toaster("No CANVAS","white-text red darken-3",false);
         else
         {
-            db["__data__"]={"t":"3","a":"1"}
+            db["__data__"]={"t":"3","a":"1","cc":"75"}
             socket.emit("process!",db);
             toaster("Process Initiated","green-text white text-darken-3",false);
             var btn_li=document.getElementsByClassName("btn")

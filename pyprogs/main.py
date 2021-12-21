@@ -3,7 +3,7 @@ from shapeManager import *
 from functions import *
 import algorithm1,algorithm2,algorithm3,algorithm4
 from visualization import *
-import sys
+import sys,shutil
 from json import loads as jsonparser
 import math
 from winsound import Beep as beep
@@ -19,7 +19,7 @@ def RUN(jsonString):
         if("__data__" == objectkey):
             thickness .append( float((db["__data__"])["t"]) )
             alg .append( int((db["__data__"])["a"]) )
-            cc .append( int((db["__data__"])["c"]) )
+            cc .append( int((db["__data__"])["cc"]) )
             continue
         obj = db[objectkey]
         id_ = objectkey
@@ -87,18 +87,28 @@ def RUN(jsonString):
     if(alg[0] == 3):
         print("Starting svg rotation")
         for shape in shapes:
+            if(shape.placed==False):
+                continue
+            if(shape.angle==0 or shape.angle%360==0):
+                continue
             svgRotate(shape.svgPath,shape.angle)
     print("Starting svg positioning")
     xl,yl=[],[]
     cx,cy = canvas__.length,canvas__.height
     for shape in shapes:
+        if shape.placed==False:
+            continue
+        print(shape.myShape,shape.low_res_pos)
         px , py , _ = shape.low_res_pos
         px,py = math.floor(px/100*cx),math.floor(py/100*cy)
         xl.append(px)
         yl.append(py)
     svgPlacer(canvas__.svgPath,[_.svgPath for _ in shapes],xl,yl,thickness[0])
-    #arr2png(out).show()
-    print("Success")
+    print("\nUnplaced :")
+    for _ in up:
+        print(_,end="\n\n")
+        shutil.move(_.svgPath,f"./unplaced/{_.uid}.svg")
+
 
 if len(sys.argv)>1:
     freeSpace()
