@@ -1,4 +1,4 @@
-from svgBuilder import svgPlacer
+from svgBuilder import svgPlacer,svgRotate
 from shapeManager import *
 from functions import *
 import algorithm1,algorithm2,algorithm3,algorithm4
@@ -84,6 +84,10 @@ def RUN(jsonString):
         out,shapes = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=1000,returnOrder=True))
     else:
         raise Exception("Invalid Algorithm")
+    if(alg[0] == 3):
+        print("Starting svg rotation")
+        for shape in shapes:
+            svgRotate(shape.svgPath,shape.angle)
     print("Starting svg positioning")
     xl,yl=[],[]
     cx,cy = canvas__.length,canvas__.height
