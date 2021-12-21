@@ -7,7 +7,12 @@ freeSpace()
 thickness = [3]
 canvas__ = Canvas(200,200)
 objList = [
-    Cone(20,16,0,"Conehere"+str(i)) for i in range(14)
+    Cone(20,16,0,"Conehere"),
+    Sector(20,75,0,"sector"),
+    Frustum(16,10,16,0,"frustrate"),
+    Segment(20,15,300,0,"segment"),
+    CutSheet(10,15,0,"cutsheet"),
+    Circle(7,"circle")
     ]
 
 for obj in objList:
@@ -16,10 +21,10 @@ for obj in objList:
         else:
             obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//2+1)*2)
 
-out,shapes = binaryFilter(algorithm2.run(canvas__,objList,log_=True,constCompute=75,returnOrder=True))
+out,shapes = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=75,returnOrder=True))
 arr2png(out).show()
 # for A3
-if(False):
+if(True):
     for shape in shapes:
         svgRotate(shape.svgPath,shape.angle)
 xl,yl=[],[]

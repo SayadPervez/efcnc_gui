@@ -32,7 +32,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                 #print("choice 2")
                 break
         if(isObjectPlaced==False):
-            if(shape.myShape=="cone"):
+            if(shape.a3compat==True):
                 shape.tilt(90)
             sArray = np.array(shape.shapeMatrix,dtype=float)
             sx,sy = np.shape(sArray)
@@ -48,7 +48,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                     #print("choice 1")
                     break
         if(isObjectPlaced==False):
-            if(shape.myShape=="cone"):
+            if(shape.a3compat==True):
                 shape.tilt(180)
             sArray = np.array(shape.shapeMatrix,dtype=float)
             sx,sy = np.shape(sArray)
@@ -64,7 +64,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                     #print("choice 3")
                     break
         if(isObjectPlaced==False):
-            if(shape.myShape=="cone"):
+            if(shape.a3compat==True):
                 shape.tilt(-90)
             sArray = np.array(shape.shapeMatrix,dtype=float)
             sx,sy = np.shape(sArray)
@@ -80,7 +80,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                     #print("choice 4")
                     break
         if(isObjectPlaced==False):
-            if(shape.myShape=="cone"):
+            if(shape.a3compat==True):
                 shape.tilt(180)
             sArray = np.array(shape.shapeMatrix,dtype=float)
             sx,sy = np.shape(sArray)
@@ -124,11 +124,9 @@ def run(canvas,shapeList,log_=False,constCompute=False,returnOrder=False):
     # If program passes till here,
     # All the given shapes can be theoretically arranged in the canvas. Practically, I doubt it
     #print(d)
-    coneCount = func.countShapes(shapeList,'cone')
-    #ones = [(-1)**i for i in range(coneCount)]
-    ones = [1]*coneCount
-    for q in range(coneCount):
-        shapeList[q].flaTilt(ones[q])
+    for shape in shapeList:
+        if(shape.a3compat):
+            shape.flaTilt(1)
     if(returnOrder):
         return(fitting(canvas,shapeList,log_,constCompute),shapeList)
     return(fitting(canvas,shapeList,log_,constCompute))

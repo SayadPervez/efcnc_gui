@@ -10,6 +10,7 @@ class CutSheet:
     '''
     def __init__(self,length,height,angle,uid):
         self.uid = uid
+        self.a3compat=False
         self.myShape="CutSheet"
         self.length = length
         self.height = height
@@ -72,6 +73,8 @@ class Circle:
     def __init__(self,radius,uid):
         self.uid = uid
         self.myShape="Circle"
+        self.angle=0
+        self.a3compat=False
         self.radius = radius
         self.cornerCompatible = 0
         self.triangleCompatible = 1
@@ -138,6 +141,7 @@ class Cone:
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
         self.myShape="cone"
+        self.a3compat=True
         self.angle = 0
         self.cone_radius = round(cone_radius)
         self.cone_height = round(cone_height)
@@ -220,6 +224,7 @@ class Sector:
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
         self.myShape="sector"
+        self.a3compat=True
         self.radius = sector_radius
         self.sector_angle = sector_angle
         self.theta = sector_angle
@@ -294,6 +299,7 @@ class Frustum:
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
         self.myShape="segment"
+        self.a3compat=True
         self.R = R
         self.r = r
         self.h = h
@@ -367,6 +373,7 @@ class Segment:
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
         self.myShape="segment"
+        self.a3compat=True
         self.R = R
         self.r = r
         self.t = t
@@ -437,6 +444,7 @@ class Canvas:
     def __init__(self,length,height):
         self.uid = "Canvas"
         self.myShape="Canvas"
+        self.a3compat=False
         self.length = length
         self.height = height
         self.surfaceArea = length*height
@@ -490,6 +498,7 @@ class Custom:
     def __init__(self,filecontents,uid):
         self.uid = uid
         self.myShape="Custom"
+        self.a3compat=True
         self.fileContents = filecontents
         self.angle = 0
         self.pngPath = f"./PNG/{self.uid}.png"

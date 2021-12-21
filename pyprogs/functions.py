@@ -124,6 +124,13 @@ def countShapes(shapeList,myShapeName):
     x = [_.myShape for _ in shapeList]
     return(x.count(myShapeName))
 
+def countShapesProperties(shapeList,propertyValue):
+    '''
+    count the given type of shape in a given shapeList
+    '''
+    x = [_.a3compat for _ in shapeList]
+    return(x.count(propertyValue))
+
 def triangleSort(objectList):
     if(type(objectList)!=type([])):
         objectList = [objectList]
