@@ -176,9 +176,9 @@ function frustum_submit()
         toaster("Empty Input","red-text text-darken-3 white");
         return("");
     }
-    if(Number(r_)>Number(R_))
+    if(Number(r_)>=Number(R_))
     {
-        toaster("Frustum<br>r > R error","red-text text-darken-3 white");
+        toaster("Frustum<br>r >= R error","red-text text-darken-3 white");
         console.log(r_,">",R_,r_>R_);
         return("");
     }
@@ -205,10 +205,15 @@ function segment_submit()
         toaster("Empty Input","red-text text-darken-3 white");
         return("");
     }
-    if(Number(r_)>Number(R_))
+    if(Number(r_)>=Number(R_))
     {
-        toaster("Segment<br>r > R error","red-text text-darken-3 white");
+        toaster("Segment<br>r >= R error","red-text text-darken-3 white");
         console.log(r_,">",R_,r_>R_);
+        return("");
+    }
+    if(Number(h_)<0 || Number(h_)>360)
+    {
+        toaster("Invalid Segment Dimensions<br>"+String(h_)+" degrees","red-text text-darken-3 white");
         return("");
     }
     console.log("θ:"+h_,"r:"+r_,"R"+R_);
@@ -237,7 +242,7 @@ function cone_submit()
     }
     if(Number(theta)<0 || Number(theta)>360)
     {
-        toaster("Invalid Cone Dimensions<br>"+String(theta),"red-text text-darken-3 white");
+        toaster("Invalid Cone Dimensions<br>"+String(theta)+" degrees","red-text text-darken-3 white");
         return("");
     }
     console.log("H:"+H,"R:"+R);
@@ -260,6 +265,11 @@ function sector_submit()
     if(String(R)=="" || String(A)=="")
     {
         toaster("Empty Input","red-text text-darken-3 white");
+        return("");
+    }
+    if(Number(A)<0 || Number(A)>360)
+    {
+        toaster("Invalid Sector Dimensions<br>"+String(A)+" degrees","red-text text-darken-3 white");
         return("");
     }
     console.log("R:"+R,"θ:"+A);
