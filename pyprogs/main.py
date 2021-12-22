@@ -63,7 +63,7 @@ def RUN(jsonString):
             fd = obj["filedata"]
             objList.append(Custom(fd,id_))
             pushNotification("Custom Object Created")
-        pushNotification("Process Completed")
+    pushNotification("Object Creation Completed")
 
     print("algorithm:",alg[0])
     print("thickness:",thickness[0])
@@ -74,6 +74,7 @@ def RUN(jsonString):
             obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//2+1)*2)
             print("else thickness executed")
     print("Starting low level algorithm")
+    pushNotification("Starting low level positioning")
     if(alg[0] == 1):
         out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     elif(alg[0] == 2):
@@ -84,8 +85,10 @@ def RUN(jsonString):
         out,shapes,up = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     else:
         raise Exception("Invalid Algorithm")
+    pushNotification("Low level positioning completed")
     if(alg[0] == 3):
         print("Starting svg rotation")
+        pushNotification("Starting svg rotation")
         for shape in shapes:
             if(shape.placed==False):
                 continue
@@ -93,6 +96,7 @@ def RUN(jsonString):
                 continue
             svgRotate(shape.svgPath,shape.angle)
     print("Starting svg positioning")
+    pushNotification("Starting SVG Positioning")
     xl,yl=[],[]
     cx,cy = canvas__.length,canvas__.height
     for shape in shapes:

@@ -228,4 +228,4 @@ def freeSpace():
 
 def pushNotification(msg):
     pass
-    #os.system(f'python pysock.py "{msg}"')
+    os.system(f'node mod.js "{msg}"')
