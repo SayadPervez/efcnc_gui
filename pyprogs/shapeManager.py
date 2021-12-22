@@ -312,7 +312,7 @@ class Frustum:
         self.__generateShapeMatrix__(R,r,h,angle)
 
     def __repr__(self):
-        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nshapeFrameDimension \t: {self.shapeFrameDimension}")
     
     def tilt(self,angle):
         self.angle += angle
@@ -385,7 +385,7 @@ class Segment:
         self.__generateShapeMatrix__(R,r,t,angle)
 
     def __repr__(self):
-        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nshapeFrameDimension \t: {self.shapeFrameDimension}")
     
     def tilt(self,angle):
         self.angle += angle

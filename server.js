@@ -30,8 +30,7 @@ io.on('connection', (socket) => {
           '\"','"'
           ),'"','^')
           );
-        console.log(cmdline(`cd ./pyprogs/ && python main.py "${x}"`));
-        io.to(socket.id).emit("Process Confirmation","Success");
+        console.log(cmdline_(`cd ./pyprogs/ && python main.py "${x}"`));
     });
     socket.on("_mod.js",(data)=>{
       io.to(socket.id).emit("die","from server");
@@ -45,6 +44,20 @@ io.on('connection', (socket) => {
       else
         io.to(socket.id).emit("Free Space","Failure");
     });
+    function cmdline_(command){
+      const exec = require('child_process').exec;
+      exec(`${command}`, { encoding: 'utf-8' }, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`exec error: ${error}, ${stderr}`);
+          io.to(socket.id).emit("ppp","Error");
+        }else{
+        console.log(stdout);
+        io.to(socket.id).emit("ppp","Success");
+        }
+      });
+      
+      
+    }
 });
 
 function cmdline(command){
@@ -52,6 +65,8 @@ function cmdline(command){
     const output = execSync(`${command}`, { encoding: 'utf-8' });
     return(output);
 }
+
+
 
 server.listen(3000, () => {
   console.log('listening on *:3000');
