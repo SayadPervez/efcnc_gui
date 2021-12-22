@@ -1,7 +1,6 @@
 import numpy as np
 import collections as c
 import os
-from time import sleep
 
 # pospl -> POSition Point Line
 def pospl(pt1,pt2,pt3):

@@ -31,7 +31,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
             else:
                 isObjectPlaced=True
                 shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
-                print("choice 1")
+                #print("choice 1")
                 break
         if(isObjectPlaced==False):
             for col in range(0,cy-sy,stepY):
@@ -43,7 +43,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                 else:
                     isObjectPlaced=True
                     shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
-                    print("choice 2")
+                    #print("choice 2")
                     break
         if(isObjectPlaced==False):
             for row in range(0,cx-sx,stepX):
@@ -55,7 +55,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                 else:
                     isObjectPlaced=True
                     shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
-                    print("choice 3")
+                    #print("choice 3")
                     break
         if(isObjectPlaced==False):
             for col in range(0,cy-sy,stepY):
@@ -67,10 +67,10 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                 else:
                     isObjectPlaced=True
                     shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
-                    print("choice 4")
+                    #print("choice 4")
                     break
         if(isObjectPlaced==False):
-            print("Choice 5")
+            #print("Choice 5")
             for col in range(0,cy-sy,stepY):
                 doublebreak=False
                 for row in range(0,cx-sx,stepX):
