@@ -225,8 +225,6 @@ def p2aBugFixFunction(li2d):
 
 def freeSpace():
     os.system("python free_space.py")
-    with open("./log.txt","w") as f:
-        f.write("")
 
 def pushNotification(msg):
     pass
