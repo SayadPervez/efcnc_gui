@@ -15,6 +15,8 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
     stepY = ceil(cy/constCompute)
     memoryX = 0
     memoryY = 0
+    unplacedShapes=[]
+    placedShapes=[]
     for shape in shapeList:
         sArray = np.array(shape.shapeMatrix,dtype=float)
         sx,sy = np.shape(sArray)
@@ -95,17 +97,23 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                         pass
                     else:
                         doublebreak=True
+                        isObjectPlaced=True
                         shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
                         memoryX=row+(71/100*sx)
                         memoryY=col+(71/100*sy)
                         break
                 if(doublebreak==True):
                     break
-        cArray = np.copy(newCanvas)
-        if(log_):
+        if(log_ and isObjectPlaced):
             print(f"Completed placing {shape.myShape}")
+            shape.placed=True
+            placedShapes.append(shape)
+            cArray = np.copy(newCanvas)
+        else:
+            unplacedShapes.append(shape)
+            shape.placed=False
     ret = cArray.tolist()
-    return(ret)
+    return(ret,placedShapes,unplacedShapes)
 
 def run(canvas,shapeList,log_=False,constCompute=False,returnOrder=False):
     shapeList=func.triangleSort(shapeList)
@@ -127,6 +135,4 @@ def run(canvas,shapeList,log_=False,constCompute=False,returnOrder=False):
     for shape in shapeList:
         if(shape.a3compat):
             shape.flaTilt(1)
-    if(returnOrder):
-        return(fitting(canvas,shapeList,log_,constCompute),shapeList)
     return(fitting(canvas,shapeList,log_,constCompute))

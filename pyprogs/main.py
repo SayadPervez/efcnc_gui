@@ -79,7 +79,7 @@ def RUN(jsonString):
     elif(alg[0] == 2):
         out,shapes,up = binaryFilter(algorithm2.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     elif(alg[0] == 3):
-        out,shapes = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
+        out,shapes,up = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     elif(alg[0] == 4):
         out,shapes,up = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     else:
