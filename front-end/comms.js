@@ -19,6 +19,11 @@ socket.on("notification",(data)=>{
     toaster(data,"white-text green darken-2 ");
 });
 
+socket.on("exception2front",(data)=>{
+    console.log("Exception : ",data);
+    toaster(data,"white-text red darken-3",false);
+});
+
 socket.on("Free Space",(status)=>{
     if(status=="Success")
         toaster("Cache Cleared","green-text white text-darken-2");

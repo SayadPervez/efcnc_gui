@@ -36,6 +36,10 @@ io.on('connection', (socket) => {
       io.to(socket.id).emit("die","from server");
       io.emit("notification",data);
     });
+    socket.on("exception_",(data)=>{
+      io.to(socket.id).emit("die_","from server");
+      io.emit("exception2front",data);
+    });
     socket.on("Free Space",(x)=>{
       console.log("Clear Request");
       out=cmdline("cd ./pyprogs/ && python free_space.py");

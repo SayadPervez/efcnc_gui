@@ -227,5 +227,7 @@ def freeSpace():
     os.system("python free_space.py")
 
 def pushNotification(msg):
-    pass
     os.system(f'node mod.js "{msg}"')
+
+def pushError(msg):
+    os.system(f'node exception.js "{msg}"')
