@@ -46,6 +46,16 @@ body{
     border-radius: 0.314rem;
 }
 
+#error_log_div{
+    padding:1.5rem 2rem;
+    border-radius: 0.314rem;
+    margin: 4rem auto;
+    width:75%;
+    display: none;
+    min-height:10vh;
+    background-color: #fff09c;
+}
+
 .bld{
     font-weight: 600 !important;
 }

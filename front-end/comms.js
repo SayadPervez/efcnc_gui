@@ -22,6 +22,9 @@ socket.on("notification",(data)=>{
 socket.on("exception2front",(data)=>{
     console.log("Exception : ",data);
     toaster(data,"white-text red darken-3",false);
+    document.getElementById("error_log_div").style.display="block";
+    document.getElementById("error_log_span").innerText=data;
+    document.getElementById("error_log_button").disabled=false;
 });
 
 socket.on("Free Space",(status)=>{
