@@ -84,6 +84,7 @@ def RUN(jsonString):
     elif(alg[0] == 4):
         out,shapes,up = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     else:
+        pushError("Invalid Algorithm")
         raise Exception("Invalid Algorithm")
     pushNotification("Low level positioning completed")
     if(alg[0] == 3):

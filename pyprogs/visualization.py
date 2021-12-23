@@ -121,6 +121,7 @@ def rotate(obj,angle):
     if("shapes" in str(type(obj))):
         arr=obj.shapeMatrix
         if(obj.myShape=="CANVAS"):
+            pushError("Canvas cannot be rotated")
             raise Exception("CANVAS cannot be rotated")
     a=np.array(arr,dtype=str)
     condAnalyse = npAnalyse(a,False)
@@ -331,6 +332,7 @@ def free_surface_all(arr,pcent):
             if(str(a)==str(b)):
                 return(a)
             else:
+                pushError("Logic Error -> Symbol Add")
                 raise(Exception('Logic Error !!!!!!'))
 
     arr1=step1to3(arr,pcent)

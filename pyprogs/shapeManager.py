@@ -152,6 +152,7 @@ class Cone:
         self.flatAngle = ((180 - self.theta)/2)+self.theta
         #print('theta = ',self.theta)
         if(self.theta>=360):
+            pushError("Illegal Cone Dimensions")
             raise Exception("Illegal cone dimensions.")
             return(0)
         self.cone_type = 1 if self.theta<=180 else 2
