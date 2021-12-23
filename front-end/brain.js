@@ -49,6 +49,10 @@ function cutsheet_submit()
         toaster("Empty Input","red-text text-darken-3 white");
         return("");
     }
+    if(Number(W)<Number(H))
+    {
+        [W,H]=[H,W];
+    }
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"Cut-Sheet",dimensions:"w:"+W+" ; h:"+H};
@@ -86,6 +90,10 @@ function canvas_submit()
         return("");
     }
     w.value="";    h.value="";
+    if(Number(W)<Number(H))
+    {
+        [W,H]=[H,W];
+    }
     const id_ = makeid(8);
     db[id_]={id:id_,shape_name:"Canvas",dimensions:"w:"+W+" ; h:"+H};
     var instance = M.Modal.getInstance(document.getElementById("modal_canvas"));    instance.close()
