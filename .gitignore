@@ -1,7 +1,7 @@
 node_modules/
 pyprogs/__pycache__
-pyprogs/IMG/*
-pyprogs/SVG/*
-pyprogs/PNG/*
+pyprogs/IMG/*.png
+pyprogs/SVG/*.svg
+pyprogs/PNG/*.png
 pyprogs/unplaced/*
 todo.txt
