@@ -1,5 +1,19 @@
 var socket = io();
 
+socket.on("disconnect",()=>{
+    toaster("Server Down & Disconnected","white-text red darken-3 ");
+    var btn_li=document.getElementsByClassName("btn");
+    for(var i = 0; i < btn_li.length; i++)
+        btn_li[i].disabled=true;
+    btn_li=document.getElementsByClassName("btn-large");
+    for(var i = 0; i < btn_li.length; i++)
+        btn_li[i].disabled=true;
+    document.getElementById("shopping_list").style.display="None";
+    document.getElementById("error_log_div").style.display="block";
+    document.getElementById("error_log_span").innerText="Internal Server Disconnected";
+    document.getElementById("error_log_button").disabled=false;
+});
+
 socket.on("ppp",(status)=>{
     if(status=="Success")
     {
