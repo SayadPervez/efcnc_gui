@@ -18,7 +18,10 @@ def RUN(jsonString):
     for objectkey in db:
         if("__data__" == objectkey):
             thickness .append( float((db["__data__"])["t"]) )
-            alg .append( int((db["__data__"])["a"]) )
+            try:
+                alg .append( int((db["__data__"])["a"]) )
+            except Exception as e:
+                alg.append(3)
             cc .append( int((db["__data__"])["cc"]) )
             continue
         obj = db[objectkey]
