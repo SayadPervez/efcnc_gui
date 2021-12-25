@@ -116,6 +116,7 @@ def RUN(jsonString):
     for _ in up:
         print(_,end="\n\n")
         shutil.move(_.svgPath,f"./unplaced/{_.uid}.svg")
+    os.system("python zipper.py")
 
 
 if len(sys.argv)>1:
