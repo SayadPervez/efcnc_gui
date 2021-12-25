@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
   var instances = M.Modal.init(elems);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+
 function toaster(data,classes="",rounded=true)
 {
   if(rounded)

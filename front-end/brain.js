@@ -307,7 +307,10 @@ function publish()
             toaster("No CANVAS","white-text red darken-3",false);
         else
         {
-            db["__data__"]={"t":"3","a":"4","cc":"75"}
+            db["__data__"]={"t":String(document.getElementById("clearance_select").value),"a":String(document.getElementById("alg_select").value),"cc":String(document.getElementById("efficiency_range").value)}
+            console.log(document.getElementById("clearance_select").value);
+            console.log(document.getElementById("alg_select").value);
+            console.log(document.getElementById("efficiency_range").value);
             socket.emit("process!",db);
             toaster("Process Initiated","green-text white text-darken-3",false);
             var btn_li=document.getElementsByClassName("btn")

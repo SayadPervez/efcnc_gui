@@ -70,3 +70,7 @@ body{
     font-weight: 600 !important;
     opacity: 1 !important; /* Firefox */
   }
+
+  ul.dropdown-content.select-dropdown li span {
+    color: #f57f17; /* no need for !important :) */
+}

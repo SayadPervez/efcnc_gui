@@ -392,11 +392,41 @@
       </div>
     </div>
     <div id="modal_process" class="modal">
-      <div class="modal-content">
+      <div class="modal-content" style="min-height:60vh;">
         <h3>Process Publish Page :</h3>
-        <div>
-            <button id="publish_cancel" class="modal-close waves-effect waves-dark green btn" style="margin-right:20px;" onclick="process_cancel()">Cancel</button>
-            <button id="publish_run" class="red darken-2 waves-effect waves-light btn" style="margin-right:20px;" onclick="publish()"><strong>RUN !</strong></button>
+        <div class="row">
+          <div class="col l2"></div>
+          <div class="col l8">
+                <div class="input-field col s12">
+                  <select id="clearance_select">
+                    <option value="3" selected>3 mm</option>
+                    <option value="5">5 mm</option>
+                    <option value="10">10 mm</option>
+                  </select>
+                  <label style="font-weight: bold;color:#f57f17;">Clearance</label>
+                </div><br><br>
+                <div class="input-field col s12">
+                  <select id="alg_select">
+                    <option value="auto" selected>Auto</option>
+                    <option value="1">Size Sort Algorithm</option>
+                    <option value="1">Edge Sort Algorithm</option>
+                    <option value="3">Surround Tilt Algorithm</option>
+                    <option value="4">Close In Algorithm</option>
+                  </select>
+                  <label style="font-weight: bold;color:#f57f17;">Algorithm</label>
+                </div>
+                <p class="yellow-text text-darken-4 bld">Select Efficiency :</p>
+                <p class="range-field">
+                  <input type="range" id="efficiency_range" min="40" max="100" value="90" />
+                </p>
+              </div>
+              <div class="col l2"></div>
+          </div>
+        </div><div class="row">
+        <div class="col l8"></div>
+        <div class="col l4">
+            <button id="publish_cancel" style="margin-right:20px;"  class="modal-close waves-effect waves-dark red darken-2 btn" onclick="process_cancel()">Cancel</button>
+            <button id="publish_run" style="margin-right:20px;"  class="green darken-2 waves-effect waves-light btn" onclick="publish()"><strong>RUN !</strong></button>
         </div>
       </div>
     </div>
