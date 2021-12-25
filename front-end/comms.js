@@ -18,10 +18,13 @@ socket.on("ppp",(status)=>{
     if(status=="Success")
     {
     toaster("Task Completion "+String(status),"white-text green darken-2 ");
-    document.getElementById("info_butt").innerHTML = `<strong>Process Completed ...</strong>`;
+    document.getElementById("info_butt").innerHTML = `<strong><span class="material-icons-round">
+    file_download
+    </span></strong>`;
     document.getElementById("info_butt").classList.remove("red");
     document.getElementById("info_butt").classList.add("green");
     }
+
     else{
         toaster("Task Failed ","white-text red darken-3");
         document.getElementById("info_butt").innerHTML = `<strong>Process Failed ...</strong>`;

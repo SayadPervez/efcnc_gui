@@ -70,7 +70,10 @@ function cmdline(command){
     return(output);
 }
 
-
+app.get('/download', function(req, res){
+  const file = `./pyprogs/IMG/Output.zip`;
+  res.download(file);
+});
 
 server.listen(3000, () => {
   console.log('listening on *:3000');
