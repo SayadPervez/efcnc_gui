@@ -507,6 +507,7 @@ class Custom:
         self.__generateShape__(filecontents)
         self.cornerCompatible=-1
         self.triangleCompatible=-1
+        self.flatAngle = 0
 
     def __repr__(self):
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
@@ -521,6 +522,9 @@ class Custom:
         self.angle += angle
         self.shapeMatrix=rotate(evenize(self.shapeMatrix),angle)
         self.shapeFrameDimension = [len(self.shapeMatrix[0]),len(self.shapeMatrix)]
+
+    def flaTilt(self,direction=1):
+        pass
 
     def displayShape(self):
         '''
