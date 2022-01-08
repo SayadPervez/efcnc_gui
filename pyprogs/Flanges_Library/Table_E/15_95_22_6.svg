@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
-   sodipodi:docname="6_95_22.svg"
+   sodipodi:docname="15_95_22_6.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,8 +24,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.0859962"
-     inkscape:cx="153.77586"
-     inkscape:cy="226.05973"
+     inkscape:cx="154.23627"
+     inkscape:cy="226.05972"
      inkscape:window-width="1920"
      inkscape:window-height="1051"
      inkscape:window-x="-9"
@@ -43,21 +43,20 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-51.682137,-82.691422)">
-    <circle
-       style="fill:#000000;stroke-width:0"
-       id="path31"
-       cx="99.182137"
-       cy="130.19142"
-       r="47.5" />
-    <circle
-       style="fill:#ffffff;stroke-width:0"
-       id="path176"
-       cx="99.182137"
-       cy="130.19142"
-       r="11" />
     <g
-       id="g711"
-       style="fill:#ffffff">
+       id="g23">
+      <circle
+         style="fill:#000000;stroke-width:0"
+         id="path31"
+         cx="99.182137"
+         cy="130.19142"
+         r="47.5" />
+      <circle
+         style="fill:#ffffff;stroke-width:0"
+         id="path176"
+         cx="99.182137"
+         cy="130.19142"
+         r="11" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="path619"
