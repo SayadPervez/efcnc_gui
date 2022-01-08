@@ -6,3 +6,5 @@ pyprogs/SVG/*.svg
 pyprogs/PNG/*.png
 pyprogs/unplaced/*
 todo.txt
+pyprogs/Flanges_Library/Table_E/*.txt
+pyprogs/Flanges_Library/Class_150/*.txt
