@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="108mm"
+   height="108mm"
+   viewBox="0 0 108 108"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="25_108_35_14.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#cccccc"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="1"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.8847266"
+     inkscape:cx="205.60011"
+     inkscape:cy="210.90592"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-52.715782,-77.867737)">
+    <g
+       id="g738">
+      <circle
+         style="fill:#000000;stroke-width:0"
+         id="path53"
+         cx="106.71578"
+         cy="131.86774"
+         r="54" />
+      <circle
+         style="fill:#ffffff;stroke-width:0"
+         id="path179"
+         cx="106.71578"
+         cy="131.86774"
+         r="17.5" />
+      <circle
+         style="fill:#ffffff;stroke-width:0"
+         id="circle261"
+         cx="106.71578"
+         cy="92.367737"
+         r="8" />
+      <circle
+         style="fill:#ffffff;stroke-width:0"
+         id="circle263"
+         cx="106.71578"
+         cy="171.36774"
+         r="8" />
+      <circle
+         style="fill:#ffffff;stroke-width:0"
+         id="circle722"
+         cx="131.86774"
+         cy="-146.21579"
+         r="8"
+         transform="rotate(90)" />
+      <circle
+         style="fill:#ffffff;stroke-width:0"
+         id="circle724"
+         cx="131.86774"
+         cy="-67.215782"
+         r="8"
+         transform="rotate(90)" />
+    </g>
+  </g>
+</svg>
