@@ -24,7 +24,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.4665165"
-     inkscape:cx="753.45674"
+     inkscape:cx="755.60028"
      inkscape:cy="834.91152"
      inkscape:window-width="1920"
      inkscape:window-height="1051"
@@ -40,7 +40,7 @@
      id="layer1"
      transform="translate(-54.783081,-77.17865)">
     <g
-       id="g3640">
+       id="g471">
       <circle
          style="fill:#000000;stroke-width:0"
          id="path53"
@@ -62,18 +62,6 @@
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle1164"
-         cx="284.78308"
-         cy="512.17865"
-         r="12" />
-      <circle
-         style="fill:#ffffff;stroke-width:0"
-         id="circle3494"
-         cx="284.78308"
-         cy="102.17865"
-         r="12" />
-      <circle
-         style="fill:#ffffff;stroke-width:0"
-         id="circle3496"
          cx="284.78308"
          cy="512.17865"
          r="12" />
