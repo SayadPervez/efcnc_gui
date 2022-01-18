@@ -75,6 +75,10 @@ body{
     color: #f57f17; /* no need for !important :) */
 }
 
+.select-dropdown li.optgroup>span {
+    color: rgba(0,0,0,1) !important;
+}
+
 #shopping_list .col{
     margin:0.5rem auto;
 }
