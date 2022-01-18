@@ -369,8 +369,11 @@ function custom_submit(filedata)
     } 
     //console.log(filedata);
     const id_ = makeid(8);
+    /*
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"CUSTOM-"+String(n.value.trim()),dimensions:"File Upload Successful",filedata:filedata};
+    */
+    db[id_]={id:id_,shape_name:"CUSTOM-"+String(n.value.trim())+"-<"+String(k.value)+">",dimensions:"File Upload Successful",filedata:filedata,count:k.value};
     k.value=1;n.value = "";
     var instance = M.Modal.getInstance(document.getElementById("modal_custom"));    instance.close()
     toaster("Custom object added to stack !","yellow-text text-darken-2");
