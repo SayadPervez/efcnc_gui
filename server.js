@@ -36,9 +36,11 @@ io.on('connection', (socket) => {
               var name = obj["id"]+String(i)+String(".svg");
               fs.writeFileSync( "./pyprogs/SVG/"+name, obj["filedata"]);
             }
+            delete obj["filedata"];
           }
         }
       });
+      console.log(db);
       console.log("Quitting process here")
       return("");
         x=( 
