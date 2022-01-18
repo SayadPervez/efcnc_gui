@@ -271,6 +271,30 @@
             </div>
         </div>
     </div>
+    <div id="modal_flange" class="modal">
+      <div class="modal-content">
+          <div class="row">
+              <div class="col l6">
+                  <img src="dim_flange.png">
+              </div>
+              <div class="col l6">
+                  <h4>Flanges</h4>
+                  <div class="input-field">
+                      <input id="input_circle_radius" type="number" class="validate  yellow-text text-darken-4" style="border-bottom-color:#f57f17;">
+                      <label for="input_circle_radius" class="yellow-text text-darken-4"><strong>Circle Radius (r)</strong></label>
+                  </div>
+                  <p class="yellow-text text-darken-4 bld">Number of objects :</p>
+                  <p class="range-field">
+                    <input type="range" id="kount_flange" min="1" max="20" value="1" />
+                  </p>
+                  <div>
+                      <button class="modal-close waves-effect waves-dark red darken-2 btn" style="margin-right:20px;" onclick="flange_cancel()">Cancel</button>
+                      <button class="yellow darken-4 waves-effect waves-light btn" style="margin-right:20px;" onclick="flange_submit()">Create Object</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
     <div id="modal_cone" class="modal">
         <div class="modal-content">
             <div class="row">
