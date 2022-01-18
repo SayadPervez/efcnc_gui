@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
+const fs = require('fs');
 const io = require("socket.io")(server, {
   cors: {
     origin: "*:*"
@@ -23,6 +24,23 @@ io.on('connection', (socket) => {
     });
     //process reception
     socket.on("process!",(db)=>{
+      cmdline("cd ./pyprogs/ && python free_space.py");
+      Object.keys(db).forEach(function (key) {
+        if(key!="__data__")
+        {
+          if((db[key]["shape_name"]).startsWith("CUSTOM-"))
+          {
+            // writing custom shapes here
+            var obj = db[key]
+            for( var i=0;i<db[key]["count"];i++){
+              var name = obj["id"]+String(i)+String(".svg");
+              fs.writeFileSync( "./pyprogs/SVG/"+name, obj["filedata"]);
+            }
+          }
+        }
+      });
+      console.log("Quitting process here")
+      return("");
         x=( 
           replaceAll(
           replaceAll(
