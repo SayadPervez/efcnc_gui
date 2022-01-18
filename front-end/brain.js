@@ -68,8 +68,10 @@ function canvas_cancel()
 {
     var w = document.getElementById("input_canvas_width");
     var h = document.getElementById("input_canvas_height");
+    var t = document.getElementById("input_canvas_thickness");
     w.value="";
     h.value="";
+    t.value="";
     toaster("Canvas dropped !","red darken-3 white-text");
 }
 
@@ -77,9 +79,10 @@ function canvas_submit()
 {
     var w = document.getElementById("input_canvas_width");
     var h = document.getElementById("input_canvas_height");
-    var W = w.value;    var H = h.value;
-    console.log("W:"+W,"H:"+H);
-    if(String(W)=="" || String(H)=="")
+    var t = document.getElementById("input_canvas_thickness");
+    var W = w.value;    var H = h.value;    var T = t.value;
+    console.log("W:"+W,"H:"+H,"T:"+T);
+    if(String(W)=="" || String(H)=="" || String(T)=="")
     {
         toaster("Empty Input","red-text text-darken-3 white");
         return("");
@@ -89,13 +92,13 @@ function canvas_submit()
         toaster("Canvas Already Exists","red-text text-darken-3 white");
         return("");
     }
-    w.value="";    h.value="";
+    w.value="";    h.value="";  t.value="";
     if(Number(W)<Number(H))
     {
         [W,H]=[H,W];
     }
     const id_ = makeid(8);
-    db[id_]={id:id_,shape_name:"Canvas",dimensions:"w:"+W+" ; h:"+H};
+    db[id_]={id:id_,shape_name:"Canvas",dimensions:"w:"+W+" ; h:"+H+" ; t:"+T};
     var instance = M.Modal.getInstance(document.getElementById("modal_canvas"));    instance.close()
     toaster("Canvas Created !","yellow-text text-darken-2");
     table_refresh();
