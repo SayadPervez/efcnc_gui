@@ -504,7 +504,7 @@ class Custom:
         self.angle = 0
         self.pngPath = f"./PNG/{self.uid}.png"
         self.svgPath = f"./SVG/{self.uid}.svg"
-        self.__generateShape__(filecontents)
+        self.__generateShape__()
         self.cornerCompatible=-1
         self.triangleCompatible=-1
         self.flatAngle = 0
@@ -545,12 +545,12 @@ class Custom:
             temp+="\n"
         print(temp)
 
-    def __generateShape__(self,fc):
+    def __generateShape__(self):
         '''
         Generates 2D binary shape matrix
         '''
-        with open(self.svgPath,"w") as f:
-            f.write(fc)
+        #with open(self.svgPath,"w") as f:
+        #    f.write(fc)
         s2p(self.svgPath,self.pngPath)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))

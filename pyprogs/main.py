@@ -63,9 +63,12 @@ def RUN(jsonString):
             objList.append(Segment(R,r,t,0,id_))
             pushNotification("Segment Created")
         elif(name_.startswith("CUSTOM-")):
-            fd = obj["filedata"]
-            objList.append(Custom(fd,id_))
-            pushNotification("Custom Object Created")
+            count_ = int(obj["count"])
+            with open("./SVG/"+id_+"0.svg","r") as f:
+                fd=f.read()
+            for _ in range(count_):
+                objList.append(Custom(fd,id_+str(_)))
+                pushNotification("Custom Object Created")
     pushNotification("Object Creation Completed")
 
     print("algorithm:",alg[0])
@@ -120,5 +123,4 @@ def RUN(jsonString):
 
 
 if len(sys.argv)>1:
-    freeSpace()
     RUN((sys.argv[1]).replace("^",'"'))

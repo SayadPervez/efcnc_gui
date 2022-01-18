@@ -40,9 +40,6 @@ io.on('connection', (socket) => {
           }
         }
       });
-      console.log(db);
-      console.log("Quitting process here")
-      return("");
         x=( 
           replaceAll(
           replaceAll(
