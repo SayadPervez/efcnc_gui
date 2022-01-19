@@ -566,6 +566,7 @@ class Flange:
         self.uid = uid
         self.namestring = namestring
         self.myShape="flange"
+        self.a3compat=False
         self.angle = 0
         self.pngPath = f"./PNG/{self.uid}.png"
         self.svgPath = f"./SVG/{self.uid}.svg"
