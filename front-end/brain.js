@@ -1,6 +1,7 @@
 db = {};
 var Kount = 0;
 var canvasExists = false;
+var canvasThickness = undefined;
 
 //              Delete
 
@@ -103,6 +104,7 @@ function canvas_submit()
     toaster("Canvas Created !","yellow-text text-darken-2");
     table_refresh();
     canvasExists=true;
+    canvasThickness = T;
 }
 
 //             Flange
@@ -117,13 +119,22 @@ function flange_submit()
 {
     var s = document.getElementById("flange_select_input");
     var k = document.getElementById("kount_flange");
-    /* Thickness and canvas missing prompt here
-    if(String(R)=="")
+    var S = s.value;
+    var T = S.split("_")[2]
+    /* Thickness and canvas missing prompt here */
+    if(canvasExists==false)
     {
-        toaster("Empty Input","red-text text-darken-3 white");
+        
+        toaster("Canvas Missing","red-text text-darken-3 white");
+        return("");
+         
+    }
+    if(Number(canvasThickness)<Number(T))
+    {
+        console.log(canvasThickness,"<",T);
+        toaster("Incompatible Thickness","red-text text-darken-3 white");
         return("");
     }
-    */
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"Flange",dimensions:"type:"+s.value};
