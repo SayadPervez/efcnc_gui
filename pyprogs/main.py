@@ -35,7 +35,7 @@ def RUN(jsonString):
         print(f"shape_name : {name_} ; id : {id_} ; dimensions : {dim_}")
         
         if(name_=="Canvas"):
-            w,h = list(map(float,dim_))
+            w,h,t = list(map(float,dim_))
             canvas__=Canvas(w,h)
             pushNotification("Canvas Created")
         elif(name_=="Cut-Sheet"):
@@ -69,6 +69,9 @@ def RUN(jsonString):
             for _ in range(count_):
                 objList.append(Custom(fd,id_+str(_)))
                 pushNotification("Custom Object Created")
+        elif(name_=="Flange"):
+            objList.append(Flange(obj["dimensions"],id_))
+            pushNotification("Flange Created")
     pushNotification("Object Creation Completed")
 
     print("algorithm:",alg[0])
