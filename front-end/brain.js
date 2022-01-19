@@ -105,6 +105,34 @@ function canvas_submit()
     canvasExists=true;
 }
 
+//             Flange
+function flange_cancel()
+{
+    var s = document.getElementById("flange_select_input");
+    document.getElementById("kount_flange").value=1;
+    toaster("Flange object dropped !","red darken-3 white-text");
+}
+
+function flange_submit()
+{
+    var s = document.getElementById("flange_select_input");
+    var k = document.getElementById("kount_flange");
+    /* Thickness and canvas missing prompt here
+    if(String(R)=="")
+    {
+        toaster("Empty Input","red-text text-darken-3 white");
+        return("");
+    }
+    */
+    const id_ = makeid(8);
+    for(var i=0;i<k.value;i++)
+        db[id_+String(i)]={id:id_+String(i),shape_name:"Flange",dimensions:"type:"+s.value};
+    k.value=1;
+    var instance = M.Modal.getInstance(document.getElementById("modal_flange"));    instance.close()
+    toaster("Flange object added to stack !","yellow-text text-darken-2");
+    table_refresh();
+}
+
 //             Circle
 
 function circle_cancel()
