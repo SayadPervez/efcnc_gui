@@ -4,6 +4,7 @@ import algorithm1,algorithm2,algorithm4,algorithm3
 from svgBuilder import svgPlacer,svgRotate
 
 freeSpace()
+'''
 thickness = [3]
 canvas__ = Canvas(100,100)
 objList = [
@@ -42,3 +43,4 @@ svgPlacer(canvas__.svgPath,[_.svgPath for _ in shapes],xl,yl,thickness[0])
 print("end")
 for _ in up:
     print(_,end="\n\n")
+'''

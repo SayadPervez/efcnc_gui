@@ -3,6 +3,7 @@ from math import sin,cos,radians,pi
 from visualization import arr2png, png2arr,rotate,s2p,showPNG,tranparencyFilter
 from random import randint as ri
 import svgBuilder
+from shutil import copyfile
 
 class CutSheet:
     '''
@@ -551,6 +552,86 @@ class Custom:
         '''
         #with open(self.svgPath,"w") as f:
         #    f.write(fc)
+        s2p(self.svgPath,self.pngPath)
+        tranparencyFilter(self.pngPath)
+        self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
+        self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
+        self.surfaceArea = self.shapeFrameDimension[0]*self.shapeFrameDimension[1]
+
+class Flange:
+    '''
+    Give side in milli-meter( mm )
+    '''
+    def __init__(self,namestring,uid):
+        self.uid = uid
+        self.namestring = namestring
+        self.myShape="flange"
+        self.angle = 0
+        self.pngPath = f"./PNG/{self.uid}.png"
+        self.svgPath = f"./SVG/{self.uid}.svg"
+        self.__generateShape__()
+        self.cornerCompatible=-1
+        self.triangleCompatible=-1
+        self.flatAngle = 0
+
+    def __repr__(self):
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+    
+    def print(self):
+        '''
+        Prints Object parameters to console
+        '''
+        print(repr(self))
+
+    def tilt(self,angle):
+        pass
+
+    def flaTilt(self,direction=1):
+        pass
+
+    def displayShape(self):
+        '''
+        Displays shape as a image
+        '''
+        (arr2png(self.shapeMatrix)).show()
+
+    def printShape(self):
+        '''
+        Prints shape to console in binary 
+
+        #### Warning : CPU intensive task
+        '''
+        temp = ""
+        for li in self.shapeMatrix:
+            for num in li:
+                temp+=str(num)
+            temp+="\n"
+        print(temp)
+
+    def __generateShape__(self):
+        '''
+        Generates 2D binary shape matrix
+        type:tbee_95_6
+        '''
+        x = self.namestring
+        self.category,self.od,self.thickness = (x[x.index(":")+1:]).split("_")
+        actPath = os.getcwd()
+        referenceFlangePath = "./Flanges_Library/"
+        if(self.category=="tbee"):
+            referenceFlangePath+="Table_E/"
+        elif(self.category=="c150"):
+            referenceFlangePath+="Class_150/"
+        elif(self.category=="pn16"):
+            referenceFlangePath+="PN_16/"
+        os.chdir(referenceFlangePath)
+        files = os.listdir()
+        for file in files:
+            if(file.startswith(self.od) and file.endswith(self.thickness+".svg")):
+                referenceFlangePath+=file
+                self.referenceFileName = file
+        os.chdir(actPath)
+        copyfile(referenceFlangePath,f"./SVG/{self.uid}.svg")
+        #common stuff below
         s2p(self.svgPath,self.pngPath)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
