@@ -5,6 +5,7 @@ import bs4 as bs
 from math import cos,sin
 
 def mm2pt(x):
+    #surface.set_document_unit(7)
     return(x*2.83465)
 
 def svgResize2Drawing(path):
