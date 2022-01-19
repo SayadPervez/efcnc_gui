@@ -637,4 +637,4 @@ class Flange:
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
-        self.surfaceArea = self.shapeFrameDimension[0]*self.shapeFrameDimension[1]
+        self.surfaceArea = int(pi*((int(self.od)/2)**2))
