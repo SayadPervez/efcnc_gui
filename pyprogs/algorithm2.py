@@ -98,6 +98,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                 placedShapes.append(shape)
                 cArray = np.copy(newCanvas)
                 print(f"Completed placing {shape.myShape}")
+                func.pushNotification(f"Completed placing {shape.myShape}")
             else:
                 unplacedShapes.append(shape)
                 shape.placed=False
@@ -182,6 +183,7 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                 placedShapes.append(shape)
                 cArray = np.copy(newCanvas)
                 print(f"Completed placing {shape.myShape}")
+                func.pushNotification(f"Completed placing {shape.myShape}")
             else:
                 unplacedShapes.append(shape)
                 shape.placed=False

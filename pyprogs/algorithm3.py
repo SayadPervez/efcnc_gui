@@ -106,6 +106,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                     break
         if(log_ and isObjectPlaced):
             print(f"Completed placing {shape.myShape}")
+            func.pushNotification(f"Completed placing {shape.myShape}")
             shape.placed=True
             placedShapes.append(shape)
             cArray = np.copy(newCanvas)
