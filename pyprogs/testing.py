@@ -38,3 +38,17 @@ svgPlacer(canvas__.svgPath,[_.svgPath for _ in shapes],xl,yl,thickness[0])
 print("end")
 for _ in up:
     print(_,end="\n\n")
+
+
+'''
+Solution convert all handmade svg to pts
+this includes 
+
+width
+height
+viewBox
+transform values
+cx
+cy
+r
+'''
