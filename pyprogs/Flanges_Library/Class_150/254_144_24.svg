@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="254mm"
-   height="254mm"
-   viewBox="0 0 254 254"
+   width="720.0011pt"
+   height="720.0011pt"
+   viewBox="0 0 720.0011 720.0011"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
@@ -38,74 +38,74 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-52.71579,-77.867737)">
+     transform="translate(-149.4308141235,-220.72778068705)">
     <g
        id="g2409">
       <circle
          style="fill:#000000;stroke-width:0"
          id="path53"
-         cx="179.71579"
-         cy="204.86774"
-         r="127" />
+         cx="509.4313641235"
+         cy="580.7283391909999"
+         r="360.00055" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="path179"
-         cx="179.71579"
-         cy="204.86774"
-         r="72" />
+         cx="509.4313641235"
+         cy="580.7283391909999"
+         r="204.0948" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle261"
-         cx="179.71579"
-         cy="96.867737"
-         r="11" />
+         cx="509.4313641235"
+         cy="274.58613068705"
+         r="31.18115" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle2331"
-         cx="179.71579"
-         cy="312.86774"
-         r="11" />
+         cx="509.4313641235"
+         cy="886.870539191"
+         r="31.18115" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle2337"
-         cx="204.86774"
-         cy="-287.71579"
-         r="11"
+         cx="580.7283391909999"
+         cy="-815.5735641235001"
+         r="31.18115"
          transform="rotate(90)" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle2339"
-         cx="204.86774"
-         cy="-71.71579"
-         r="11"
+         cx="580.7283391909999"
+         cy="-203.2891641235"
+         r="31.18115"
          transform="rotate(90)" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle2351"
-         cx="271.94162"
-         cy="-90.21489"
-         r="11"
+         cx="770.859313133"
+         cy="-255.72763793849998"
+         r="31.18115"
          transform="rotate(45)" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle2353"
-         cx="271.94162"
-         cy="125.78511"
-         r="11"
+         cx="770.859313133"
+         cy="356.55676206149997"
+         r="31.18115"
          transform="rotate(45)" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle2357"
-         cx="17.785114"
-         cy="-379.94162"
-         r="11"
+         cx="50.4145734001"
+         cy="-1077.001513133"
+         r="31.18115"
          transform="rotate(135)" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle2359"
-         cx="17.785114"
-         cy="-163.94162"
-         r="11"
+         cx="50.4145734001"
+         cy="-464.717113133"
+         r="31.18115"
          transform="rotate(135)" />
     </g>
   </g>

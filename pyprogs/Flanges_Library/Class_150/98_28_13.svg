@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="98mm"
-   height="98mm"
-   viewBox="0 0 98 98"
+   width="277.7957pt"
+   height="277.7957pt"
+   viewBox="0 0 277.7957 277.7957"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
@@ -38,46 +38,46 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-52.715782,-77.867737)">
+     transform="translate(-149.4307914463,-220.72778068705)">
     <g
        id="g517">
       <circle
          style="fill:#000000;stroke-width:0"
          id="path53"
-         cx="101.71578"
-         cy="126.86774"
-         r="49" />
+         cx="288.328635777"
+         cy="359.625639191"
+         r="138.89785" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="path179"
-         cx="101.71578"
-         cy="126.86774"
-         r="14" />
+         cx="288.328635777"
+         cy="359.625639191"
+         r="39.6851" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle261"
-         cx="101.71578"
-         cy="91.867737"
-         r="8" />
+         cx="288.328635777"
+         cy="260.41288068705"
+         r="22.6772" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle263"
-         cx="101.71578"
-         cy="161.86774"
-         r="8" />
+         cx="288.328635777"
+         cy="458.838389191"
+         r="22.6772" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle501"
-         cx="126.86774"
-         cy="-136.71579"
-         r="8"
+         cx="359.625639191"
+         cy="-387.5414141235"
+         r="22.6772"
          transform="rotate(90)" />
       <circle
          style="fill:#ffffff;stroke-width:0"
          id="circle503"
-         cx="126.86774"
-         cy="-66.715782"
-         r="8"
+         cx="359.625639191"
+         cy="-189.1158914463"
+         r="22.6772"
          transform="rotate(90)" />
     </g>
   </g>

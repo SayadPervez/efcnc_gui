@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="120mm"
-   height="120mm"
-   viewBox="0 0 120 120"
+   width="340.158pt"
+   height="340.158pt"
+   viewBox="0 0 340.158 340.158"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
@@ -42,7 +42,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-29.755265,-60.277284)">
+     transform="translate(-84.34576193225,-170.8650030906)">
     <g
        id="g2480">
       <g
@@ -50,39 +50,39 @@
         <circle
            style="fill:#000000;stroke-width:0"
            id="path31"
-           cx="89.755264"
-           cy="120.27728"
-           r="60" />
+           cx="254.42475909759997"
+           cy="340.943991752"
+           r="170.079" />
         <circle
            style="fill:#ffffff;stroke-width:0"
            id="path176"
-           cx="89.755264"
-           cy="120.27728"
-           r="21.5" />
+           cx="254.42475909759997"
+           cy="340.943991752"
+           r="60.944975" />
         <circle
            style="fill:#ffffff;stroke-width:0"
            id="circle703"
-           cx="89.755264"
-           cy="163.77728"
-           r="6" />
+           cx="254.42475909759997"
+           cy="464.25126675199994"
+           r="17.0079" />
         <circle
            style="fill:#ffffff;stroke-width:0"
            id="circle2459"
-           cx="46.255264"
-           cy="120.27728"
-           r="6" />
+           cx="131.1174840976"
+           cy="340.943991752"
+           r="17.0079" />
         <circle
            style="fill:#ffffff;stroke-width:0"
            id="circle2461"
-           cx="133.25526"
-           cy="120.27728"
-           r="6" />
+           cx="377.73202275899996"
+           cy="340.943991752"
+           r="17.0079" />
         <circle
            style="fill:#ffffff;stroke-width:0"
            id="circle2463"
-           cx="89.755264"
-           cy="76.777283"
-           r="6" />
+           cx="254.42475909759997"
+           cy="217.63672525594998"
+           r="17.0079" />
       </g>
     </g>
   </g>
