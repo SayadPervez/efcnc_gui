@@ -386,9 +386,25 @@ function publish()
             btn_li=document.getElementsByClassName("btn-large")
             for(var i = 0; i < btn_li.length; i++)
                 btn_li[i].disabled=true;
+            document.getElementById("abort_icon").style.display="block";
             document.getElementById("info_div").style.display="block";
             document.getElementById("shopping_list").style.display="none";
+            document.getElementById("pybort_button").disabled=false;
         }
+}
+
+function pybort()
+{
+    socket.emit("abort","");
+    document.getElementById("Inventory-div").display="none";
+    var btn_li=document.getElementsByClassName("btn")
+    for(var i = 0; i < btn_li.length; i++)
+        btn_li[i].disabled=true;
+    btn_li=document.getElementsByClassName("btn-large")
+    for(var i = 0; i < btn_li.length; i++)
+        btn_li[i].disabled=true;
+    console.log("process aborted");
+    toaster("All Process' Aborted !","red-text black");
 }
 
 function clean()

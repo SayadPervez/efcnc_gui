@@ -34,6 +34,13 @@ body{
     left:41.6px;
 }
 
+#abort_icon{
+    position: absolute;
+    top:41.6px;
+    right:41.6px;
+    display: none;
+}
+
 #info_div{
     position: fixed;
     left:41.6px;

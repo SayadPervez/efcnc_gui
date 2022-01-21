@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
       io.emit("exception2front",data);
     });
     socket.on("abort",(data)=>{
-      process.kill(-process__.pid);
+      process__.kill('SIGINT');
     });
     socket.on("Free Space",(x)=>{
       console.log("Clear Request");
@@ -71,7 +71,7 @@ io.on('connection', (socket) => {
     });
     function cmdline_(command){
       const exec = require('child_process').exec;
-      process__=exec(`${command}`, { encoding: 'utf-8',detached : true }, (error, stdout, stderr) => {
+      process__=exec(`${command}`, { encoding: 'utf-8',detached : false }, (error, stdout, stderr) => {
         if (error) {
           console.error(`exec error: ${error}, ${stderr}`);
           io.to(socket.id).emit("ppp","Error");
