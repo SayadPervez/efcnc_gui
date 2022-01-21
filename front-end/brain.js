@@ -1,4 +1,5 @@
 db = {};
+countdb = {};
 var Kount = 0;
 var canvasExists = false;
 var canvasThickness = undefined;
@@ -15,6 +16,7 @@ function del_submit()
     var instance = M.Modal.getInstance(document.getElementById("modal_delete_row"));    instance.close()
     
     var temp = document.getElementById("deletion_id").innerText;
+    var actualid = temp.substring(0,9);
     if(db[temp]["shape_name"]=="Canvas")
     {
         canvasExists=false;
@@ -24,6 +26,13 @@ function del_submit()
         toaster("Object Deleted","red darken-2 white-text",false);
     }
     delete db[temp];table_refresh();
+    var k = Number(countdb[actualid]["kount"]);
+    if(k<=1)
+        delete countdb[actualid]
+    else
+    {
+        countdb[actualid]["kount"]=String(k-1);
+    }
 }
 
 //              Cutsheet
@@ -57,6 +66,7 @@ function cutsheet_submit()
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"Cut-Sheet",dimensions:"w:"+W+" ; h:"+H};
+    countdb[id_]={id:id_,shape_name:"Cut-Sheet",dimensions:"w:"+W+" ; h:"+H,kount:k.value};
     w.value="";    h.value="";k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_cutsheet"));    instance.close()
     toaster("Cutsheet object added to stack !","yellow-text text-darken-2");
@@ -100,6 +110,7 @@ function canvas_submit()
     }
     const id_ = makeid(8);
     db[id_]={id:id_,shape_name:"Canvas",dimensions:"w:"+W+" ; h:"+H+" ; t:"+T};
+    countdb[id_]={id:id_,shape_name:"Canvas",dimensions:"w:"+W+" ; h:"+H+" ; t:"+T,kount:"1"};
     var instance = M.Modal.getInstance(document.getElementById("modal_canvas"));    instance.close()
     toaster("Canvas Created !","yellow-text text-darken-2");
     table_refresh();
@@ -138,6 +149,7 @@ function flange_submit()
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"Flange",dimensions:"type:"+s.value};
+    countdb[id_]={id:id_,shape_name:"Flange",dimensions:"type:"+s.value,kount:k.value};
     k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_flange"));    instance.close()
     toaster("Flange object added to stack !","yellow-text text-darken-2");
@@ -168,6 +180,7 @@ function circle_submit()
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"Circle",dimensions:"r:"+R};
+    countdb[id_]={id:id_,shape_name:"Circle",dimensions:"r:"+R,kount:k.value};
     k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_circle"));    instance.close()
     toaster("Circle object added to stack !","yellow-text text-darken-2");
@@ -237,6 +250,7 @@ function frustum_submit()
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"Frustum",dimensions:"h:"+h_+" ; R:"+R_+" ; r:"+r_};
+    countdb[id_]={id:id_,shape_name:"Frustum",dimensions:"h:"+h_+" ; R:"+R_+" ; r:"+r_,kount:k.value};
     k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_frustum"));    instance.close()
     toaster("Frustum object added to stack !","yellow-text text-darken-2");
@@ -271,6 +285,7 @@ function segment_submit()
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"Segment",dimensions:"R:"+R_+" ; r:"+r_+" ; t:"+h_ };
+    countdb[id_]={id:id_,shape_name:"Segment",dimensions:"R:"+R_+" ; r:"+r_+" ; t:"+h_ ,kount:k.value};
     k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_segment"));    instance.close()
     toaster("Segment object added to stack !","yellow-text text-darken-2");
@@ -300,6 +315,7 @@ function cone_submit()
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"Cone",dimensions:"h:"+H+" ; r:"+R};
+    countdb[id_]={id:id_,shape_name:"Cone",dimensions:"h:"+H+" ; r:"+R,kount:k.value};
     k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_cone"));    instance.close()
     toaster("Cone object added to stack !","yellow-text text-darken-2");
@@ -327,6 +343,7 @@ function sector_submit()
     const id_ = makeid(8);
     for(var i=0;i<k.value;i++)
         db[id_+String(i)]={id:id_+String(i),shape_name:"Sector",dimensions:"r:"+R+" ; theta:"+A};
+    countdb[id_]={id:id_,shape_name:"Sector",dimensions:"r:"+R+" ; theta:"+A,kount:k.value};
     k.value=1;
     var instance = M.Modal.getInstance(document.getElementById("modal_sector"));    instance.close()
     toaster("Sector object added to stack !","yellow-text text-darken-2");
@@ -353,6 +370,8 @@ function publish()
             console.log(document.getElementById("clearance_select").value);
             console.log(document.getElementById("alg_select").value);
             console.log(document.getElementById("efficiency_range").value);
+            console.log("DB : ",db);
+            console.log("countDB : ",countdb);
             socket.emit("process!",db);
             toaster("Process Initiated","green-text white text-darken-3",false);
             var btn_li=document.getElementsByClassName("btn")
@@ -416,6 +435,7 @@ function custom_submit(filedata)
         db[id_+String(i)]={id:id_+String(i),shape_name:"CUSTOM-"+String(n.value.trim()),dimensions:"File Upload Successful",filedata:filedata};
     */
     db[id_]={id:id_,shape_name:"CUSTOM-"+String(n.value.trim())+"-<"+String(k.value)+">",dimensions:"File Upload Successful",filedata:filedata,count:k.value};
+    countdb[id_]={id:id_,shape_name:"CUSTOM-"+String(n.value.trim())+"-<"+String(k.value)+">",dimensions:"File Upload Successful",filedata:filedata,kount:k.value};
     k.value=1;n.value = "";
     var instance = M.Modal.getInstance(document.getElementById("modal_custom"));    instance.close()
     toaster("Custom object added to stack !","yellow-text text-darken-2");
