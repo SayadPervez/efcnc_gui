@@ -5,14 +5,8 @@ from math import ceil
 def fitting(canvas,shapeList,log_=False,constCompute=False):
     cArray = np.array(canvas.shapeMatrix,dtype=float) #cArray => canvasArray
     cx,cy = np.shape(cArray)
-    if(type(constCompute)==type(100)):
-        pass
-    elif(type(constCompute)==type(True) and constCompute==True):
-        constCompute = 100
-    else:
-        constCompute = 1
-    stepX = ceil(cx/constCompute)
-    stepY = ceil(cy/constCompute)
+    stepX = constCompute if constCompute else 1
+    stepY = constCompute if constCompute else 1
     memoryX = 0
     memoryY = 0
     unplacedShapes=[]

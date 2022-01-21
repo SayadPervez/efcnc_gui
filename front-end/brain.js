@@ -1,6 +1,8 @@
 db = {};
 countdb = {};
 var Kount = 0;
+var canvasHeight = 0;
+var canvasWidth = 0;
 var canvasExists = false;
 var canvasThickness = undefined;
 
@@ -109,6 +111,7 @@ function canvas_submit()
         [W,H]=[H,W];
     }
     const id_ = makeid(8);
+    canvasHeight = Number(H);   canvasWidth = Number(W);
     db[id_]={id:id_,shape_name:"Canvas",dimensions:"w:"+W+" ; h:"+H+" ; t:"+T};
     countdb[id_]={id:id_,shape_name:"Canvas",dimensions:"w:"+W+" ; h:"+H+" ; t:"+T,kount:"1"};
     var instance = M.Modal.getInstance(document.getElementById("modal_canvas"));    instance.close()
@@ -366,8 +369,10 @@ function publish()
             toaster("No CANVAS","white-text red darken-3",false);
         else
         {
-            db["__data__"]={"t":String(document.getElementById("clearance_select").value),"a":String(document.getElementById("alg_select").value),"cc":String(document.getElementById("efficiency_range").value)}
-            countdb["__data__"]={"t":String(document.getElementById("clearance_select").value),"a":String(document.getElementById("alg_select").value),"cc":String(document.getElementById("efficiency_range").value)}
+            var constCompute = document.getElementById("efficiency_range").value;
+            constCompute = 101 - Number(constCompute);
+            db["__data__"]={"t":String(document.getElementById("clearance_select").value),"a":String(document.getElementById("alg_select").value),"cc":String(constCompute)}
+            countdb["__data__"]={"t":String(document.getElementById("clearance_select").value),"a":String(document.getElementById("alg_select").value),"cc":String(constCompute)}
             console.log(document.getElementById("clearance_select").value);
             console.log(document.getElementById("alg_select").value);
             console.log(document.getElementById("efficiency_range").value);

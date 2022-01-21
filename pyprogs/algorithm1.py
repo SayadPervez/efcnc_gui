@@ -3,18 +3,12 @@ import numpy as np
 from math import ceil
 
 def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
-    if(type(constCompute)==type(100)):
-        pass
-    elif(type(constCompute)==type(True) and constCompute==True):
-        constCompute = 100
-    else:
-        constCompute = False
     unplacedShapes=[]
     placedShapes=[]
     cArray = np.array(canvas.shapeMatrix,dtype=float) #cArray => canvasArray
     cx,cy = np.shape(cArray)
-    stepX = ceil(cx/constCompute) if constCompute else 1
-    stepY = ceil(cy/constCompute) if constCompute else 1
+    stepX = constCompute if constCompute else 1
+    stepY = constCompute if constCompute else 1
     memoryX = 0
     memoryY = 0
     if(col==False):

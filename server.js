@@ -8,6 +8,7 @@ const io = require("socket.io")(server, {
     origin: "*:*"
   }
 });
+var process__ = undefined;
 
 app.use(express.static('./front-end'));
 
@@ -57,6 +58,9 @@ io.on('connection', (socket) => {
       io.to(socket.id).emit("die_","from server");
       io.emit("exception2front",data);
     });
+    socket.on("abort",(data)=>{
+      process.kill(-process__.pid);
+    });
     socket.on("Free Space",(x)=>{
       console.log("Clear Request");
       out=cmdline("cd ./pyprogs/ && python free_space.py");
@@ -67,7 +71,7 @@ io.on('connection', (socket) => {
     });
     function cmdline_(command){
       const exec = require('child_process').exec;
-      exec(`${command}`, { encoding: 'utf-8' }, (error, stdout, stderr) => {
+      process__=exec(`${command}`, { encoding: 'utf-8',detached : true }, (error, stdout, stderr) => {
         if (error) {
           console.error(`exec error: ${error}, ${stderr}`);
           io.to(socket.id).emit("ppp","Error");
