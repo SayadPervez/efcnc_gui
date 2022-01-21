@@ -28,6 +28,7 @@ def RUN(jsonString):
         id_ = objectkey
         name_ = obj["shape_name"]
         dim_ = obj["dimensions"]
+        _kount_ = obj["kount"]
         for _ in dim_:
             if(_ in ([chr(i) for i in range(65,91)]+[chr(i) for i in range(97,123)]+[":"])):
                 dim_ = dim_.replace(_,"")
@@ -40,38 +41,45 @@ def RUN(jsonString):
             pushNotification("Canvas Created")
         elif(name_=="Cut-Sheet"):
             w,h = list(map(float,dim_))
-            objList.append(CutSheet(w,h,0,id_))
-            pushNotification("Cut-Sheet Created")
+            for _ in range(int(_kount_)):
+                objList.append(CutSheet(w,h,0,id_+str(_)))
+                pushNotification("Cut-Sheet Created")
         elif(name_=="Circle"):
             r = float(dim_[0])
-            objList.append(Circle(r,id_))
-            pushNotification("Circle Created")
+            for _ in range(int(_kount_)):
+                objList.append(Circle(r,id_+str(_)))
+                pushNotification("Circle Created")
         elif(name_=="Cone"):
             h,r = list(map(float,dim_))
-            objList.append(Cone(h,r,0,id_))
-            pushNotification("Cone Created")
+            for _ in range(int(_kount_)):
+                objList.append(Cone(h,r,0,id_+str(_)))
+                pushNotification("Cone Created")
         elif(name_=="Sector"):
             r,t = list(map(float,dim_))
-            objList.append(Sector(r,t,0,id_))
-            pushNotification("Sector Created")
+            for _ in range(int(_kount_)):
+                objList.append(Sector(r,t,0,id_+str(_)))
+                pushNotification("Sector Created")
         elif(name_=="Frustum"):
             h,R,r = list(map(float,dim_))
-            objList.append(Frustum(R,r,h,0,id_))
-            pushNotification("Frustum Created")
+            for _ in range(int(_kount_)):
+                objList.append(Frustum(R,r,h,0,id_+str(_)))
+                pushNotification("Frustum Created")
         elif(name_=="Segment"):
             R,r,t = list(map(float,dim_))
-            objList.append(Segment(R,r,t,0,id_))
-            pushNotification("Segment Created")
+            for _ in range(int(_kount_)):
+                objList.append(Segment(R,r,t,0,id_+str(_)))
+                pushNotification("Segment Created")
         elif(name_.startswith("CUSTOM-")):
-            count_ = int(obj["count"])
+            count_ = int(obj["kount"])
             with open("./SVG/"+id_+"0.svg","r") as f:
                 fd=f.read()
             for _ in range(count_):
                 objList.append(Custom(fd,id_+str(_)))
                 pushNotification("Custom Object Created")
         elif(name_=="Flange"):
-            objList.append(Flange(obj["dimensions"],id_))
-            pushNotification("Flange Created")
+            for _ in range(int(_kount_)):
+                objList.append(Flange(obj["dimensions"],id_+str(_)))
+                pushNotification("Flange Created")
     pushNotification("Object Creation Completed")
 
     print("algorithm:",alg[0])

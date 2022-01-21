@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
           {
             // writing custom shapes here
             var obj = db[key]
-            for( var i=0;i<db[key]["count"];i++){
+            for( var i=0;i<db[key]["kount"];i++){
               var name = obj["id"]+String(i)+String(".svg");
               fs.writeFileSync( "./pyprogs/SVG/"+name, obj["filedata"]);
             }
