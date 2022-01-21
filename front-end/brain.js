@@ -367,12 +367,13 @@ function publish()
         else
         {
             db["__data__"]={"t":String(document.getElementById("clearance_select").value),"a":String(document.getElementById("alg_select").value),"cc":String(document.getElementById("efficiency_range").value)}
+            countdb["__data__"]={"t":String(document.getElementById("clearance_select").value),"a":String(document.getElementById("alg_select").value),"cc":String(document.getElementById("efficiency_range").value)}
             console.log(document.getElementById("clearance_select").value);
             console.log(document.getElementById("alg_select").value);
             console.log(document.getElementById("efficiency_range").value);
             console.log("DB : ",db);
             console.log("countDB : ",countdb);
-            socket.emit("process!",db);
+            socket.emit("process!",countdb);
             toaster("Process Initiated","green-text white text-darken-3",false);
             var btn_li=document.getElementsByClassName("btn")
             for(var i = 0; i < btn_li.length; i++)
