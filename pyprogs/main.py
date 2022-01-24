@@ -103,6 +103,7 @@ def RUN(jsonString):
     else:
         pushError("Invalid Algorithm")
         raise Exception("Invalid Algorithm")
+    arr2png(out).save("./PNG/output_.png")
     pushNotification("Low level positioning completed")
     if(alg[0] == 3):
         print("Starting svg rotation")

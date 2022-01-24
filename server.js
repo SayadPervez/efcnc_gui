@@ -59,7 +59,9 @@ io.on('connection', (socket) => {
       io.emit("exception2front",data);
     });
     socket.on("abort",(data)=>{
-      process__.kill('SIGINT');
+      //process__.kill('SIGINT');
+      const exec = require('child_process').exec;
+      exec('taskkill /F /T /PID ' + process__.pid);
     });
     socket.on("Free Space",(x)=>{
       console.log("Clear Request");
