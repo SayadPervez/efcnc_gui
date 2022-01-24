@@ -5,16 +5,16 @@ from svgBuilder import svgPlacer,svgRotate
 
 freeSpace()
 thickness = [30]
-canvas__ = Canvas(300,300)
+canvas__ = Canvas(150,150)
 objList = [
-    Flange("type:tbee_95_6","flang"),    
-    Circle(47.5,"circ")
+    Flange(":tbee_95_6","flange"),
+    Circle(7,"circ")  
     ]
 
 for obj in objList:
     obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//4)+1)
 
-out,shapes,up = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=75,returnOrder=True))
+out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=5,returnOrder=True))
 arr2png(out).show()
 # for A3
 if(True):
@@ -39,16 +39,3 @@ print("end")
 for _ in up:
     print(_,end="\n\n")
 
-
-'''
-Solution convert all handmade svg to pts
-this includes 
-
-width
-height
-viewBox
-transform values
-cx
-cy
-r
-'''
