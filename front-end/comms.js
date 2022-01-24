@@ -23,6 +23,7 @@ socket.on("ppp",(status)=>{
     </span></strong>`;
     document.getElementById("info_butt").classList.remove("red");
     document.getElementById("info_butt").classList.add("green");
+    document.getElementById("pybort_button").disabled=true;
     }
 
     else{
