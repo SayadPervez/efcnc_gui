@@ -16,7 +16,7 @@ objList = [
 for obj in objList:
     obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]))
 
-out,shapes,up = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
+out,shapes,up = binaryFilter(algorithm2.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
 arr2png(out).show()
 # for A3
 if(True):

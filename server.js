@@ -52,6 +52,7 @@ io.on('connection', (socket) => {
     });
     socket.on("_mod.js",(data)=>{
       io.to(socket.id).emit("die","from server");
+      console.log(`Notification : ${data}`);
       io.emit("notification",data);
     });
     socket.on("exception_",(data)=>{

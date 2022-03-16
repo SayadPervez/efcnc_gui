@@ -11,14 +11,21 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
     memoryY = 0
     unplacedShapes=[]
     placedShapes=[]
-    pseudo_cy = int(ceil(1.7 * np.shape(np.array(shapeList[0].shapeMatrix,dtype=float))[1]))
+    pseudo=True
+    pseudo_cy = int(ceil(1.314 * np.shape(np.array(shapeList[0].shapeMatrix,dtype=float))[1]))
+    if pseudo_cy>=cy:
+        pseudo=False
+        pseudo_cy = cy
     for shape in shapeList:
         #print("Pseudo Cx : ",pseudo_cy)
         shapePlaced = False
         sArray = np.array(shape.shapeMatrix,dtype=float)
         sx,sy = np.shape(sArray)
-        if(int(sy)>int(pseudo_cy)):
-            pseudo_cy += int(ceil(1.4*sy))
+        if(int(sy)>int(pseudo_cy) and pseudo):
+            pseudo_cy += int(ceil(1.2*sy))
+            if pseudo_cy>=cy:
+                pseudo=False
+                pseudo_cy = cy
         newCanvas = np.copy(cArray)
         for row in range(0,cx-sx,stepX):
             doublebreak=False
@@ -40,6 +47,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
                 break
         if(log_ and shapePlaced):
             print(f"Completed placing {shape.myShape}")
+            func.pushNotification(f"Completed placing {shape.myShape}")
             shape.placed=True
             placedShapes.append(shape)
             cArray = np.copy(newCanvas)
