@@ -1,6 +1,8 @@
 import functions as func
 import numpy as np
 from math import ceil
+import algorithm1
+from shapeManager import Canvas
 
 def fitting(canvas,shapeList,log_=False,constCompute=False):
     cArray = np.array(canvas.shapeMatrix,dtype=float) #cArray => canvasArray
@@ -12,7 +14,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
     unplacedShapes=[]
     placedShapes=[]
     pseudo=True
-    pseudo_cy = int(ceil(1.7 * np.shape(np.array(shapeList[0].shapeMatrix,dtype=float))[1]))
+    pseudo_cy = int(ceil(1.314 * np.shape(np.array(shapeList[0].shapeMatrix,dtype=float))[1]))
     if pseudo_cy>=cy:
         pseudo=False
         pseudo_cy = cy
@@ -22,7 +24,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
         sArray = np.array(shape.shapeMatrix,dtype=float)
         sx,sy = np.shape(sArray)
         if(int(sy)>int(pseudo_cy) and pseudo):
-            pseudo_cy += int(ceil(1.4*sy))
+            pseudo_cy += int(ceil(1.3*sy))
             if pseudo_cy>=cy:
                 pseudo=False
                 pseudo_cy = cy
@@ -56,6 +58,11 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
             shape.placed=False
         #print("\n")
     ret = cArray.tolist()
+    if(len(unplacedShapes)>0):
+        fCanva = Canvas(cx,cy)
+        fCanva.shapeMatrix = ret
+        r,p,up = algorithm1.run(fCanva,unplacedShapes,log_=True,constCompute=constCompute)
+        return(r,placedShapes+p,up)
     return(ret,placedShapes,unplacedShapes)
 
 
