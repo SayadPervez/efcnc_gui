@@ -238,7 +238,7 @@ class Sector:
         self.__generateShapeMatrix__(sector_radius,sector_angle,angle)
 
     def __repr__(self):
-        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.sector_radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Sector Radius \t: {self.radius} mm\nShape Sector Angle \t: {self.sector_angle} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
     
     def tilt(self,angle):
         self.angle += angle
@@ -300,7 +300,7 @@ class Frustum:
         self.uid = uid
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
-        self.myShape="segment"
+        self.myShape="frustum"
         self.a3compat=True
         self.R = R
         self.r = r
