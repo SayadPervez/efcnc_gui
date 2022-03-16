@@ -80,6 +80,26 @@ def singleFit(canvas,objectList):
             returnDict[obj]=(False,False)
     return(returnDict,objectList)
 
+def sortA5(shapeList):
+    rectDict = {}
+    categ2 = {}
+    categ3 = {}
+    crcle = {}
+    for shape in shapeList:
+        if(shape.myShape=="CutSheet"):
+            rectDict[shape]=shape.length
+        elif(shape.myShape=="cone" or shape.myShape=="sector"):
+            categ2[shape] = shape.slantHeight if shape.myShape=="cone" else shape.radius
+        elif(shape.myShape=="frustum" or shape.myShape=="segment"):
+            categ3[shape] = shape.R
+        else:
+            crcle[shape] = shape.shapeFrameDimension[0]
+    retli = list(dict(sorted(rectDict.items(), key=lambda item: item[1])))[::-1]
+    retli += list(dict(sorted(categ2.items(), key=lambda item: item[1])))[::-1]
+    retli += list(dict(sorted(categ3.items(), key=lambda item: item[1])))[::-1]
+    retli += list(dict(sorted(crcle.items(), key=lambda item: item[1])))[::-1]
+    return(retli)
+
 def fitAll(canvas,objectList):
     '''
     This is a theoretical calculation and can sometimes fail to give practical results

@@ -95,28 +95,10 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
     ret = cArray.tolist()
     return(ret,placedShapes,unplacedShapes)
 
-def sortA5(shapeList):
-    rectDict = {}
-    categ2 = {}
-    categ3 = {}
-    crcle = {}
-    for shape in shapeList:
-        if(shape.myShape=="CutSheet"):
-            rectDict[shape]=shape.length
-        elif(shape.myShape=="cone" or shape.myShape=="sector"):
-            categ2[shape] = shape.slantHeight if shape.myShape=="cone" else shape.radius
-        elif(shape.myShape=="frustum" or shape.myShape=="segment"):
-            categ3[shape] = shape.R
-        else:
-            crcle[shape] = shape.shapeFrameDimension[0]
-    retli = list(dict(sorted(rectDict.items(), key=lambda item: item[1])))[::-1]
-    retli += list(dict(sorted(categ2.items(), key=lambda item: item[1])))[::-1]
-    retli += list(dict(sorted(categ3.items(), key=lambda item: item[1])))[::-1]
-    retli += list(dict(sorted(crcle.items(), key=lambda item: item[1])))[::-1]
-    return(retli)
+
 
 def run(canvas,shapeList,log_=False,constCompute=False,returnOrder=False):
-    shapeList=sortA5(shapeList)
+    shapeList=func.sortA5(shapeList)
     d,_=func.singleFit(canvas,shapeList)
     l1 = [d[_][0] for _ in d]
     try:
@@ -133,8 +115,6 @@ def run(canvas,shapeList,log_=False,constCompute=False,returnOrder=False):
     if(func.fitAll(canvas,shapeList)==False):
         func.pushError(f"Fitting all shapes in the given canvas is mathematically impossible.")
         raise Exception(f"Fitting all shapes in the given canvas is mathematically impossible.")
-    print(shapeList)
-    exit()
     # If program passes till here,
     # All the given shapes can be theoretically arranged in the canvas. Practically, I doubt it
     #print(d)
