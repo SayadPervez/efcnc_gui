@@ -4,22 +4,21 @@ import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5
 from svgBuilder import svgPlacer,svgRotate
 
 freeSpace()
-thickness = [30]
-canvas__ = Canvas(500,500)
+thickness = [1]
+canvas__ = Canvas(250,250)
 objList = [
     Flange(":tbee_95_6","flange"),Circle(7,"circ")   ,
-    CutSheet(30,10,0,"rect"),CutSheet(25,25,0,"rect"),
+    CutSheet(30,10,0,"rect"),CutSheet(25,25,0,"rect22"),CutSheet(3,3,0,"rect2"),
     Cone(20,7,0,"cnt1"),Sector(20,60,0,"sec_t1")     ,
     Frustum(20,5,20,0,"frust"),Segment(20,10,60,0,"segs")
     ]
 
 for obj in objList:
-    obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]//4)+1)
+    obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]))
 
-out,shapes,up = binaryFilter(algorithm5.run(canvas__,objList,log_=True,constCompute=5,returnOrder=True))
-arr2png(out).show()
-'''
-out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=5,returnOrder=True))
+out,shapes,up = binaryFilter(algorithm5.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
+#arr2png(out).show()
+#out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=5,returnOrder=True))
 arr2png(out).show()
 # for A3
 if(True):
@@ -43,4 +42,3 @@ svgPlacer(canvas__.svgPath,[_.svgPath for _ in shapes],xl,yl,thickness[0])
 print("end")
 for _ in up:
     print(_,end="\n\n")
-'''
