@@ -1,6 +1,6 @@
 from shapeManager import *
 from visualization import *
-import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5,algorithm6
+import algorithm1,algorithm2,algorithm4,algorithm3
 from svgBuilder import svgPlacer,svgRotate
 
 freeSpace()
