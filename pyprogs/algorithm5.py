@@ -13,7 +13,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
     placedShapes=[]
     pseudo_cy = int(ceil(1.7 * np.shape(np.array(shapeList[0].shapeMatrix,dtype=float))[1]))
     for shape in shapeList:
-        print("Pseudo Cx : ",pseudo_cy)
+        #print("Pseudo Cx : ",pseudo_cy)
         shapePlaced = False
         sArray = np.array(shape.shapeMatrix,dtype=float)
         sx,sy = np.shape(sArray)
@@ -46,7 +46,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
         else:
             unplacedShapes.append(shape)
             shape.placed=False
-        print("\n")
+        #print("\n")
     ret = cArray.tolist()
     return(ret,placedShapes,unplacedShapes)
 

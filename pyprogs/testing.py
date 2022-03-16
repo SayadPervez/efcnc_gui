@@ -1,6 +1,6 @@
 from shapeManager import *
 from visualization import *
-import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5
+import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5,algorithm6
 from svgBuilder import svgPlacer,svgRotate
 
 freeSpace()
@@ -16,7 +16,7 @@ objList = [
 for obj in objList:
     obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]))
 
-out,shapes,up = binaryFilter(algorithm5.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
+out,shapes,up = binaryFilter(algorithm6.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
 #arr2png(out).show()
 #out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=5,returnOrder=True))
 arr2png(out).show()

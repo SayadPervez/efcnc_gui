@@ -100,6 +100,12 @@ def sortA5(shapeList):
     retli += list(dict(sorted(crcle.items(), key=lambda item: item[1])))[::-1]
     return(retli)
 
+def sortA6(shapeList):
+    d={}
+    for shape in shapeList:
+        d[shape] = shape.shapeFrameDimension[0]
+    return(list(dict(sorted(d.items(), key=lambda item: item[1])))[::-1])
+
 def fitAll(canvas,objectList):
     '''
     This is a theoretical calculation and can sometimes fail to give practical results
