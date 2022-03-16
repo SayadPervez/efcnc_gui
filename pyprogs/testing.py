@@ -5,18 +5,21 @@ from svgBuilder import svgPlacer,svgRotate
 
 freeSpace()
 thickness = [1]
-canvas__ = Canvas(250,250)
-objList = [
+canvas__ = Canvas(50,50)
+'''objList = [
     Flange(":tbee_95_6","flange"),Circle(7,"circ")   ,
     CutSheet(30,10,0,"rect"),CutSheet(25,25,0,"rect22"),CutSheet(3,3,0,"rect2"),
     Cone(20,7,0,"cnt1"),Sector(20,60,0,"sec_t1")     ,
     Frustum(20,5,20,0,"frust"),Segment(20,10,60,0,"segs")
-    ]
+    ]'''
+objList = [
+Circle(10,"xxx"),Circle(10,"xyx"),Circle(5,"xxz")
+]
 
 for obj in objList:
     obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]))
 
-out,shapes,up = binaryFilter(algorithm2.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
+out,shapes,up = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
 arr2png(out).show()
 # for A3
 if(True):

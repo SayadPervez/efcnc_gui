@@ -22,7 +22,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
         sArray = np.array(shape.shapeMatrix,dtype=float)
         sx,sy = np.shape(sArray)
         if(int(sy)>int(pseudo_cy) and pseudo):
-            pseudo_cy += int(ceil(1.2*sy))
+            pseudo_cy += int(ceil(1.3*sy))
             if pseudo_cy>=cy:
                 pseudo=False
                 pseudo_cy = cy
