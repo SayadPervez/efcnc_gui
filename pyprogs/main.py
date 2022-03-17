@@ -1,7 +1,7 @@
 from svgBuilder import svgPlacer,svgRotate
 from shapeManager import *
 from functions import *
-import algorithm1,algorithm2,algorithm3,algorithm4
+import algorithm1,algorithm2,algorithm3,algorithm4,algorithm5,algorithm6
 from visualization import *
 import sys,shutil
 from json import loads as jsonparser
@@ -100,12 +100,16 @@ def RUN(jsonString):
         out,shapes,up = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     elif(alg[0] == 4):
         out,shapes,up = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
+    elif(alg[0] == 5):
+        out,shapes,up = binaryFilter(algorithm5.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
+    elif(alg[0] == 6):
+        out,shapes,up = binaryFilter(algorithm6.run(canvas__,objList,log_=True,constCompute=cc[0],returnOrder=True))
     else:
         pushError("Invalid Algorithm")
         raise Exception("Invalid Algorithm")
     arr2png(out).save("./PNG/output_.png")
     pushNotification("Low level positioning completed")
-    if(alg[0] == 3):
+    if(alg[0] in [3,5,6]):
         print("Starting svg rotation")
         pushNotification("Starting svg rotation")
         for shape in shapes:
