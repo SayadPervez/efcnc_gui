@@ -1,8 +1,6 @@
 import functions as func
-import numpy as np
 from math import ceil
-import algorithm1
-from shapeManager import Canvas
+import numpy as np
 
 def fitting(canvas,shapeList,log_=False,constCompute=False):
     cArray = np.array(canvas.shapeMatrix,dtype=float) #cArray => canvasArray
@@ -13,41 +11,94 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
     memoryY = 0
     unplacedShapes=[]
     placedShapes=[]
-    pseudo=True
-    pseudo_cy = int(ceil(1.314 * np.shape(np.array(shapeList[0].shapeMatrix,dtype=float))[1]))
-    if pseudo_cy>=cy:
-        pseudo=False
-        pseudo_cy = cy
     for shape in shapeList:
-        #print("Pseudo Cx : ",pseudo_cy)
-        shapePlaced = False
         sArray = np.array(shape.shapeMatrix,dtype=float)
         sx,sy = np.shape(sArray)
-        if(int(sy)>int(pseudo_cy) and pseudo):
-            pseudo_cy += int(ceil(1.3*sy))
-            if pseudo_cy>=cy:
-                pseudo=False
-                pseudo_cy = cy
         newCanvas = np.copy(cArray)
-        for row in range(0,cx-sx,stepX):
-            doublebreak=False
-            for col in range(0,pseudo_cy-sy,stepY):
-                if(row<memoryX and col<memoryY):
-                    continue
+        isObjectPlaced=False
+        for col in range(0,cy-sy,stepY):
+            row=0
+            newCanvas = np.copy(cArray)
+            newCanvas[row:row+sx,col:col+sy]+=sArray
+            if(func.isInterfering(newCanvas)):
+                pass
+            else:
+                isObjectPlaced=True
+                shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
+                #print("choice 2")
+                break
+        if(isObjectPlaced==False):
+            if(shape.a3compat==True):
+                shape.tilt(90)
+            sArray = np.array(shape.shapeMatrix,dtype=float)
+            sx,sy = np.shape(sArray)
+            for row in range(0,cx-sx,stepX):
+                col=0
                 newCanvas = np.copy(cArray)
                 newCanvas[row:row+sx,col:col+sy]+=sArray
                 if(func.isInterfering(newCanvas)):
                     pass
                 else:
-                    doublebreak=True
-                    shapePlaced=True
+                    isObjectPlaced=True
                     shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
-                    memoryX=row+(71/100*sx)
-                    memoryY=col+(71/100*sy)
+                    #print("choice 1")
                     break
-            if(doublebreak==True):
-                break
-        if(log_ and shapePlaced):
+        if(isObjectPlaced==False):
+            if(shape.a3compat==True):
+                shape.tilt(180)
+            sArray = np.array(shape.shapeMatrix,dtype=float)
+            sx,sy = np.shape(sArray)
+            for row in range(0,cx-sx,stepX):
+                col=cy-sy
+                newCanvas = np.copy(cArray)
+                newCanvas[row:row+sx,col:col+sy]+=sArray
+                if(func.isInterfering(newCanvas)):
+                    pass
+                else:
+                    isObjectPlaced=True
+                    shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
+                    #print("choice 3")
+                    break
+        if(isObjectPlaced==False):
+            if(shape.a3compat==True):
+                shape.tilt(-90)
+            sArray = np.array(shape.shapeMatrix,dtype=float)
+            sx,sy = np.shape(sArray)
+            for col in range(0,cy-sy,stepY):
+                row=cx-sx
+                newCanvas = np.copy(cArray)
+                newCanvas[row:row+sx,col:col+sy]+=sArray
+                if(func.isInterfering(newCanvas)):
+                    pass
+                else:
+                    isObjectPlaced=True
+                    shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
+                    #print("choice 4")
+                    break
+        if(isObjectPlaced==False):
+            if(shape.a3compat==True):
+                shape.tilt(180)
+            sArray = np.array(shape.shapeMatrix,dtype=float)
+            sx,sy = np.shape(sArray)
+            for col in range(0,cy-sy,stepY):
+                doublebreak=False
+                for row in range(0,cx-sx,stepX):
+                    if(row<memoryX and col<memoryY):
+                        continue
+                    newCanvas = np.copy(cArray)
+                    newCanvas[row:row+sx,col:col+sy]+=sArray
+                    if(func.isInterfering(newCanvas)):
+                        pass
+                    else:
+                        doublebreak=True
+                        isObjectPlaced=True
+                        shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
+                        memoryX=row+(71/100*sx)
+                        memoryY=col+(71/100*sy)
+                        break
+                if(doublebreak==True):
+                    break
+        if(log_ and isObjectPlaced):
             print(f"Completed placing {shape.myShape}")
             func.pushNotification(f"Completed placing {shape.myShape}")
             shape.placed=True
@@ -56,19 +107,11 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
         else:
             unplacedShapes.append(shape)
             shape.placed=False
-        #print("\n")
     ret = cArray.tolist()
-    if(len(unplacedShapes)>0):
-        fCanva = Canvas(cx,cy)
-        fCanva.shapeMatrix = ret
-        r,p,up = algorithm1.run(fCanva,unplacedShapes,log_=True,constCompute=constCompute)
-        return(r,placedShapes+p,up)
     return(ret,placedShapes,unplacedShapes)
 
-
-
 def run(canvas,shapeList,log_=False,constCompute=False,returnOrder=False):
-    shapeList=func.sortA6(shapeList)
+    shapeList=func.triangleSort(shapeList)
     d,_=func.singleFit(canvas,shapeList)
     l1 = [d[_][0] for _ in d]
     try:
