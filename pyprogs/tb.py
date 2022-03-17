@@ -11,6 +11,7 @@ s_ = time.time()
 
 freeSpace()
 thickness = [1]
+cc = 3
 canvas__ = Canvas(250,450)
 objList = [
     Flange(":tbee_95_6","flange"),Circle(7,"circ")   ,
@@ -25,22 +26,23 @@ for obj in objList:
 s__ = time.time()
 
 objectCreationTime = s__ - s_
+print(f"objectCreationTime : {objectCreationTime} secs")
 
 for alg in range(1,7):
     print(f"Starting alg {alg}")
     s0 = time.time()
     if(alg == 1):
-        out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=1,returnOrder=True))
+        out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=cc,returnOrder=True))
     elif(alg == 2):
-        out,shapes,up = binaryFilter(algorithm2.run(canvas__,objList,log_=True,constCompute=1,returnOrder=True))
+        out,shapes,up = binaryFilter(algorithm2.run(canvas__,objList,log_=True,constCompute=cc,returnOrder=True))
     elif(alg == 3):
-        out,shapes,up = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=1,returnOrder=True))
+        out,shapes,up = binaryFilter(algorithm3.run(canvas__,objList,log_=True,constCompute=cc,returnOrder=True))
     elif(alg == 4):
-        out,shapes,up = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=1,returnOrder=True))
+        out,shapes,up = binaryFilter(algorithm4.run(canvas__,objList,log_=True,constCompute=cc,returnOrder=True))
     elif(alg == 5):
-        out,shapes,up = binaryFilter(algorithm5.run(canvas__,objList,log_=True,constCompute=1,returnOrder=True))
+        out,shapes,up = binaryFilter(algorithm5.run(canvas__,objList,log_=True,constCompute=cc,returnOrder=True))
     elif(alg == 6):
-        out,shapes,up = binaryFilter(algorithm6.run(canvas__,objList,log_=True,constCompute=1,returnOrder=True))
+        out,shapes,up = binaryFilter(algorithm6.run(canvas__,objList,log_=True,constCompute=cc,returnOrder=True))
     else:
         pushError("Invalid Algorithm")
         raise Exception("Invalid Algorithm")
@@ -77,5 +79,5 @@ for alg in range(1,7):
 
 print("Results : ")
 print(f"Object Creation Time : {objectCreationTime} secs")
-for a in range(1,7):
-    print(f"Algorithm {a} : {timeList[a]} secs : {f'{unplacedList[a][1]} Unplaced' if (unplacedList[a][0]) else 'All Placed !!'}")
+for a in range(0,6):
+    print(f"Algorithm {a+1} : {timeList[a]} secs : {f'{unplacedList[a][1]} Unplaced' if (unplacedList[a][0]) else 'All Placed !!'}")
