@@ -1,4 +1,3 @@
-from cProfile import label
 from shapeManager import *
 from visualization import *
 import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5,algorithm6
