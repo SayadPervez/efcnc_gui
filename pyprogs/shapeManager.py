@@ -305,7 +305,8 @@ class Frustum:
         self.R = R
         self.r = r
         self.h = h
-        l = h**2 + (R-r)**2
+        self.H = abs(h*(1-(r/(r-R))))
+        l = (h**2 + (R-r)**2)**0.5
         self.angle = 0
         self.surfaceArea = pi*l*(R+r)
         self.cornerCompatible = 0

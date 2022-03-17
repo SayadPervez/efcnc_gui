@@ -1,8 +1,11 @@
+from cProfile import label
 from shapeManager import *
 from visualization import *
 import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5,algorithm6
 from svgBuilder import svgPlacer,svgRotate
 import time
+
+addr = "./IMG/tb_images/"
 
 timeList = []
 unplacedList = []
@@ -12,7 +15,7 @@ s_ = time.time()
 freeSpace()
 thickness = [1]
 cc = 3
-canvas__ = Canvas(250,450)
+canvas__ = Canvas(180,180)
 objList = [
     Flange(":tbee_95_6","flange"),Circle(7,"circ")   ,
     CutSheet(30,10,0,"rect"),CutSheet(25,25,0,"rect22"),CutSheet(3,3,0,"rect2"),
@@ -67,12 +70,16 @@ for alg in range(1,7):
         yl.append(py)
     svgPlacer(canvas__.svgPath,[_.svgPath for _ in shapes],xl,yl,thickness[0])
     if(up!=[]):
-        unplacedList.append((True,len(up)))
+        unplacedList.append((True,len(up),up))
     else:
         unplacedList.append((False,len(up)))
     timeList.append(time.time()-s0)
     print(f"End of alg {alg}")
-    arr2png(out).show()
+    #arr2png(out).show()
+    arr2png(out).save(f"{addr}algorithm_{alg}.png")
+    abc = free_surface_all(out,40)
+    arr2png(abc).show()
+    pieChart(free_surface_area(abc),f"Algorithm {alg}")
     input("Hit enter to continue ...")
     for _ in up:
         print(_,end="\n\n")
@@ -80,4 +87,16 @@ for alg in range(1,7):
 print("Results : ")
 print(f"Object Creation Time : {objectCreationTime} secs")
 for a in range(0,6):
-    print(f"Algorithm {a+1} : {timeList[a]} secs : {f'{unplacedList[a][1]} Unplaced' if (unplacedList[a][0]) else 'All Placed !!'}")
+    print(f"Algorithm {a+1} : {timeList[a]} secs : {f'{unplacedList[a][1]} Unplaced : {unplacedList[a][2]}' if (unplacedList[a][0]) else 'All Placed !!'}")
+
+import numpy as np
+import matplotlib.pyplot as plt
+x = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6']
+y = [objectCreationTime+_ for _ in timeList]
+z = ["red" if unplacedList[_][0] else "green" for _ in range(0,6)]
+plt.title="Algorithm Time Complexity"
+plt.xlabel("Time")
+plt.ylabel("Algorithm")
+plt.legend()
+plt.barh(x,y,color=z)
+plt.show()

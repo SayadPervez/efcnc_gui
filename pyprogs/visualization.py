@@ -3,7 +3,7 @@ from PIL import Image as im
 import PIL
 import cv2 as cv
 import math
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from functions import *
 from ezdxf import recover
 from ezdxf.addons.drawing import matplotlib
@@ -348,16 +348,16 @@ def free_surface_all(arr,pcent):
     arrFinal = np.array(arrFinal)
     arrFinal = np.where(arrFinal=='*','b',arrFinal)
     return(arrFinal.tolist())
-'''
-def pieChart(li):
+
+def pieChart(li,name):
     li[0],li[2] = li[2],li[0]
     mylabels = ["Wastage","Re-usable","Shapes"]
     myexplode = [0, 0.2, 0]
     mycolors=['#b0bec5','#f50057','#0d47a1']
     plt.pie(li, labels = mylabels, explode = myexplode, colors=mycolors,startangle = 210,autopct='%1.0f%%')
-    plt.title("Canvas Efficiency Chart")
+    plt.title(f"Canvas Efficiency Chart - {name}")
     plt.show() 
-'''
+
 def invertColor(imgarray):
     x = np.array(imgarray,dtype=str)
     x[x=='0']=1
