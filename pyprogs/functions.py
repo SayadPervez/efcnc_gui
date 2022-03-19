@@ -106,7 +106,7 @@ def sortA6(shapeList):
         d[shape] = shape.shapeFrameDimension[0]
     return(list(dict(sorted(d.items(), key=lambda item: item[1])))[::-1])
 
-def fitAll(canvas,objectList):
+def fitAll(canvas,objectList,returnSum=False):
     '''
     This is a theoretical calculation and can sometimes fail to give practical results
     '''
@@ -114,6 +114,8 @@ def fitAll(canvas,objectList):
         objectList = [objectList]
     canvasArea = canvas.surfaceArea
     objectArea = sum([_.surfaceArea for _ in objectList])
+    if(returnSum):
+        return(True if canvasArea >= objectArea else False,objectArea)
     return(True if canvasArea >= objectArea else False)
 
 def sortSurfaceArea(objectList):
@@ -257,3 +259,19 @@ def pushNotification(msg):
 
 def pushError(msg):
     os.system(f'node exception.js "{msg}"')
+
+def typeScaler(li,scale,kount=1,div=False):
+    retli = []
+    if(div):
+        scale = 1/scale
+    i = 0
+    for _ in li:
+        if(i>=kount):
+            retli.append(_)
+        else:
+            try:
+                retli.append(_*scale)
+            except Exception as e:
+                retli.append(_)
+        i+=1
+    return(retli)

@@ -10,6 +10,7 @@ class CutSheet:
     Give side in milli-meter( mm ) and angle in degrees( ° )
     '''
     def __init__(self,length,height,angle,uid):
+        self.params = [length,height,angle,uid]
         self.uid = uid
         self.a3compat=False
         self.myShape="CutSheet"
@@ -72,6 +73,7 @@ class Circle:
     Give radius in milli-meter( mm )
     '''
     def __init__(self,radius,uid):
+        self.params = [radius,uid]
         self.uid = uid
         self.myShape="Circle"
         self.angle=0
@@ -138,6 +140,7 @@ class Cone:
     Give cone-height & cone-radius in milli-meter( mm )
     '''
     def __init__(self,cone_height,cone_radius,angle,uid):
+        self.params = [cone_height,cone_radius,angle,uid]
         self.uid = uid
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
@@ -222,6 +225,7 @@ class Sector:
     Give sector radius & sector-angle in milli-meter( mm )
     '''
     def __init__(self,sector_radius,sector_angle,angle,uid):
+        self.params = [sector_radius,sector_angle,angle,uid]
         self.uid = uid
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
@@ -297,6 +301,7 @@ class Frustum:
     Give sector radius & sector-angle in milli-meter( mm )
     '''
     def __init__(self,R,r,h,angle,uid):
+        self.params = [R,r,h,angle,uid]
         self.uid = uid
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
@@ -372,6 +377,7 @@ class Segment:
     Give sector radius & sector-angle in milli-meter( mm )
     '''
     def __init__(self,R,r,t,angle,uid):
+        self.params = [R,r,t,angle,uid]
         self.uid = uid
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
@@ -445,6 +451,7 @@ class Canvas:
     Give side in milli-meter( mm )
     '''
     def __init__(self,length,height):
+        self.params = [length,height]
         self.uid = "Canvas"
         self.myShape="Canvas"
         self.a3compat=False
@@ -456,7 +463,7 @@ class Canvas:
         self.__generateShape__(length,height)
 
     def __repr__(self):
-        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nSide Length \t: {self.length} mm\nSide Height \t: {self.height} mm\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
+        return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nSide Length \t: {self.length} mm\nSide Height \t: {self.height} mm\nshapeFrameDimension \t: {self.shapeFrameDimension}")
     
     def print(self):
         '''
@@ -499,6 +506,7 @@ class Custom:
     Give side in milli-meter( mm )
     '''
     def __init__(self,filecontents,uid):
+        self.params = [filecontents,uid]
         self.uid = uid
         self.myShape="Custom"
         self.a3compat=True
@@ -564,6 +572,7 @@ class Flange:
     Give side in milli-meter( mm )
     '''
     def __init__(self,namestring,uid):
+        self.params = [namestring,uid]
         self.uid = uid
         self.namestring = namestring
         self.myShape="flange"
