@@ -5,7 +5,7 @@ from svgBuilder import svgPlacer,svgRotate
 
 freeSpace()
 thickness = [1]
-canvas__ = Canvas(250,450)
+canvas__ = Canvas(250,350)
 objList = [
     Flange(":tbee_95_6","flange"),Circle(7,"circ")   ,
     CutSheet(30,10,0,"rect"),CutSheet(25,25,0,"rect22"),CutSheet(3,3,0,"rect2"),
