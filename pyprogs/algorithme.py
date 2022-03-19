@@ -1,6 +1,7 @@
 import functions as func
 import numpy as np
 from math import ceil
+from visualization import *
 
 def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
     unplacedShapes=[]
@@ -11,45 +12,27 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
     stepY = constCompute if constCompute else 1
     memoryX = 0
     memoryY = 0
-    if(col==False):
-        for shape in shapeList:
-            shapePlaced = False
-            sArray = np.array(shape.shapeMatrix,dtype=float)
-            sx,sy = np.shape(sArray)
-            newCanvas = np.copy(cArray)
-            for row in range(0,cx-sx,stepX):
-                doublebreak=False
-                for col in range(0,cy-sy,stepY):
-                    if(row<memoryX and col<memoryY):
-                        continue
-                    newCanvas = np.copy(cArray)
-                    newCanvas[row:row+sx,col:col+sy]+=sArray
-                    if(func.isInterfering(newCanvas)):
+    ptLi = []
+    for shape in shapeList:
+        shapePlaced=False
+        sArray = np.array(shape.shapeMatrix,dtype=float)
+        sx,sy = np.shape(sArray)
+        newCanvas = np.copy(cArray)
+        if(ptLi!=[]):
+            for pt in ptLi:
+                rrr,ccc = pt
+                newCanvas = np.copy(cArray)
+                newCanvas[rrr:rrr+sx,ccc:ccc+sy]+=sArray
+                if(func.isInterfering(newCanvas)):
                         pass
-                    else:
-                        doublebreak=True
-                        shapePlaced=True
-                        shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
-                        memoryX=row+(71/100*sx)
-                        memoryY=col+(71/100*sy)
-                        break
-                if(doublebreak==True):
+                else:
+                    doublebreak=True
+                    shapePlaced=True
+                    shape.low_res_pos = [round(ccc/cy*100,2),round(rrr/cx*100,2),0]
+                    memoryX=rrr+(71/100*sx)
+                    memoryY=ccc+(71/100*sy)
                     break
-            if(log_ and shapePlaced):
-                print(f"Completed placing {shape.myShape}")
-                func.pushNotification(f"Completed placing {shape.myShape}")
-                shape.placed=True
-                placedShapes.append(shape)
-                cArray = np.copy(newCanvas)
-            else:
-                unplacedShapes.append(shape)
-                shape.placed=False
-    else:
-        for shape in shapeList:
-            shapePlaced=False
-            sArray = np.array(shape.shapeMatrix,dtype=float)
-            sx,sy = np.shape(sArray)
-            newCanvas = np.copy(cArray)
+        if(shapePlaced==False):
             for col in range(0,cy-sy,stepY):
                 #print("COL --->>>"+str(col))
                 doublebreak=False
@@ -70,15 +53,24 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                         break
                 if(doublebreak==True):
                     break
-            if(log_ and shapePlaced):
-                print(f"Completed placing {shape.myShape}")
-                func.pushNotification(f"Completed placing {shape.myShape}")
-                shape.placed=True
-                placedShapes.append(shape)
-                cArray = np.copy(newCanvas)
-            else:
-                unplacedShapes.append(shape)
-                shape.placed=False
+        else:
+            pass
+        if(log_ and shapePlaced):
+            print(f"Completed placing {shape.myShape}")
+            func.pushNotification(f"Completed placing {shape.myShape}")
+            shape.placed=True
+            placedShapes.append(shape)
+            cArray = np.copy(newCanvas)
+            outline_ = outline_without_shape(cArray)
+            newOut = [[0]*len(outline_[0])]*len(outline_)
+            for i,row in enumerate(outline_):
+                for j,col in enumerate(row):
+                    if(str(col)=="0.7" and (i>=memoryX or j>=memoryY)):
+                        ptLi.append((i,j))
+        else:
+            unplacedShapes.append(shape)
+            shape.placed=False
+            ptLi = []
     ret = cArray.tolist()
     return(ret,placedShapes,unplacedShapes)
 
