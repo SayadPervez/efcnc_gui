@@ -18,13 +18,13 @@ def tranparencyFilter(pngpath):
     new_image.paste(image, (0, 0), image)           
     new_image.convert('RGB').save(pngpath, "PNG")
 
-def s2p(spath,destinationPath):
+def s2p(spath,destinationPath,scaleFactor=1):
     with open(spath,"r") as f:
         svg_code = f.read()
     svg2png(bytestring=svg_code,write_to=destinationPath)
     img=im.open(destinationPath)
     l,b=img.size
-    img=img.resize((math.ceil(l/3),math.ceil(b/3)),resample=PIL.Image.NEAREST)
+    img=img.resize((math.ceil(l/(3*scaleFactor)),math.ceil(b/(3*scaleFactor))),resample=PIL.Image.NEAREST)
     img.save(destinationPath)
 
 def showPNG(path):
@@ -191,7 +191,7 @@ def outline_with_shape(shapemat,thick):
     a=arr2png(shapemat)
     a.save("./IMG/a.png")
     x,y=a.size
-    b=a.resize((x+2*thick+1,y+2*thick+1),resample=PIL.Image.NEAREST)
+    b=a.resize((x+2*thick+1,y+2*thick+1),resample=PIL.Image.HAMMING)
     b.save("./IMG/b.png")
     a=png2arr("./IMG/a.png")
     b=png2arr("./IMG/b.png")
@@ -231,6 +231,37 @@ def outline(shapemat,thick=0):
             if k=='0.7':
                 r[i][j]=0.7
     return(r)
+
+def outline_without_shape(shapemat,thick=0):
+    if("shapeManager" in str(type(shapemat))):
+        shapemat = shapemat.shapeMatrix
+        thick = thick
+    a=arr2png(shapemat)
+    a.save("./IMG/a.png")
+    x,y=a.size
+    b=a.resize((x+2*thick+1,y+2*thick+1),resample=PIL.Image.HAMMING)
+    b.save("./IMG/b.png")
+    a=png2arr("./IMG/a.png")
+    b=png2arr("./IMG/b.png")
+    x,y=np.shape(np.array(a))
+    j,k=np.shape(np.array(b))
+    l=np.zeros((j+2,k+2),dtype=str)
+    l[l=='']='0'
+    l[ (j-x+2)//2 : x+((j-x+2)//2) ,(k-y+2)//2:y+((k-y+2)//2)]=a
+    m=np.zeros((j+2,k+2),dtype=str)
+    m[m=='']='0'
+    m[1:j+1,1:k+1]=b
+    b=arr2png(m)
+    e=cv.Canny(np.array(b),1,50)
+    e=im.fromarray(e)
+    e.save('./IMG/e.png')
+    e=np.array(png2arr('./IMG/e.png'),dtype=str)
+    e[e=='0']='0.7'
+    e[e=='1']='0'
+    #arr2png(e).show()
+    e[l=='1']='0'
+    #arr2png(e).show()
+    return(typeToggle2d(outlineBugFixFunction(e.tolist())))
 
 def free_surface_12(canvas_array):
     a=np.array(canvas_array,dtype=int)
