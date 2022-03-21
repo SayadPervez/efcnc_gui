@@ -1,10 +1,12 @@
 from shapeManager import *
 from visualization import *
-import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5,algorithm6,algorithme
+import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5,algorithm6
 from svgBuilder import svgPlacer,svgRotate
+import konstants
 
 freeSpace()
 thickness = [1]
+konstants.svgScaleConstant = 6
 canvas__ = Canvas(250,450)
 objList = [
     Flange(":tbee_95_6","flange"),Circle(7,"circ")   ,
@@ -16,7 +18,7 @@ objList = [
 for obj in objList:
     obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]))
 
-out,shapes,up = binaryFilter(algorithme.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
+out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
 arr2png(out).show()
 # for A3
 if(True):

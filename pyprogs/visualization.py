@@ -18,13 +18,13 @@ def tranparencyFilter(pngpath):
     new_image.paste(image, (0, 0), image)           
     new_image.convert('RGB').save(pngpath, "PNG")
 
-def s2p(spath,destinationPath,scaleFactor=1):
+def s2p(spath,destinationPath,scaleFactor=3):
     with open(spath,"r") as f:
         svg_code = f.read()
     svg2png(bytestring=svg_code,write_to=destinationPath)
     img=im.open(destinationPath)
     l,b=img.size
-    img=img.resize((math.ceil(l/(3*scaleFactor)),math.ceil(b/(3*scaleFactor))),resample=PIL.Image.NEAREST)
+    img=img.resize((math.ceil(l/(scaleFactor)),math.ceil(b/(scaleFactor))),resample=PIL.Image.NEAREST)
     img.save(destinationPath)
 
 def showPNG(path):

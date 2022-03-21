@@ -4,6 +4,7 @@ from visualization import arr2png, png2arr,rotate,s2p,showPNG,tranparencyFilter
 from random import randint as ri
 import svgBuilder
 from shutil import copyfile
+import konstants
 
 class CutSheet:
     '''
@@ -63,7 +64,7 @@ class CutSheet:
         '''
         self.dimensions=[length,height,angle,'mm,mm,°']
         svgBuilder.Rectangle(length,height,angle,self.svgPath)
-        s2p(self.svgPath,self.pngPath)
+        s2p(self.svgPath,self.pngPath,konstants.svgScaleConstant)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
@@ -130,7 +131,7 @@ class Circle:
         '''
         self.dimensions=[self.radius,'mm']
         svgBuilder.Circle(radius,self.svgPath)
-        s2p(self.svgPath,self.pngPath)
+        s2p(self.svgPath,self.pngPath,konstants.svgScaleConstant)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
@@ -215,7 +216,7 @@ class Cone:
         '''
         self.dimensions=[height,radius,angle,'mm,mm,°']     # only angle of dimension changes on tilting
         svgBuilder.Cone(height,radius,angle,self.svgPath)
-        s2p(self.svgPath,self.pngPath)
+        s2p(self.svgPath,self.pngPath,konstants.svgScaleConstant)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
@@ -291,7 +292,7 @@ class Sector:
         Generates 2D binary shape matrix
         '''
         svgBuilder.Sector(rad,sec_angle,angle,self.svgPath)
-        s2p(self.svgPath,self.pngPath)
+        s2p(self.svgPath,self.pngPath,konstants.svgScaleConstant)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
@@ -367,7 +368,7 @@ class Frustum:
         Generates 2D binary shape matrix
         '''
         svgBuilder.Frustum(R,r,h,angle,self.svgPath)
-        s2p(self.svgPath,self.pngPath)
+        s2p(self.svgPath,self.pngPath,konstants.svgScaleConstant)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
@@ -441,7 +442,7 @@ class Segment:
         Generates 2D binary shape matrix
         '''
         svgBuilder.Segment(R,r,t,angle,self.svgPath)
-        s2p(self.svgPath,self.pngPath)
+        s2p(self.svgPath,self.pngPath,konstants.svgScaleConstant)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
@@ -496,7 +497,7 @@ class Canvas:
         '''
         self.dimensions=[length,height,'mm,mm']
         svgBuilder.createCanvas(length,height,self.svgPath)
-        s2p(self.svgPath,self.pngPath)
+        s2p(self.svgPath,self.pngPath,konstants.svgScaleConstant)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
@@ -561,7 +562,7 @@ class Custom:
         '''
         #with open(self.svgPath,"w") as f:
         #    f.write(fc)
-        s2p(self.svgPath,self.pngPath)
+        s2p(self.svgPath,self.pngPath,konstants.svgScaleConstant)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
@@ -643,7 +644,7 @@ class Flange:
         os.chdir(actPath)
         copyfile(referenceFlangePath,f"./SVG/{self.uid}.svg")
         #common stuff below
-        s2p(self.svgPath,self.pngPath)
+        s2p(self.svgPath,self.pngPath,konstants.svgScaleConstant)
         tranparencyFilter(self.pngPath)
         self.shapeMatrix = p2aBugFixFunction(png2arr(self.pngPath))
         self.shapeFrameDimension=list(np.shape(self.shapeMatrix))
