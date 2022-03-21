@@ -3,7 +3,9 @@ from visualization import *
 import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5,algorithm6
 from svgBuilder import svgPlacer,svgRotate
 import time
+import konstants
 
+konstants.svgScaleConstant = 6
 addr = "./IMG/tb_images/"
 
 timeList = []

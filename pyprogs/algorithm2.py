@@ -29,8 +29,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                     else:
                         isObjectPlaced=True
                         shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
-                        memoryX=row+(71/100*sx)
-                        memoryY=col+(71/100*sy)
+                        memoryX=row+(shape.diagonalSkipPercentage/100*sx)
+                        memoryY=col+(shape.diagonalSkipPercentage/100*sy)
                         #print("row changes")
                         break
                 if(isObjectPlaced==False):
@@ -45,8 +45,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                         else:
                             isObjectPlaced=True
                             shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
-                            memoryX=row+(71/100*sx)
-                            memoryY=col+(71/100*sy)
+                            memoryX=row+(shape.diagonalSkipPercentage/100*sx)
+                            memoryY=col+(shape.diagonalSkipPercentage/100*sy)
                             #print("col changes")
                             break
                 if(isObjectPlaced==False):
@@ -63,8 +63,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                                 isObjectPlaced=True
                                 doublebreak=True
                                 shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
-                                memoryX=row+(71/100*sx)
-                                memoryY=col+(71/100*sy)
+                                memoryX=row+(shape.diagonalSkipPercentage/100*sx)
+                                memoryY=col+(shape.diagonalSkipPercentage/100*sy)
                                 break
                         if(doublebreak==True):
                             break
@@ -82,8 +82,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                             doublebreak=True
                             isObjectPlaced=True
                             shape.low_res_pos = [round(row/cx*100,2),round(col/cy*100,2),0]
-                            memoryX=row+(71/100*sx)
-                            memoryY=col+(71/100*sy)
+                            memoryX=row+(shape.diagonalSkipPercentage/100*sx)
+                            memoryY=col+(shape.diagonalSkipPercentage/100*sy)
                             break
                     if(doublebreak==True):
                         break
@@ -114,8 +114,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                     else:
                         isObjectPlaced=True
                         shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
-                        memoryX=row+(71/100*sx)
-                        memoryY=col+(71/100*sy)
+                        memoryX=row+(shape.diagonalSkipPercentage/100*sx)
+                        memoryY=col+(shape.diagonalSkipPercentage/100*sy)
                         #print("row changes")
                         break
                 if(isObjectPlaced==False):
@@ -130,8 +130,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                         else:
                             isObjectPlaced=True
                             shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
-                            memoryX=row+(71/100*sx)
-                            memoryY=col+(71/100*sy)
+                            memoryX=row+(shape.diagonalSkipPercentage/100*sx)
+                            memoryY=col+(shape.diagonalSkipPercentage/100*sy)
                             #print("col changes")
                             break
                 if(isObjectPlaced==False):
@@ -148,8 +148,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                                 doublebreak=True
                                 isObjectPlaced = True
                                 shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
-                                memoryX=row+(71/100*sx)
-                                memoryY=col+(71/100*sy)
+                                memoryX=row+(shape.diagonalSkipPercentage/100*sx)
+                                memoryY=col+(shape.diagonalSkipPercentage/100*sy)
                                 break
                         if(doublebreak==True):
                             break
@@ -167,8 +167,8 @@ def fitting(canvas,shapeList,col=True,log_=False,constCompute=False):
                             doublebreak=True
                             isObjectPlaced = True
                             shape.low_res_pos = [round(col/cy*100,2),round(row/cx*100,2),0]
-                            memoryX=row+(71/100*sx)
-                            memoryY=col+(71/100*sy)
+                            memoryX=row+(shape.diagonalSkipPercentage/100*sx)
+                            memoryY=col+(shape.diagonalSkipPercentage/100*sy)
                             break
                     if(doublebreak==True):
                         break

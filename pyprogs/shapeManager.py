@@ -21,6 +21,7 @@ class CutSheet:
         self.angle = 0
         self.cornerCompatible = 1
         self.triangleCompatible = 0
+        self.diagonalSkipPercentage = 100
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
         self.__generateShape__(length,height,angle)
@@ -83,6 +84,7 @@ class Circle:
         self.cornerCompatible = 0
         self.triangleCompatible = 1
         self.surfaceArea = pi*radius*radius
+        self.diagonalSkipPercentage = 71
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
         self.__generateShapeMatrix__(radius)
@@ -155,6 +157,7 @@ class Cone:
         self.surfaceArea = pi*(self.slantHeight**2)*self.theta/360
         self.cornerCompatible = 0
         self.flatAngle = ((180 - self.theta)/2)+self.theta
+        self.diagonalSkipPercentage = 71
         #print('theta = ',self.theta)
         if(self.theta>=360):
             pushError("Illegal Cone Dimensions")
@@ -238,6 +241,7 @@ class Sector:
         self.angle = 0
         self.surfaceArea = pi*(sector_radius**2)*sector_angle/360
         self.cornerCompatible = 0
+        self.diagonalSkipPercentage = 71
         self.flatAngle = ((180 - self.theta)/2)+self.theta
         self.triangleCompatible = 3
         self.__generateShapeMatrix__(sector_radius,sector_angle,angle)
@@ -318,6 +322,7 @@ class Frustum:
         self.cornerCompatible = 0
         self.flatAngle = 180
         self.triangleCompatible = 2
+        self.diagonalSkipPercentage = 71
         self.__generateShapeMatrix__(R,r,h,angle)
 
     def __repr__(self):
@@ -392,6 +397,7 @@ class Segment:
         self.cornerCompatible = 0
         self.flatAngle = 180
         self.triangleCompatible = 2
+        self.diagonalSkipPercentage = 71
         self.__generateShapeMatrix__(R,r,t,angle)
 
     def __repr__(self):
@@ -459,6 +465,7 @@ class Canvas:
         self.length = length
         self.height = height
         self.surfaceArea = length*height
+        self.diagonalSkipPercentage = 100
         self.pngPath = f"./PNG/{self.uid}.png"
         self.svgPath = f"./SVG/{self.uid}.svg"
         self.__generateShape__(length,height)
@@ -519,6 +526,7 @@ class Custom:
         self.cornerCompatible=-1
         self.triangleCompatible=-1
         self.flatAngle = 0
+        self.diagonalSkipPercentage = 71
 
     def __repr__(self):
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
@@ -585,6 +593,7 @@ class Flange:
         self.cornerCompatible=-1
         self.triangleCompatible=-1
         self.flatAngle = 0
+        self.diagonalSkipPercentage = 71
 
     def __repr__(self):
         return(f"Object Shape \t: {self.myShape}\nObject UID \t: {self.uid}\nShape Tilt \t: {self.angle} °\nshapeFrameDimension \t: {self.shapeFrameDimension}")
