@@ -16,12 +16,12 @@ s_ = time.time()
 freeSpace()
 thickness = [1]
 cc = 3
-canvas__ = Canvas(180,180)
+canvas__ = Canvas(1800,1800)
 objList = [
-    Flange(":tbee_95_6","flange"),Circle(7,"circ")   ,
-    CutSheet(30,10,0,"rect"),CutSheet(25,25,0,"rect22"),CutSheet(3,3,0,"rect2"),
-    Cone(20,7,0,"cnt1"),Sector(20,60,0,"sec_t1")     ,
-    Frustum(20,5,20,0,"frust"),Segment(20,10,60,0,"segs")
+    Flange(":tbee_95_6","flange"),Circle(70,"circ")   ,
+    CutSheet(300,100,0,"rect"),CutSheet(250,250,0,"rect22"),CutSheet(30,30,0,"rect2"),
+    Cone(200,70,0,"cnt1"),Sector(200,60,0,"sec_t1")     ,
+    Frustum(200,50,20,0,"frust"),Segment(200,100,60,0,"segs")
     ]
 
 for obj in objList:

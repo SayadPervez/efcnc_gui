@@ -7,6 +7,7 @@ import sys,shutil
 from json import loads as jsonparser
 import math
 from winsound import Beep as beep
+import konstants
 
 objList,cc=[],[]
 thickness=[]
@@ -20,8 +21,9 @@ def RUN(jsonString):
             thickness .append( float((db["__data__"])["t"]) )
             try:
                 alg .append( int((db["__data__"])["a"]) )
+                konstants.svgScaleConstant = int(thickness[0]-1)
             except Exception as e:
-                alg.append(3)
+                alg.append(5)
             cc .append( int((db["__data__"])["cc"]) )
             continue
         obj = db[objectkey]

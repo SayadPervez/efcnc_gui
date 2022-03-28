@@ -6,7 +6,14 @@ import konstants
 
 freeSpace()
 thickness = [1]
-konstants.svgScaleConstant = 6
+konstants.svgScaleConstant = 10
+canvas__ = Canvas(2000,2000)
+objList = [
+    CutSheet(700,450,0,"r1"),CutSheet(100,100,0,"r11"),CutSheet(100,100,0,"r12"),
+    CutSheet(1200,200,0,"r2"),
+    CutSheet(105,150,0,"r3")
+    ]
+'''
 canvas__ = Canvas(250,450)
 objList = [
     Flange(":tbee_95_6","flange"),Circle(7,"circ")   ,
@@ -14,7 +21,7 @@ objList = [
     Cone(20,7,0,"cnt1"),Sector(20,60,0,"sec_t1")     ,
     Frustum(20,5,20,0,"frust"),Segment(20,10,60,0,"segs")
     ]
-
+'''
 for obj in objList:
     obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]))
 
