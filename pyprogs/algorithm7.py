@@ -96,7 +96,7 @@ def fitting(canvas,shapeList,log_=False,constCompute=False):
     return(ret,placedShapes,unplacedShapes)
 
 def run(canvas,shapeList,log_=False,constCompute=False,returnOrder=False):
-    shapeList=func.sortSurfaceArea(shapeList)
+    shapeList=func.sortA7(shapeList)
     d,_=func.singleFit(canvas,shapeList)
     l1 = [d[_][0] for _ in d]
     try:

@@ -5,7 +5,7 @@ from svgBuilder import svgPlacer,svgRotate
 import time
 import konstants
 
-konstants.svgScaleConstant = 6
+konstants.svgScaleConstant = 50
 addr = "./IMG/tb_images/"
 
 timeList = []
@@ -16,13 +16,35 @@ s_ = time.time()
 freeSpace()
 thickness = [1]
 cc = 3
-canvas__ = Canvas(1800,1800)
+canvas__ = Canvas(3000,1500)
 objList = [
-    Flange(":tbee_95_6","flange"),Circle(70,"circ")   ,
-    CutSheet(300,100,0,"rect"),CutSheet(250,250,0,"rect22"),CutSheet(30,30,0,"rect2"),
-    Cone(200,70,0,"cnt1"),Sector(200,60,0,"sec_t1")     ,
-    Frustum(200,50,20,0,"frust"),Segment(200,100,60,0,"segs")
-    ]
+    Circle(472/2,"c1.1"),Circle(472/2,"c1.2"),
+    Circle(920/2,"c2.1"),
+    Circle(685/2,"c3.1"),
+    Circle(550/2,"c4.1"),
+    Circle(330/2,"c5.1"),
+    CutSheet(1250,580,0,"c6.1"),
+    Frustum(398.68,69.7,600,0,"f7.1"),
+    Circle(120/2,"c8.1"),Circle(120/2,"c8.2"),Circle(120/2,"c8.3"),Circle(120/2,"c8.4"),Circle(120/2,"c8.5"),Circle(120/2,"c8.6"),Circle(120/2,"c8.7"),Circle(120/2,"c8.8"),Circle(120/2,"c8.9"),Circle(120/2,"c8.0"),
+    Circle(110/2,"cxxx.1")
+] + [Frustum(63.66,43.44,57.55,0,f"f9.{_}") for _ in range(1,9)]
+
+'''
+for obj in objList:
+    print(obj.uid,obj.surfaceArea)
+
+exit()
+'''
+'''
+# objList3
+objList = [
+    Circle(472/2,"t1.1"),Circle(472/2,"t1.2"),
+    Circle(800/2,"t2.1"),Circle(700/2,"t3.1"),Circle(685/2,"t4.1"),
+    Circle(330/2,"t5.1"),
+    Circle(120/2,"t6.1"),
+    Circle(110/2,"t7.1"),Circle(110/2,"t7.2"),Circle(110/2,"t7.3"),Circle(110/2,"t7.4"),Circle(110/2,"t7.5"),Circle(110/2,"t7.6"),Circle(110/2,"t7.7"),Circle(110/2,"t7.8"),Circle(110/2,"t7.9"),Circle(110/2,"t7.10"),
+    Circle(115/2,"t8.1"),Circle(115/2,"t8.2"),Circle(115/2,"t8.3"),Circle(115/2,"t8.4"),Circle(115/2,"t8.5")
+    ]'''
 
 for obj in objList:
     obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]))
@@ -32,7 +54,8 @@ s__ = time.time()
 objectCreationTime = s__ - s_
 print(f"objectCreationTime : {objectCreationTime} secs")
 
-for alg in range(1,7):
+for alg in range(7,8):
+    canvas__ = Canvas(3000,1500)
     print(f"Starting alg {alg}")
     s0 = time.time()
     if(alg == 1):
@@ -46,6 +69,8 @@ for alg in range(1,7):
     elif(alg == 5):
         out,shapes,up = binaryFilter(algorithm5.run(canvas__,objList,log_=True,constCompute=cc,returnOrder=True))
     elif(alg == 6):
+        out,shapes,up = binaryFilter(algorithm6.run(canvas__,objList,log_=True,constCompute=cc,returnOrder=True))
+    elif(alg == 7):
         out,shapes,up = binaryFilter(algorithm6.run(canvas__,objList,log_=True,constCompute=cc,returnOrder=True))
     else:
         pushError("Invalid Algorithm")
@@ -88,7 +113,7 @@ for alg in range(1,7):
 print("Results : ")
 print(f"Object Creation Time : {objectCreationTime} secs")
 for a in range(0,6):
-    print(f"Algorithm {a+1} : {timeList[a]} secs : {f'{unplacedList[a][1]} Unplaced : {unplacedList[a][2]}' if (unplacedList[a][0]) else 'All Placed !!'}")
+    print(f"Algorithm {a+1} : {timeList[a]} secs : {f'{unplacedList[a][1]} Unplaced : {len(unplacedList[a][2])} nos  => {unplacedList[a][2]}' if (unplacedList[a][0]) else 'All Placed !!'}")
 
 import numpy as np
 import matplotlib.pyplot as plt

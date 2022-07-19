@@ -106,6 +106,12 @@ def sortA6(shapeList):
         d[shape] = shape.shapeFrameDimension[0]
     return(list(dict(sorted(d.items(), key=lambda item: item[1])))[::-1])
 
+def sortA7(shapeList):
+    d={}
+    for shape in shapeList:
+        d[shape] = shape.a7compat
+    return(list(dict(sorted(d.items(), key=lambda item: item[1])))[::-1])
+
 def fitAll(canvas,objectList,returnSum=False):
     '''
     This is a theoretical calculation and can sometimes fail to give practical results

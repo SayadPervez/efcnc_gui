@@ -1,12 +1,13 @@
 from shapeManager import *
 from visualization import *
-import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5,algorithm6
+import algorithm1,algorithm2,algorithm4,algorithm3,algorithm5,algorithm6,algorithm7
 from svgBuilder import svgPlacer,svgRotate
 import konstants
 
 freeSpace()
 thickness = [1]
-konstants.svgScaleConstant = 10
+konstants.svgScaleConstant = 4
+'''
 canvas__ = Canvas(2000,2000)
 objList = [
     CutSheet(700,450,0,"r1"),CutSheet(100,100,0,"r11"),CutSheet(100,100,0,"r12"),
@@ -14,6 +15,7 @@ objList = [
     CutSheet(105,150,0,"r3")
     ]
 '''
+
 canvas__ = Canvas(250,450)
 objList = [
     Flange(":tbee_95_6","flange"),Circle(7,"circ")   ,
@@ -21,11 +23,11 @@ objList = [
     Cone(20,7,0,"cnt1"),Sector(20,60,0,"sec_t1")     ,
     Frustum(20,5,20,0,"frust"),Segment(20,10,60,0,"segs")
     ]
-'''
+
 for obj in objList:
     obj.shapeMatrix = outline_with_shape(obj,int(thickness[0]))
 
-out,shapes,up = binaryFilter(algorithm1.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
+out,shapes,up = binaryFilter(algorithm7.run(canvas__,objList,log_=True,constCompute=3,returnOrder=True))
 arr2png(out).show()
 # for A3
 if(True):

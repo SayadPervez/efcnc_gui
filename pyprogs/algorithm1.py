@@ -98,12 +98,14 @@ def run(canvas,shapeList,col=True,log_=False,timeComplexity=False,constCompute=F
                     tooLarge.append((_.uid,_.myShape,_.dimensions))
     except Exception as e:
         func.pushError(f"* shapes are too large to fit the given canvas...")
-        raise Exception(f"{tooLarge} shapes are too large to fit the given canvas...")
+        #raise Exception(f"{tooLarge} shapes are too large to fit the given canvas...")
     # If program passes till here, 
     # All the given shapes can individually fit in the given canvas.
-    if(func.fitAll(canvas,shapeList)==False):
+    tteemmpp,oossuumm = func.fitAll(canvas,shapeList,returnSum=True)
+    if(tteemmpp==False):
         func.pushError(f"Fitting all shapes in the given canvas is mathematically impossible.")
-        raise Exception(f"Fitting all shapes in the given canvas is mathematically impossible.")
+        print(f"Object Area : {oossuumm} ; Canvas Area : {canvas.surfaceArea}")
+        #raise Exception(f"Fitting all shapes in the given canvas is mathematically impossible.")
     # If program passes till here,
     # All the given shapes can be theoretically arranged in the canvas. Practically, I doubt it
     #print(d)

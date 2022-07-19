@@ -21,6 +21,7 @@ class CutSheet:
         self.angle = 0
         self.cornerCompatible = 1
         self.triangleCompatible = 0
+        self.a7compat=0
         self.diagonalSkipPercentage = 100
         self.pngPath = f"./PNG/{uid}.png"
         self.svgPath = f"./SVG/{uid}.svg"
@@ -80,6 +81,7 @@ class Circle:
         self.myShape="Circle"
         self.angle=0
         self.a3compat=False
+        self.a7compat=9999
         self.radius = radius
         self.cornerCompatible = 0
         self.triangleCompatible = 1
@@ -149,6 +151,7 @@ class Cone:
         self.svgPath = f"./SVG/{uid}.svg"
         self.myShape="cone"
         self.a3compat=True
+        self.a7compat=8888
         self.angle = 0
         self.cone_radius = round(cone_radius)
         self.cone_height = round(cone_height)
@@ -235,6 +238,7 @@ class Sector:
         self.svgPath = f"./SVG/{uid}.svg"
         self.myShape="sector"
         self.a3compat=True
+        self.a7compat=7777
         self.radius = sector_radius
         self.sector_angle = sector_angle
         self.theta = sector_angle
@@ -312,6 +316,7 @@ class Frustum:
         self.svgPath = f"./SVG/{uid}.svg"
         self.myShape="frustum"
         self.a3compat=True
+        self.a7compat=7777
         self.R = R
         self.r = r
         self.h = h
@@ -389,6 +394,7 @@ class Segment:
         self.svgPath = f"./SVG/{uid}.svg"
         self.myShape="segment"
         self.a3compat=True
+        self.a7compat=6666
         self.R = R
         self.r = r
         self.t = t
@@ -518,6 +524,7 @@ class Custom:
         self.uid = uid
         self.myShape="Custom"
         self.a3compat=True
+        self.a7compat=0
         self.fileContents = filecontents
         self.angle = 0
         self.pngPath = f"./PNG/{self.uid}.png"
@@ -586,6 +593,7 @@ class Flange:
         self.namestring = namestring
         self.myShape="flange"
         self.a3compat=False
+        self.a7compat=9999
         self.angle = 0
         self.pngPath = f"./PNG/{self.uid}.png"
         self.svgPath = f"./SVG/{self.uid}.svg"

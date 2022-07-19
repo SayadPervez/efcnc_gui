@@ -84,7 +84,7 @@ def run(canvas,shapeList,log_=False,constCompute=False,returnOrder=False):
     # All the given shapes can individually fit in the given canvas.
     if(func.fitAll(canvas,shapeList)==False):
         func.pushError(f"Fitting all shapes in the given canvas is mathematically impossible.")
-        raise Exception(f"Fitting all shapes in the given canvas is mathematically impossible.")
+        #raise Exception(f"Fitting all shapes in the given canvas is mathematically impossible.")
     # If program passes till here,
     # All the given shapes can be theoretically arranged in the canvas. Practically, I doubt it
     #print(d)
