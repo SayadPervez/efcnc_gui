@@ -16,18 +16,15 @@ s_ = time.time()
 freeSpace()
 thickness = [1]
 cc = 3
-canvas__ = Canvas(3000,1500)
+canvas__ = Canvas(2500, 1250)
 objList = [
-    Circle(472/2,"c1.1"),Circle(472/2,"c1.2"),
-    Circle(920/2,"c2.1"),
-    Circle(685/2,"c3.1"),
-    Circle(550/2,"c4.1"),
-    Circle(330/2,"c5.1"),
-    CutSheet(1250,580,0,"c6.1"),
-    Frustum(398.68,69.7,600,0,"f7.1"),
-    Circle(120/2,"c8.1"),Circle(120/2,"c8.2"),Circle(120/2,"c8.3"),Circle(120/2,"c8.4"),Circle(120/2,"c8.5"),Circle(120/2,"c8.6"),Circle(120/2,"c8.7"),Circle(120/2,"c8.8"),Circle(120/2,"c8.9"),Circle(120/2,"c8.0"),
-    Circle(110/2,"cxxx.1")
-] + [Frustum(63.66,43.44,57.55,0,f"f9.{_}") for _ in range(1,9)]
+    Circle(800/2, "c1.1"),
+    Circle(700/2, "c2.1"),
+    Circle(685/3, "c3.1"),
+    Circle(330/2, "c4.1"),
+    Circle(120/2, "c5.1"),
+    Frustum(198.62, 35.17, 345.26, 0, "f1.1")
+]+[Frustum(63.66, 43.44, 57.55, 0, f"f2.{_}") for _ in range(0, 5)]+[Circle(472/2, f"c6.{_}") for _ in range(0, 4)] + [Circle(110/2, f"c7.{_}") for _ in range(0, 10)]+[Circle(115/2, f"c8.{_}") for _ in range(0, 5)]
 
 '''
 for obj in objList:
@@ -54,7 +51,7 @@ s__ = time.time()
 objectCreationTime = s__ - s_
 print(f"objectCreationTime : {objectCreationTime} secs")
 
-for alg in range(7,8):
+for alg in range(1,8):
     canvas__ = Canvas(3000,1500)
     print(f"Starting alg {alg}")
     s0 = time.time()
